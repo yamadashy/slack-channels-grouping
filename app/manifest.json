@@ -35,8 +35,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://*.slack.com/*"
       ],
       "css": [
         "styles/contentscript.css"
@@ -44,41 +43,14 @@
       "js": [
         "scripts/contentscript.js"
       ],
-      "run_at": "document_end",
+      "run_at": "document_idle",
       "all_frames": false
     }
   ],
   "permissions": [
     "activeTab",
-    "alarms",
-    "bookmarks",
-    "browsingData",
-    "browserSettings",
-    "contextMenus",
-    "contextualIdentities",
-    "cookies",
-    "downloads",
-    "downloads.open",
-    "find",
-    "geolocation",
-    "history",
-    "identity",
-    "idle",
-    "management",
-    "menus",
-    "nativeMessaging",
-    "notifications",
-    "pkcs11",
-    "privacy",
-    "proxy",
-    "sessions",
     "storage",
     "tabs",
-    "theme",
-    "topSites",
-    "webNavigation",
-    "webRequest",
-    "webRequestBlocking",
-    "<all_urls>"
+    "https://*.slack.com/*"
   ]
 }

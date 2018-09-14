@@ -1,4 +1,4 @@
-# slack channels grouping
+# slack channel grouping
 
 Slackのチェンネル一覧をまとめます
 

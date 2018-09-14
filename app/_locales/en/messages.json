@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "slack channels grouping",
+    "message": "slack channel grouping",
     "description": "The name of the application"
   },
   "appShortName": {
@@ -12,7 +12,7 @@
     "description": "The description of the application"
   },
   "browserActionTitle": {
-    "message": "slack channels grouping",
+    "message": "slack channel grouping",
     "description": "The title of the browser action button"
   }
 }

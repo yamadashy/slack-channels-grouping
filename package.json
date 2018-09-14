@@ -1,10 +1,13 @@
 {
-  "name": "slack-channels-grouping",
+  "name": "slack-channel-grouping",
   "version": "0.0.1",
   "description": "Slackのチェンネル一覧をまとめます",
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build"
+  },
+  "dependencies": {
+    "jquery": "3.3.1"
   },
   "devDependencies": {
     "webextension-toolbox": "latest"
