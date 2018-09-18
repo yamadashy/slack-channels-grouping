@@ -1,9 +1,8 @@
 .scg-grouping-wrapper {
     position: relative;
-    border: 1px solid rgba(0, 0, 0, 1);
-    border-bottom-width: 2px;
-    margin: 7px 3px 5px 3px;
-    border-radius: 7px;
+    border: 0px solid rgba(0, 0, 0, 1);
+    border-left-width: 3px;
+    margin: 7px 0px 5px 3px;
 }
 
 .scg-grouping-wrapper .scg-grouping-wrapper-header {
@@ -16,9 +15,8 @@
     line-height: 1.5em;
     height: 1.5em;
     padding-left: 1.0em;
-    border-radius: 5px 5px 0 0;
 }
 
 .scg-grouping-wrapper [role=listitem] a {
-    padding-left: 11px;
+    padding-left: 9px;
 }

@@ -3,8 +3,8 @@ import $ from "jquery";
 class ChannelGrouper {
     constructor() {
         this.$channelItems = $(".p-channel_sidebar__static_list [role=listitem]");
-        this.selectedChannelFontColor = "#fff";
-        this.selectedChannelBGColor = "#000";
+        this.selectedChannelFontColor = "#ffffff";
+        this.selectedChannelBGColor = "#000000";
     }
 
     getThemeColors() {
@@ -68,14 +68,20 @@ class ChannelGrouper {
                 backgroundColor: this.selectedChannelBGColor,
                 color: this.selectedChannelFontColor
             });
+
         groupingWrapper
             .addClass("scg-grouping-wrapper")
             .css({
+                backgroundColor: this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2),
                 borderColor: this.selectedChannelBGColor
             })
             .insertBefore(this.$channelItems.eq(start))
             .append(groupingWrapperHeader)
             .append(this.$channelItems.slice(start, end));
+    }
+
+    _replaceRGBColorWithOpacity(rgbValue = "rgba(255, 255, 255, 1)", opacity) {
+        return rgbValue.replace(")", `,${opacity})`).replace('rgb', 'rgba')
     }
 }
 
