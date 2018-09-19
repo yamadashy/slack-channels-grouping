@@ -2,7 +2,8 @@
     position: relative;
     border: 0px solid rgba(0, 0, 0, 1);
     border-left-width: 3px;
-    margin: 7px 0px 5px 3px;
+    border-bottom-width: 1px;
+    margin: 9px 0px 7px 2px;
 }
 
 .scg-grouping-wrapper .scg-grouping-wrapper-header {
@@ -11,12 +12,17 @@
     top: -1px;
     background: rgba(0, 0, 0, 1);
     color: #ccc;
-    font-size: 0.8em;
+    font-size: 0.75em;
     line-height: 1.5em;
     height: 1.5em;
     padding-left: 1.0em;
+    font-weight: bold;
+}
+
+.scg-grouping-wrapper .scg-grouping-wrapper-header .ts_icon {
+    font-size: 0.7em;
 }
 
 .scg-grouping-wrapper [role=listitem] a {
-    padding-left: 9px;
+    padding-left: 10px;
 }

@@ -22,7 +22,7 @@ class ChannelGrouper {
         let prevPrefix = "";
         let groupStartIndex = 0;
         let groupEndIndex = 0;
-        const regContainPrefix = /(\w+)-.+/;
+        const regContainPrefix = /(\w+)[-_].+/;
 
         this.$channelItems.each((index, channelItem) => {
             const $channelItem = $(channelItem);
@@ -63,16 +63,18 @@ class ChannelGrouper {
         const groupingWrapperHeader = $("<div>");
         groupingWrapperHeader
             .addClass("scg-grouping-wrapper-header")
-            .text(groupName)
             .css({
                 backgroundColor: this.selectedChannelBGColor,
                 color: this.selectedChannelFontColor
-            });
+            })
+            // .append($("<i>").addClass("ts_icon ts_icon_user_groups"))
+            .append($("<span>").text(groupName));
 
         groupingWrapper
             .addClass("scg-grouping-wrapper")
             .css({
-                backgroundColor: this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2),
+                // backgroundColor: this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2),
+                background: `linear-gradient(to left, ${this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2)}, transparent)`,
                 borderColor: this.selectedChannelBGColor
             })
             .insertBefore(this.$channelItems.eq(start))
