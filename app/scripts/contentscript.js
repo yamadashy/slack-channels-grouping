@@ -61,21 +61,20 @@ class ChannelGrouper {
     groupingByRange(start = 0, end = 0, groupName = "-") {
         const groupingWrapper = $("<div>")
         const groupingWrapperHeader = $("<div>");
+        const channelBGColorWithOpacity = this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.8);
+
         groupingWrapperHeader
             .addClass("scg-grouping-wrapper-header")
             .css({
-                backgroundColor: this.selectedChannelBGColor,
+                backgroundColor: channelBGColorWithOpacity,
                 color: this.selectedChannelFontColor
             })
             // .append($("<i>").addClass("ts_icon ts_icon_user_groups"))
             .append($("<span>").text(groupName));
-
         groupingWrapper
             .addClass("scg-grouping-wrapper")
             .css({
-                // backgroundColor: this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2),
-                background: `linear-gradient(to left, ${this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.2)}, transparent)`,
-                borderColor: this.selectedChannelBGColor
+                borderColor: channelBGColorWithOpacity
             })
             .insertBefore(this.$channelItems.eq(start))
             .append(groupingWrapperHeader)
