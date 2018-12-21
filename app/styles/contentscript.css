@@ -2,7 +2,7 @@
     position: relative;
     border: 0px solid rgba(0, 0, 0, 1);
     border-left-width: 4px;
-    margin: 9px 0px 7px 2px;
+    margin: 3px 0px 3px 2px;
 }
 
 .scg-grouping-wrapper .scg-grouping-wrapper-header {
@@ -12,13 +12,13 @@
     top: -1px;
     background: rgba(0, 0, 0, 1);
     color: #ccc;
-    font-size: 0.8em;
-    line-height: 1.5em;
-    height: 1.5em;
+    font-size: 0.75em;
+    line-height: 1.3em;
+    height: 1.3em;
     margin: 0;
     padding: 0 1.4em;
     border-radius: 0 5px 5px 0;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .scg-grouping-wrapper .scg-grouping-wrapper-header .ts_icon {
