@@ -10,7 +10,7 @@ class ChannelGrouper {
             const loopStartTime = Date.now();
 
             const checkChannelListLoop = () => {
-                if (document.querySelector(".p-channel_sidebar__static_list") != null) {
+                if (document.getElementsByClassName(".p-channel_sidebar__static_list").length === 0) {
                     resolve();
                     return;
                 }
@@ -27,11 +27,11 @@ class ChannelGrouper {
     }
 
     groupingAllByPrefix() {
-        const channelItems = $(".p-channel_sidebar__static_list [role=listitem]");
+        const channelItems = document.querySelectorAll(".p-channel_sidebar__static_list [role=listitem]");
         let previousPrefix = "";
         let prefixes = [];
 
-        channelItems.each(function (index, elem) {
+        channelItems.each(function (elem, index) {
             const $item = $(elem)
             const $span = $item.find("a > span");
             const channelName = $.trim($span.text());
@@ -42,7 +42,7 @@ class ChannelGrouper {
             }
         });
 
-        channelItems.each(function (index, elem) {
+        channelItems.each(function (elem, index) {
             const $item = $(elem)
             const $span = $item.find("a > span");
             const channelName = $.trim($span.text());
