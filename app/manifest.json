@@ -35,6 +35,7 @@
   "content_scripts": [
     {
       "matches": [
+        "http://*.slack.com/*",
         "https://*.slack.com/*"
       ],
       "css": [
@@ -48,9 +49,5 @@
     }
   ],
   "permissions": [
-    "activeTab",
-    "storage",
-    "tabs",
-    "https://*.slack.com/*"
   ]
 }

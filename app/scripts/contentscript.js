@@ -3,86 +3,50 @@ import $ from "jquery";
 class ChannelGrouper {
     constructor() {
         this.$channelItems = $(".p-channel_sidebar__static_list [role=listitem]");
-        this.selectedChannelFontColor = "#ffffff";
-        this.selectedChannelBGColor = "#000000";
-    }
-
-    getThemeColors() {
-        const selectedChannel = $(".p-channel_sidebar__channel--selected");
-
-        if (selectedChannel.length > 0) {
-            this.selectedChannelFontColor = selectedChannel.css("color");
-            this.selectedChannelBGColor = selectedChannel.css("background-color");
-        }
     }
 
     groupingAllByPrefix() {
-        this.getThemeColors();
-        
-        let prevPrefix = "";
-        let groupStartIndex = 0;
-        let groupEndIndex = 0;
-        const regContainPrefix = /(\w+)[-_].+/;
+        var previousPrefix = "";
+        let prefixes = [];
 
-        this.$channelItems.each((index, channelItem) => {
-            const $channelItem = $(channelItem);
-            const channelType = $channelItem.find("a").data("drag-type");
-            const channelName = $channelItem.find("a span").text() + "";
-            const isMatched = regContainPrefix.test(channelName);
+        this.$channelItems.each(function (index, elem) {
+            var $item = $(elem)
+            var $span = $item.find("a > span");
+            var channelName = $.trim($span.text());
 
-            if (channelType !== "channel" || !isMatched) {
-                if (index > groupStartIndex + 2) {
-                    this.groupingByRange(groupStartIndex, index, prevPrefix)
-                }
-
-                prevPrefix = "";
-                groupStartIndex = index;
-                groupEndIndex = index;
-                return
+            if (/^.+?[-_].*/.test(channelName)) {
+                const prefix = channelName.match(/(^.+?)[-_].*/)[1];
+                prefixes[index] = prefix;
             }
-
-            const prefix = channelName.match(regContainPrefix)[1];
-
-            if (prefix != prevPrefix) {
-                if (index > groupStartIndex + 1) {
-                    this.groupingByRange(groupStartIndex, index, prevPrefix)
-                }
-
-                groupStartIndex = index;
-                groupEndIndex = index;
-            } else {
-                groupEndIndex = index;
-            }
-
-            prevPrefix = prefix;
         });
-    }
 
-    groupingByRange(start = 0, end = 0, groupName = "-") {
-        const groupingWrapper = $("<div>")
-        const groupingWrapperHeader = $("<div>");
-        const channelBGColorWithOpacity = this._replaceRGBColorWithOpacity(this.selectedChannelBGColor, 0.8);
+        this.$channelItems.each(function (index, elem) {
+            var $item = $(elem)
+            var $span = $item.find("a > span");
+            var channelName = $.trim($span.text());
 
-        groupingWrapperHeader
-            .addClass("scg-grouping-wrapper-header")
-            .css({
-                backgroundColor: channelBGColorWithOpacity,
-                color: this.selectedChannelFontColor
-            })
-            // .append($("<i>").addClass("ts_icon ts_icon_user_groups"))
-            .append($("<span>").text(groupName));
-        groupingWrapper
-            .addClass("scg-grouping-wrapper")
-            .css({
-                borderColor: channelBGColorWithOpacity
-            })
-            .insertBefore(this.$channelItems.eq(start))
-            .append(groupingWrapperHeader)
-            .append(this.$channelItems.slice(start, end));
-    }
+            if (/^.+?[-_].*/.test(channelName)) {
+                const prefix = prefixes[index];
+                const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
 
-    _replaceRGBColorWithOpacity(rgbValue = "rgba(255, 255, 255, 1)", opacity) {
-        return rgbValue.replace(")", `,${opacity})`).replace('rgb', 'rgba')
+                if (isLoneliness) {
+                    return;
+                }
+
+                const isParent = prefix !== previousPrefix;
+                const isLastChild = prefixes[index + 1] !== prefix;
+                const separator = isParent ? "┬" : (isLastChild ? "└" : "├");
+
+                $span
+                    .empty()
+                    .addClass(isParent ? "scg-ch-parent" : "scg-ch-child")
+                    .append($("<span>").addClass("scg-ch-prefix").text(prefix))
+                    .append($("<span>").addClass("scg-ch-separator").text(separator))
+                    .append($("<span>").addClass("scg-ch-name").text(channelName.replace(/(^.+?)[-_](.*)/, "$2")));
+
+                previousPrefix = prefix;
+            }
+        });
     }
 }
 
