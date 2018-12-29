@@ -2,6 +2,28 @@ import $ from "jquery";
 
 class ChannelGrouper {
     constructor() {
+
+    }
+
+    waitChannelList() {
+        return new Promise((resolve, reject) => {
+            const loopStartTime = Date.now();
+
+            const checkChannelListLoop = () => {
+                if (document.querySelector(".p-channel_sidebar__static_list") != null) {
+                    resolve();
+                    return;
+                }
+
+                if (Date.now() - loopStartTime > 1000 * 10) {
+                    return;
+                }
+
+                setTimeout(checkChannelListLoop, 100);
+            }
+
+            checkChannelListLoop();
+        });
     }
 
     groupingAllByPrefix() {
@@ -66,8 +88,11 @@ class ChannelGrouper {
     }
 }
 
-setTimeout(function () {
+(async () => {
     const channelGrouper = new ChannelGrouper();
+
+    await channelGrouper.waitChannelList();
+
     channelGrouper.groupingAllByPrefix();
-    channelGrouper.watchChannelList();
-}, 3000);
+    // channelGrouper.watchChannelList();
+})();
