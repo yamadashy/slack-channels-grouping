@@ -1,16 +1,18 @@
 import $ from "jquery";
 
+const CHANNEL_LIST_CLASS_NAME = ".p-channel_sidebar__static_list";
+
 class ChannelGrouper {
   constructor() {
 
   }
 
-  waitChannelList() {
+  waitRenderChannelList() {
     return new Promise((resolve, reject) => {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = () => {
-        if (document.getElementsByClassName(".p-channel_sidebar__static_list").length === 0) {
+        if (document.querySelectorAll(CHANNEL_LIST_CLASS_NAME + " [role=listitem]").length > 0) {
           resolve();
           return;
         }
@@ -27,11 +29,11 @@ class ChannelGrouper {
   }
 
   groupingAllByPrefix() {
-    const channelItems = document.querySelectorAll(".p-channel_sidebar__static_list [role=listitem]");
+    const channelItems = $(CHANNEL_LIST_CLASS_NAME + " [role=listitem]");
     let previousPrefix = "";
     let prefixes = [];
 
-    channelItems.each(function (elem, index) {
+    channelItems.each(function (index, elem) {
       const $item = $(elem)
       const $span = $item.find("a > span");
       const channelName = $.trim($span.text());
@@ -42,7 +44,7 @@ class ChannelGrouper {
       }
     });
 
-    channelItems.each(function (elem, index) {
+    channelItems.each(function (index, elem) {
       const $item = $(elem)
       const $span = $item.find("a > span");
       const channelName = $.trim($span.text());
@@ -76,8 +78,8 @@ class ChannelGrouper {
     });
   }
 
-  watchChannelList() {
-    const watchTarget = document.querySelector(".p-channel_sidebar__static_list");
+  watchUpdateChannelList() {
+    const watchTarget = document.querySelector(CHANNEL_LIST_CLASS_NAME);
     const observer = new MutationObserver((mutations) => {
       this.groupingAllByPrefix();
     });
@@ -91,8 +93,8 @@ class ChannelGrouper {
 (async () => {
   const channelGrouper = new ChannelGrouper();
 
-  await channelGrouper.waitChannelList();
+  await channelGrouper.waitRenderChannelList();
 
   channelGrouper.groupingAllByPrefix();
-  // channelGrouper.watchChannelList();
+  // channelGrouper.watchUpdateChannelList();
 })();
