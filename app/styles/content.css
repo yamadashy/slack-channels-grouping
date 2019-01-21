@@ -1,18 +1,17 @@
 .scg-ch-prefix {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .scg-ch-child .scg-ch-prefix {
-    opacity: 0;
+  opacity: 0;
 }
 
 .scg-ch-separator {
-    margin: 0 .2em 0 .1em;
-    font-weight: 100;
-    transform: scale(1.0, 1.7);
-    display: inline-block;
-    font-family: monospace;
+  margin: 0 .2em 0 .1em;
+  font-weight: 100;
+  transform: scale(1.0, 1.7);
+  display: inline-block;
+  font-family: monospace;
 }
 
-.scg-ch-name {
-}
+.scg-ch-name {}
