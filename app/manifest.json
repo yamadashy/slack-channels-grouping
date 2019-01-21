@@ -7,31 +7,11 @@
   "default_locale": "en",
   "icons": {
     "16": "images/icon-16.png",
+    "19": "images/icon-19.png",
+    "38": "images/icon-38.png",
     "128": "images/icon-128.png"
   },
-  "background": {
-    "scripts": [
-      "scripts/background.js"
-    ]
-  },
-  "page_action": {
-    "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
-    },
-    "default_title": "__MSG_browserActionTitle__",
-    "default_popup": "pages/popup.html"
-  },
-  "options_page": "pages/options.html",
-  "options_ui": {
-    "page": "pages/options.html",
-    "chrome_style": true
-  },
-  "minimum_chrome_version": "10.0",
-  "devtools_page": "pages/devtools.html",
-  "omnibox": {
-    "keyword": "slack-ch-group"
-  },
+  "minimum_chrome_version": "41.0",
   "content_scripts": [
     {
       "matches": [
@@ -39,15 +19,14 @@
         "https://*.slack.com/*"
       ],
       "css": [
-        "styles/contentscript.css"
+        "styles/content.css"
       ],
       "js": [
-        "scripts/contentscript.js"
+        "scripts/content.js"
       ],
-      "run_at": "document_end",
+      "run_at": "document_idle",
       "all_frames": false
     }
   ],
-  "permissions": [
-  ]
+  "permissions": []
 }
