@@ -66,6 +66,7 @@ class ChannelGrouper {
 
     // Apply
     $channelItems.each(function (index, channelItem) {
+      const $span = $(channelItem).find('a > span');
       const prefix = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
       const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;
@@ -84,7 +85,7 @@ class ChannelGrouper {
         separator = '├';
       }
 
-      $(channelItem).find('a > span')
+      $span
         .empty()
         .removeClass('scg-ch-parent scg-ch-child')
         .addClass(isParent ? 'scg-ch-parent' : 'scg-ch-child')
