@@ -1,10 +1,12 @@
 # slack channels grouping
 
-Slackのチェンネル一覧をまとめます
+Grouping slack channels.
+
+![](./promo/Screenshot_1280x800.png)
 
 ## Install
 ```
-$ npm install
+$ yarn install
 ```
 
 ## Development
