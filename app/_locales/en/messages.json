@@ -6,6 +6,6 @@
     "message": "slack-ch-group"
   },
   "appDescription": {
-    "message": "Slackのチェンネル一覧をまとめます"
+    "message": "Grouping slack channels by prefix"
   }
 }
