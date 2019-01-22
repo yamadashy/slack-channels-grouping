@@ -17,7 +17,8 @@ class ChannelGrouper {
           return;
         }
 
-        if (Date.now() - loopStartTime > 1000 * 10) {
+        // timeout 30 seconds
+        if (Date.now() - loopStartTime > 1000 * 30) {
           return;
         }
 
@@ -29,52 +30,66 @@ class ChannelGrouper {
   }
 
   groupingAllByPrefix() {
-    const channelItems = $(CHANNEL_LIST_CLASS_NAME + " [role=listitem]");
-    let previousPrefix = "";
+    const $channelItems = $(CHANNEL_LIST_CLASS_NAME + " [role=listitem]");
     let prefixes = [];
+    const regChannelMatch = /(^.+?)[-_].*/;
 
-    channelItems.each(function (index, elem) {
-      const $item = $(elem)
-      const $span = $item.find("a > span");
-      const channelName = $.trim($span.text());
+    // Get prefixes
+    $channelItems.each(function (index, channelItem) {
+      const $span = $(channelItem).find("a > span");
+      let channelName = '';
+      let prefix = '';
 
-      if (/^.+?[-_].*/.test(channelName)) {
-        const prefix = channelName.match(/(^.+?)[-_].*/)[1];
-        prefixes[index] = prefix;
+      // Get ch name
+      if ($span.data("scg-channel-name")) {
+        channelName = $span.data("scg-channel-name");
+      } else {
+        channelName = $.trim($span.text());
       }
+
+      // Get ch name prefix
+      if ($span.data("scg-channel-prefix")) {
+        prefix = $span.data("scg-channel-prefix");
+      } else {
+        if (regChannelMatch.test(channelName)) {
+          prefix = channelName.match(regChannelMatch)[1];
+        } else {
+          prefix = '';
+        }
+      }
+
+      $span.data("scg-channel-name", channelName);
+      $span.data("scg-channel-prefix", prefix);
+      prefixes[index] = prefix;
     });
 
-    channelItems.each(function (index, elem) {
-      const $item = $(elem)
-      const $span = $item.find("a > span");
-      const channelName = $.trim($span.text());
+    // Apply
+    $channelItems.each(function (index, channelItem) {
+      const $span = $(channelItem).find("a > span");
       const prefix = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
+      const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;
+      const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
+      let separator = "";
 
-      if ($span.hasClass("scg-ch-parent") || $span.hasClass("scg-ch-child")) {
+      if (isLoneliness || prefixes[index] === '') {
         return;
       }
 
-      if (isLoneliness) {
-        return;
+      if (isParent) {
+        separator = "┬";
+      } else if (isLastChild) {
+        separator = "└";
+      } else {
+        separator = "├";
       }
 
-      if (prefixes[index] == null) {
-        return;
-      }
-
-      const isParent = prefix !== previousPrefix;
-      const isLastChild = prefixes[index + 1] !== prefix;
-      const separator = isParent ? "┬" : (isLastChild ? "└" : "├");
-
-      $span
-        .empty()
+      $span.empty()
+        .removeClass("scg-ch-parent scg-ch-child")
         .addClass(isParent ? "scg-ch-parent" : "scg-ch-child")
         .append($("<span>").addClass("scg-ch-prefix").text(prefix))
         .append($("<span>").addClass("scg-ch-separator").text(separator))
-        .append($("<span>").addClass("scg-ch-name").text(channelName.replace(/(^.+?)[-_](.*)/, "$2")));
-
-      previousPrefix = prefix;
+        .append($("<span>").addClass("scg-ch-name").text($span.data("scg-channel-name").replace(/(^.+?)[-_](.*)/, "$2")));
     });
   }
 
@@ -92,9 +107,7 @@ class ChannelGrouper {
 
 (async () => {
   const channelGrouper = new ChannelGrouper();
-
   await channelGrouper.waitRenderChannelList();
-
   channelGrouper.groupingAllByPrefix();
-  // channelGrouper.watchUpdateChannelList();
+  channelGrouper.watchUpdateChannelList();
 })();
