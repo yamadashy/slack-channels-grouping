@@ -4,6 +4,13 @@ Grouping slack channels.
 
 ![](./promo/Screenshot_1280x800.png)
 
+
+## Install
+
+[Slack Channels Grouping - Chrome WebStore](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
+
+# Dev
+
 ## Install
 ```
 $ yarn install
