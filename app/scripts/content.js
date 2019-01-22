@@ -37,18 +37,19 @@ class ChannelGrouper {
     // Get prefixes
     $channelItems.each(function (index, channelItem) {
       const $span = $(channelItem).find("a > span");
+      const shouldUpdate = $span.find("span").length === 0;
       let channelName = '';
       let prefix = '';
 
       // Get ch name
-      if ($span.data("scg-channel-name")) {
+      if (!shouldUpdate && $span.data("scg-channel-name")) {
         channelName = $span.data("scg-channel-name");
       } else {
         channelName = $.trim($span.text());
       }
 
       // Get ch name prefix
-      if ($span.data("scg-channel-prefix")) {
+      if (!shouldUpdate && $span.data("scg-channel-prefix")) {
         prefix = $span.data("scg-channel-prefix");
       } else {
         if (regChannelMatch.test(channelName)) {
