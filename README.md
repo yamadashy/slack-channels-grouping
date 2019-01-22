@@ -7,7 +7,7 @@ Grouping slack channels.
 
 ## Install
 
-[Slack Channels Grouping - Chrome WebStore](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
+[Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
 
 # Dev
 
