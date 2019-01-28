@@ -4,7 +4,7 @@ const CHANNEL_LIST_CLASS_NAME = '.p-channel_sidebar__static_list';
 
 class ChannelGrouper {
   constructor() {
-
+    this.observer = null;
   }
 
   waitRenderChannelList() {
@@ -27,6 +27,37 @@ class ChannelGrouper {
 
       checkChannelListLoop();
     });
+  }
+
+  start() {
+    document.addEventListener("visibilitychange", () => {
+      const isHidden = document.hidden;
+
+      if (isHidden) {
+        this.disableObserver();
+      } else {
+        this.groupingAllByPrefix();
+        this.enableObserver();
+      }
+    });
+  }
+
+  enableObserver() {
+    if (!this.observer) {
+      this.observer = new MutationObserver((mutations) => {
+        this.groupingAllByPrefix();
+      });
+    }
+
+    this.observer.observe(document.querySelector(CHANNEL_LIST_CLASS_NAME), {
+      childList: true,
+    });
+  }
+
+  disableObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   groupingAllByPrefix() {
@@ -94,22 +125,10 @@ class ChannelGrouper {
         .append($('<span>').addClass('scg-ch-name').text($span.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
     });
   }
-
-  watchUpdateChannelList() {
-    const watchTarget = document.querySelector(CHANNEL_LIST_CLASS_NAME);
-    const observer = new MutationObserver((mutations) => {
-      this.groupingAllByPrefix();
-    });
-
-    observer.observe(watchTarget, {
-      childList: true,
-    });
-  }
 }
 
 (async () => {
   const channelGrouper = new ChannelGrouper();
   await channelGrouper.waitRenderChannelList();
-  channelGrouper.groupingAllByPrefix();
-  channelGrouper.watchUpdateChannelList();
+  channelGrouper.start();
 })();
