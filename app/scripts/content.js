@@ -30,13 +30,15 @@ class ChannelGrouper {
   }
 
   start() {
+    this.groupingAllByPrefixOnIdle();
+
     document.addEventListener("visibilitychange", () => {
       const isHidden = document.hidden;
 
       if (isHidden) {
         this.disableObserver();
       } else {
-        this.groupingAllByPrefix();
+        this.groupingAllByPrefixOnIdle();
         this.enableObserver();
       }
     });
@@ -45,7 +47,7 @@ class ChannelGrouper {
   enableObserver() {
     if (!this.observer) {
       this.observer = new MutationObserver((mutations) => {
-        this.groupingAllByPrefix();
+        this.groupingAllByPrefixOnIdle();
       });
     }
 
@@ -58,6 +60,14 @@ class ChannelGrouper {
     if (this.observer) {
       this.observer.disconnect();
     }
+  }
+
+  groupingAllByPrefixOnIdle() {
+    window.requestIdleCallback(() => {
+      this.groupingAllByPrefix();
+    }, {
+      timeout: 10 * 1000
+    })
   }
 
   groupingAllByPrefix() {
