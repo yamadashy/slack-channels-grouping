@@ -1,9 +1,36 @@
-import $ from 'jquery';
+// modules
+import * as $ from 'jquery';
 
+// constants
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 
+// types
+type RequestIdleCallbackHandle = any;
+type RequestIdleCallbackOptions = {
+  timeout: number;
+};
+type RequestIdleCallbackDeadline = {
+  readonly didTimeout: boolean;
+  timeRemaining: (() => number);
+};
+
+declare global {
+  interface Window {
+    requestIdleCallback: ((
+      callback: ((deadline: RequestIdleCallbackDeadline) => void),
+      opts?: RequestIdleCallbackOptions,
+    ) => RequestIdleCallbackHandle);
+    cancelIdleCallback: ((handle: RequestIdleCallbackHandle) => void);
+  }
+}
+
+/**
+ * Channel Grouping Class
+ */
 class ChannelGrouper {
+  observer: MutationObserver
+
   constructor() {
     this.observer = null;
   }
@@ -73,11 +100,11 @@ class ChannelGrouper {
 
   groupingAllByPrefix() {
     const $channelItems = $(CHANNEL_LIST_SELECTOR + ' [role=listitem]');
-    let prefixes = [];
+    let prefixes: string[] = [];
     const regChannelMatch = /(^.+?)[-_].*/;
 
     // Get prefixes
-    $channelItems.each(function (index, channelItem) {
+    $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const isApplied = $channelName.find('span').length > 0;
       let channelName = '';
@@ -107,9 +134,9 @@ class ChannelGrouper {
     });
 
     // Apply
-    $channelItems.each(function (index, channelItem) {
+    $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
-      const prefix = prefixes[index];
+      const prefix: string = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
       const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
