@@ -10,6 +10,7 @@ Grouping slack channels.
 [Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
 
 # Dev
+- Node.js v8.15.0
 
 ## Install
 ```
