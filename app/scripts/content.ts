@@ -65,10 +65,10 @@ class ChannelGrouper {
     window.addEventListener("blur", () => {
       this.disableObserver();
     }, false);
-    document.addEventListener("focus", () => {
+    window.addEventListener("focus", () => {
       this.groupingAllByPrefixOnIdle();
       this.enableObserver();
-    }, true)
+    }, false)
   }
 
   enableObserver() {
