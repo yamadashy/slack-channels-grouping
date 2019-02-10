@@ -30,9 +30,11 @@ declare global {
  */
 class ChannelGrouper {
   observer: MutationObserver
+  isObserving: boolean
 
   constructor() {
     this.observer = null;
+    this.isObserving = false;
   }
 
   waitRenderChannelList() {
@@ -60,19 +62,19 @@ class ChannelGrouper {
   start() {
     this.groupingAllByPrefixOnIdle();
 
-    document.addEventListener("visibilitychange", () => {
-      const isHidden = document.hidden;
-
-      if (isHidden) {
-        this.disableObserver();
-      } else {
-        this.groupingAllByPrefixOnIdle();
-        this.enableObserver();
-      }
-    });
+    window.addEventListener("blur", () => {
+      this.disableObserver();
+    }, false);
+    document.addEventListener("focus", () => {
+      this.groupingAllByPrefixOnIdle();
+      this.enableObserver();
+    }, true)
   }
 
   enableObserver() {
+    if (this.isObserving) {
+      return;
+    }
     if (!this.observer) {
       this.observer = new MutationObserver((mutations) => {
         this.groupingAllByPrefixOnIdle();
@@ -82,11 +84,16 @@ class ChannelGrouper {
     this.observer.observe(document.querySelector(CHANNEL_LIST_SELECTOR), {
       childList: true,
     });
+    this.isObserving = true;
   }
 
   disableObserver() {
+    if (!this.isObserving) {
+      return;
+    }
     if (this.observer) {
       this.observer.disconnect();
+      this.isObserving = false;
     }
   }
 
