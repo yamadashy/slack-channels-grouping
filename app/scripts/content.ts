@@ -62,6 +62,7 @@ class ChannelGrouper {
 
   start() {
     this.groupingAllByPrefixOnIdle();
+    this.enableObserver();
 
     window.addEventListener("blur", () => {
       this.disableObserver();
@@ -150,7 +151,7 @@ class ChannelGrouper {
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
       let separator = '';
 
-      $channelName.empty().removeClass('scg-ch-parent scg-ch-child')
+      $channelName.empty().removeClass('scg-ch-parent scg-ch-child');
 
       if (isLoneliness || prefixes[index] === '') {
         $channelName.text($channelName.data('scg-channel-name'));
