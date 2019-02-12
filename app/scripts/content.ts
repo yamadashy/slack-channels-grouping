@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 
 // constants
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
+const CHANNEL_LIST_ITEMS_SELECTOR = CHANNEL_LIST_SELECTOR + ' [role=listitem]';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 
 // types
@@ -42,7 +43,7 @@ class ChannelGrouper {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = () => {
-        if (document.querySelectorAll(CHANNEL_LIST_SELECTOR + ' [role=listitem]').length > 0) {
+        if (document.querySelectorAll(CHANNEL_LIST_ITEMS_SELECTOR).length > 0) {
           resolve();
           return;
         }
@@ -106,7 +107,7 @@ class ChannelGrouper {
   }
 
   groupingAllByPrefix() {
-    const $channelItems = $(CHANNEL_LIST_SELECTOR + ' [role=listitem]');
+    const $channelItems = $(CHANNEL_LIST_ITEMS_SELECTOR);
     let prefixes: string[] = [];
     const regChannelMatch = /(^.+?)[-_].*/;
 
