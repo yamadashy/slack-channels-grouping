@@ -150,25 +150,25 @@ class ChannelGrouper {
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
       let separator = '';
 
+      $channelName.empty().removeClass('scg-ch-parent scg-ch-child')
+
       if (isLoneliness || prefixes[index] === '') {
-        return;
-      }
-
-      if (isParent) {
-        separator = '┬';
-      } else if (isLastChild) {
-        separator = '└';
+        $channelName.text($channelName.data('scg-channel-name'));
       } else {
-        separator = '├';
-      }
+        if (isParent) {
+          separator = '┬';
+        } else if (isLastChild) {
+          separator = '└';
+        } else {
+          separator = '├';
+        }
 
-      $channelName
-        .empty()
-        .removeClass('scg-ch-parent scg-ch-child')
-        .addClass(isParent ? 'scg-ch-parent' : 'scg-ch-child')
-        .append($('<span>').addClass('scg-ch-prefix').text(prefix))
-        .append($('<span>').addClass('scg-ch-separator').text(separator))
-        .append($('<span>').addClass('scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
+        $channelName
+          .addClass(isParent ? 'scg-ch-parent' : 'scg-ch-child')
+          .append($('<span>').addClass('scg-ch-prefix').text(prefix))
+          .append($('<span>').addClass('scg-ch-separator').text(separator))
+          .append($('<span>').addClass('scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
+      }
     });
   }
 }
