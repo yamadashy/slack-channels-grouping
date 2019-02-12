@@ -1,4 +1,4 @@
-# slack channels grouping
+# Slack Channels Grouping
 
 Grouping slack channels.
 
