@@ -151,10 +151,14 @@ class ChannelGrouper {
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
       let separator = '';
 
-      $channelName.empty().removeClass('scg-ch-parent scg-ch-child');
+      if (prefixes[index] === '') {
+        return;
+      }
 
-      if (isLoneliness || prefixes[index] === '') {
-        $channelName.text($channelName.data('scg-channel-name'));
+      if (isLoneliness) {
+        $channelName
+          .removeClass('scg-ch-parent scg-ch-child')
+          .text($channelName.data('scg-channel-name'));
       } else {
         if (isParent) {
           separator = '┬';
@@ -165,7 +169,9 @@ class ChannelGrouper {
         }
 
         $channelName
+          .removeClass('scg-ch-parent scg-ch-child')
           .addClass(isParent ? 'scg-ch-parent' : 'scg-ch-child')
+          .empty()
           .append($('<span>').addClass('scg-ch-prefix').text(prefix))
           .append($('<span>').addClass('scg-ch-separator').text(separator))
           .append($('<span>').addClass('scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
