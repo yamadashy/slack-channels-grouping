@@ -15,7 +15,7 @@ module.exports = {
       test: /\.ts$/,
       loader: 'ts-loader'
     })
-    config.optimization.minimize = false;
+    config.optimization.minimize = true;
 
     return config
   },
