@@ -7,7 +7,8 @@ Grouping slack channels.
 
 ## Install
 
-[Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
+- Chrome: [Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
+- Firefox: [Slack Channels Grouping – Firefox Add-ons](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)
 
 # Dev
 - Node.js v8.15.0
