@@ -50,6 +50,7 @@ class ChannelGrouper {
 
         // timeout 30 seconds
         if (Date.now() - loopStartTime > 1000 * 30) {
+          resolve();
           return;
         }
 
@@ -83,7 +84,11 @@ class ChannelGrouper {
       });
     }
 
-    this.observer.observe(document.querySelector(CHANNEL_LIST_SELECTOR), {
+    const observeTarget = document.querySelector(CHANNEL_LIST_SELECTOR);
+    if (!observeTarget) {
+      return;
+    }
+    this.observer.observe(observeTarget, {
       childList: true,
     });
     this.isObserving = true;
@@ -111,6 +116,10 @@ class ChannelGrouper {
     const $channelItems = $(CHANNEL_LIST_ITEMS_SELECTOR);
     let prefixes: string[] = [];
     const regChannelMatch = /(^.+?)[-_].*/;
+
+    if ($channelItems.length === 0) {
+      return;
+    }
 
     // Get prefixes
     $channelItems.each(function (index: number, channelItem: HTMLElement) {

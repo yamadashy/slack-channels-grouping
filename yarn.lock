@@ -3742,9 +3742,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 typescript@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.1.tgz#6de14e1db4b8a006ac535e482c8ba018c55f750b"
-  integrity sha512-cTmIDFW7O0IHbn1DPYjkiebHxwtCMU+eTy30ZtJNBPF9j2O1ITu5XH2YnBeVRKWHqF+3JQwWJv0Q0aUgX8W7IA==
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.3.tgz#0eb320e4ace9b10eadf5bc6103286b0f8b7c224f"
+  integrity sha512-FFgHdPt4T/duxx6Ndf7hwgMZZjZpB+U0nMNGVCYPq0rEzWKjEDobm4J6yb3CS7naZ0yURFqdw9Gwc7UOh/P9oQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
@@ -3879,7 +3879,7 @@ webextension-polyfill@0.3.1:
   resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.3.1.tgz#fab2aed917a713a5d8221e41febad81c5d0b080f"
   integrity sha512-ISB42vlgMyM7xE1u6pREeCqmmXjLsYu/nqAR8Dl/gIAnylb+KpRpvKbVkUYNFePhhXn0Obkkc3jasOII9ztUtg==
 
-webextension-toolbox@latest:
+webextension-toolbox@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/webextension-toolbox/-/webextension-toolbox-3.0.0.tgz#30f49f4bd9fa9a941210ceeec8688035809c60f5"
   integrity sha512-QxAKczziwy63JzU0s5QpxR0jcNU+A6KFjegkaJj30odk1qXpIB9anyXppjhWHvSPyYx1ofOw89OHu6iZ40UDkA==

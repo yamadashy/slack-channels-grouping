@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const GlobEntriesPlugin = require('webpack-watched-glob-entries-plugin')
 
 module.exports = {
@@ -15,7 +14,6 @@ module.exports = {
       test: /\.ts$/,
       loader: 'ts-loader'
     })
-    config.optimization.minimize = true;
 
     return config
   },

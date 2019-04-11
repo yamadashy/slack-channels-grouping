@@ -11,9 +11,9 @@
     "jquery": "3.3.1"
   },
   "devDependencies": {
+    "terser": "3.14.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.1",
-    "webextension-toolbox": "latest",
-    "terser": "3.14.1"
+    "webextension-toolbox": "3.0.0"
   }
 }
