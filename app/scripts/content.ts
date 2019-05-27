@@ -151,6 +151,18 @@ class ChannelGrouper {
       prefixes[index] = prefix;
     });
 
+    // Find channels with same name as prefix
+    $channelItems.each(function (index: number, channelItem: HTMLElement) {
+      const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
+      const channelName = $channelName.data('scg-channel-name');
+
+      if (prefixes.find((prefix: string) =>  channelName === prefix )) {
+        prefixes[index] = channelName;
+        $channelName.data('scg-channel-name', './');
+        $channelName.data('scg-channel-prefix', channelName);
+      }
+    });
+
     // Apply
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
