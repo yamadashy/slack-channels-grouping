@@ -65,13 +65,17 @@ class ChannelGrouper {
     this.groupingAllByPrefixOnIdle();
     this.enableObserver();
 
-    window.addEventListener("blur", () => {
-      this.disableObserver();
-    }, false);
-    window.addEventListener("focus", () => {
-      this.groupingAllByPrefixOnIdle();
-      this.enableObserver();
-    }, false)
+    document.addEventListener('visibilitychange', () => {
+      switch (document.visibilityState) {
+        case 'visible':
+          this.groupingAllByPrefixOnIdle();
+          this.enableObserver();
+          break;
+        case 'hidden':
+          this.disableObserver();
+          break;
+      }
+    });
   }
 
   enableObserver() {
