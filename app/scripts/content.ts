@@ -151,6 +151,7 @@ class ChannelGrouper {
         }
       }
 
+      // Store raw channel name
       if (!isApplied) {
         $channelName.data('scg-raw-channel-name', $channelName.text());
       }
@@ -181,6 +182,12 @@ class ChannelGrouper {
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
       let separator = '';
 
+      // Skip blank item
+      if ($channelName.length === 0) {
+        return;
+      }
+
+      // Skip no prefix
       if (prefixes[index] === '') {
         return;
       }
