@@ -1,5 +1,6 @@
 // modules
 import * as $ from 'jquery';
+import * as EventEmitter from 'eventemitter3';
 
 // constants
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
@@ -28,13 +29,15 @@ declare global {
 }
 
 /**
- * Channel Grouping Class
+ * Channel Observing Class
+ * @extends EventEmitter
  */
-class ChannelGrouper {
-  observer: MutationObserver
-  isObserving: boolean
+class ChannelObserver extends EventEmitter<"update"> {
+  private observer: MutationObserver
+  private isObserving: boolean
 
   constructor() {
+    super();
     this.observer = null;
     this.isObserving = false;
   }
@@ -62,14 +65,15 @@ class ChannelGrouper {
     });
   }
 
-  start() {
-    this.groupingAllByPrefixOnIdle();
+  async start() {
+    await this.waitRenderChannelList();
+    this.emit('update');
     this.enableObserver();
 
     document.addEventListener('visibilitychange', () => {
       switch (document.visibilityState) {
         case 'visible':
-          this.groupingAllByPrefixOnIdle();
+          this.emit('update');
           this.enableObserver();
           break;
         case 'hidden':
@@ -85,7 +89,7 @@ class ChannelGrouper {
     }
     if (!this.observer) {
       this.observer = new MutationObserver((mutations) => {
-        this.groupingAllByPrefixOnIdle();
+        this.emit('update');
       });
     }
 
@@ -108,7 +112,12 @@ class ChannelGrouper {
       this.isObserving = false;
     }
   }
+}
 
+/**
+ * Channel Grouping Class
+ */
+class ChannelGrouper {
   groupingAllByPrefixOnIdle() {
     window.requestIdleCallback(() => {
       this.groupingAllByPrefix();
@@ -217,8 +226,11 @@ class ChannelGrouper {
   }
 }
 
-(async () => {
+(() => {
+  const channelObserver = new ChannelObserver();
   const channelGrouper = new ChannelGrouper();
-  await channelGrouper.waitRenderChannelList();
-  channelGrouper.start();
+  channelObserver.on("update", () => {
+    channelGrouper.groupingAllByPrefixOnIdle();
+  });
+  channelObserver.start();
 })();

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.3.29",
+    "eventemitter3": "^3.1.2",
     "jquery": "3.4.1"
   },
   "devDependencies": {
