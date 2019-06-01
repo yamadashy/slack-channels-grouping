@@ -42,7 +42,25 @@ class ChannelObserver extends EventEmitter<"update"> {
     this.isObserving = false;
   }
 
-  waitRenderChannelList() {
+  async start() {
+    await this.waitRenderChannelList();
+    this.emit('update');
+    this.enableObserver();
+
+    document.addEventListener('visibilitychange', () => {
+      switch (document.visibilityState) {
+        case 'visible':
+          this.emit('update');
+          this.enableObserver();
+          break;
+        case 'hidden':
+          this.disableObserver();
+          break;
+      }
+    });
+  }
+
+  protected waitRenderChannelList() {
     return new Promise((resolve, reject) => {
       const loopStartTime = Date.now();
 
@@ -62,24 +80,6 @@ class ChannelObserver extends EventEmitter<"update"> {
       }
 
       checkChannelListLoop();
-    });
-  }
-
-  async start() {
-    await this.waitRenderChannelList();
-    this.emit('update');
-    this.enableObserver();
-
-    document.addEventListener('visibilitychange', () => {
-      switch (document.visibilityState) {
-        case 'visible':
-          this.emit('update');
-          this.enableObserver();
-          break;
-        case 'hidden':
-          this.disableObserver();
-          break;
-      }
     });
   }
 
@@ -128,14 +128,20 @@ class ChannelGrouper {
 
   groupingAllByPrefix() {
     const $channelItems = $(CHANNEL_LIST_ITEMS_SELECTOR);
-    let prefixes: string[] = [];
-    const regChannelMatch = /(^.+?)[-_].*/;
 
     if ($channelItems.length === 0) {
       return;
     }
 
-    // Get prefixes
+    let prefixes: string[] = this.getPrefixes($channelItems);
+    this.preprocessForRootChannels($channelItems, prefixes);
+    this.applyGrouing($channelItems, prefixes);
+  }
+
+  protected getPrefixes($channelItems: JQuery): string[] {
+    const regChannelMatch = /(^.+?)[-_].*/;
+    let prefixes: string[] = [];
+
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const isApplied = $channelName.find('span').length > 0;
@@ -147,6 +153,8 @@ class ChannelGrouper {
         channelName = $channelName.data('scg-channel-name');
       } else {
         channelName = $.trim($channelName.text());
+        // Store raw channel name
+        $channelName.data('scg-raw-channel-name', channelName);
       }
 
       // Get ch name prefix
@@ -160,29 +168,29 @@ class ChannelGrouper {
         }
       }
 
-      // Store raw channel name
-      if (!isApplied) {
-        $channelName.data('scg-raw-channel-name', $channelName.text());
-      }
-
       $channelName.data('scg-channel-name', channelName);
       $channelName.data('scg-channel-prefix', prefix);
       prefixes[index] = prefix;
     });
 
-    // Find channels with same name as prefix
+    return prefixes;
+  }
+
+  protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]) {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const channelName: string = $channelName.data('scg-channel-name');
+      const isRoot = prefixes[index + 1] === channelName;
 
-      if (prefixes[index + 1] === channelName) {
+      if (isRoot) {
         prefixes[index] = channelName;
         $channelName.data('scg-channel-name', `${channelName}${CHANNEL_NAME_ROOT}`);
         $channelName.data('scg-channel-prefix', channelName);
       }
     });
+  }
 
-    // Apply
+  protected applyGrouing($channelItems: JQuery, prefixes: string[]) {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const prefix: string = prefixes[index];
