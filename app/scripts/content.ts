@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
 const CHANNEL_LIST_ITEMS_SELECTOR = CHANNEL_LIST_SELECTOR + ' [role=listitem]';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
+const CHANNEL_NAME_ROOT = '-/';
 
 // types
 type RequestIdleCallbackHandle = any;
@@ -150,6 +151,10 @@ class ChannelGrouper {
         }
       }
 
+      if (!isApplied) {
+        $channelName.data('scg-raw-channel-name', $channelName.text());
+      }
+
       $channelName.data('scg-channel-name', channelName);
       $channelName.data('scg-channel-prefix', prefix);
       prefixes[index] = prefix;
@@ -158,11 +163,11 @@ class ChannelGrouper {
     // Find channels with same name as prefix
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
-      const channelName = $channelName.data('scg-channel-name');
+      const channelName: string = $channelName.data('scg-channel-name');
 
-      if (prefixes.find((prefix: string) =>  channelName === prefix )) {
+      if (prefixes[index + 1] === channelName) {
         prefixes[index] = channelName;
-        $channelName.data('scg-channel-name', './');
+        $channelName.data('scg-channel-name', `${channelName}${CHANNEL_NAME_ROOT}`);
         $channelName.data('scg-channel-prefix', channelName);
       }
     });
@@ -183,7 +188,7 @@ class ChannelGrouper {
       if (isLoneliness) {
         $channelName
           .removeClass('scg-ch-parent scg-ch-child')
-          .text($channelName.data('scg-channel-name'));
+          .text($channelName.data('scg-raw-channel-name'));
       } else {
         if (isParent) {
           separator = '┬';
