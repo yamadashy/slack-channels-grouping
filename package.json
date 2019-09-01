@@ -2,9 +2,28 @@
   "name": "slack-channel-grouping",
   "version": "0.0.0",
   "description": "Grouping Slack channels by prefix",
+  "main": "",
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yamadashy/slack-channels-grouping.git"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "firefox",
+    "addon",
+    "slack",
+    "channel",
+    "grouping"
+  ],
+  "author": "yamadashy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yamadashy/slack-channels-grouping/issues"
   },
   "dependencies": {
     "@types/jquery": "3.3.31",
