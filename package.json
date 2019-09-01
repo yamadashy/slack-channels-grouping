@@ -5,7 +5,9 @@
   "main": "",
   "scripts": {
     "dev": "webextension-toolbox dev",
-    "build": "webextension-toolbox build"
+    "build": "webextension-toolbox build",
+    "lint": "eslint ./app/scripts/**/*",
+    "lint:fix": "eslint ./app/scripts/**/* --fix"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,9 @@
     "jquery": "3.4.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint": "^6.3.0",
     "terser": "^4.0.0",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
