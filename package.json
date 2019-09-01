@@ -1,20 +1,21 @@
 {
   "name": "slack-channel-grouping",
-  "version": "0.0.1",
-  "description": "Slackのチェンネル一覧をまとめます",
+  "version": "0.0.0",
+  "description": "Grouping Slack channels by prefix",
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build"
   },
   "dependencies": {
-    "@types/jquery": "^3.3.29",
-    "eventemitter3": "^3.1.2",
+    "@types/jquery": "3.3.31",
+    "@types/requestidlecallback": "^0.1.1",
+    "eventemitter3": "4.0.0",
     "jquery": "3.4.1"
   },
   "devDependencies": {
-    "terser": "3.17.0",
-    "ts-loader": "^6.0.0",
-    "typescript": "^3.4.5",
-    "webextension-toolbox": "3.0.0"
+    "terser": "^4.0.0",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webextension-toolbox": "^3.0.0"
   }
 }
