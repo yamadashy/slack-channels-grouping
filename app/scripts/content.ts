@@ -9,7 +9,7 @@ const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 const CHANNEL_NAME_ROOT = '-/';
 
 // types
-type RequestIdleCallbackHandle = any;
+type RequestIdleCallbackHandle = number;
 type RequestIdleCallbackOptions = {
   timeout: number;
 };
@@ -32,7 +32,7 @@ declare global {
  * Channel Observing Class
  * @extends EventEmitter
  */
-class ChannelObserver extends EventEmitter<"update"> {
+class ChannelObserver extends EventEmitter<'update'> {
   private observer: MutationObserver
   private isObserving: boolean
 
@@ -42,7 +42,7 @@ class ChannelObserver extends EventEmitter<"update"> {
     this.isObserving = false;
   }
 
-  async start() {
+  async start(): Promise<void> {
     await this.waitRenderChannelList();
     this.emit('update');
     this.enableObserver();
@@ -60,11 +60,11 @@ class ChannelObserver extends EventEmitter<"update"> {
     });
   }
 
-  protected waitRenderChannelList() {
-    return new Promise((resolve, reject) => {
+  protected waitRenderChannelList(): Promise<null> {
+    return new Promise((resolve): void => {
       const loopStartTime = Date.now();
 
-      const checkChannelListLoop = () => {
+      const checkChannelListLoop = (): void => {
         if (document.querySelectorAll(CHANNEL_LIST_ITEMS_SELECTOR).length > 0) {
           resolve();
           return;
@@ -77,18 +77,18 @@ class ChannelObserver extends EventEmitter<"update"> {
         }
 
         setTimeout(checkChannelListLoop, 100);
-      }
+      };
 
       checkChannelListLoop();
     });
   }
 
-  enableObserver() {
+  enableObserver(): void {
     if (this.isObserving) {
       return;
     }
     if (!this.observer) {
-      this.observer = new MutationObserver((mutations) => {
+      this.observer = new MutationObserver((): void => {
         this.emit('update');
       });
     }
@@ -103,7 +103,7 @@ class ChannelObserver extends EventEmitter<"update"> {
     this.isObserving = true;
   }
 
-  disableObserver() {
+  disableObserver(): void {
     if (!this.isObserving) {
       return;
     }
@@ -118,29 +118,29 @@ class ChannelObserver extends EventEmitter<"update"> {
  * Channel Grouping Class
  */
 class ChannelGrouper {
-  groupingAllByPrefixOnIdle() {
+  groupingAllByPrefixOnIdle(): void {
     window.requestIdleCallback(() => {
       this.groupingAllByPrefix();
     }, {
       timeout: 10 * 1000
-    })
+    });
   }
 
-  groupingAllByPrefix() {
+  groupingAllByPrefix(): void {
     const $channelItems = $(CHANNEL_LIST_ITEMS_SELECTOR);
 
     if ($channelItems.length === 0) {
       return;
     }
 
-    let prefixes: string[] = this.getPrefixes($channelItems);
+    const prefixes: string[] = this.getPrefixes($channelItems);
     this.preprocessForRootChannels($channelItems, prefixes);
     this.applyGrouing($channelItems, prefixes);
   }
 
   protected getPrefixes($channelItems: JQuery): string[] {
     const regChannelMatch = /(^.+?)[-_].*/;
-    let prefixes: string[] = [];
+    const prefixes: string[] = [];
 
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
@@ -176,7 +176,7 @@ class ChannelGrouper {
     return prefixes;
   }
 
-  protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]) {
+  protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const channelName: string = $channelName.data('scg-channel-name');
@@ -190,7 +190,7 @@ class ChannelGrouper {
     });
   }
 
-  protected applyGrouing($channelItems: JQuery, prefixes: string[]) {
+  protected applyGrouing($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const prefix: string = prefixes[index];
@@ -234,10 +234,10 @@ class ChannelGrouper {
   }
 }
 
-(() => {
+((): void => {
   const channelObserver = new ChannelObserver();
   const channelGrouper = new ChannelGrouper();
-  channelObserver.on("update", () => {
+  channelObserver.on('update', () => {
     channelGrouper.groupingAllByPrefixOnIdle();
   });
   channelObserver.start();

@@ -1,8 +1,16 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "es6",
-    "sourceMap": true
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "allowJs": false,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "target": "esnext",
+    "sourceMap": true,
+    "incremental": true
   }
 }
