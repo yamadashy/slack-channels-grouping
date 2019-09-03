@@ -33,10 +33,10 @@
     "jquery": "3.4.1"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.3.3",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "eslint": "^6.3.0",
-    "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
     "webextension-toolbox": "^3.0.0"
   }

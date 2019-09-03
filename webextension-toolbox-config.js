@@ -12,22 +12,12 @@ module.exports = {
     )
     config.module.rules.push({
       test: /\.ts$/,
-      loader: 'ts-loader'
-    })
-    config.module.rules.push({
-      test: /\.js$/,
+      exclude: /node_modules/,
       use: [
         {
-          loader: 'babel-loader',
-          options: {
-            babelrc: true,
-            extends: path.join(__dirname + '/.babelrc'),
-            exclude: /node_modules/,
-            cacheDirectory: true,
-            envName: dev ? 'development' : 'production'
-          }
+          loader: 'babel-loader'
         }
-      ]
+      ],
     })
 
     return config

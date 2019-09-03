@@ -1,3 +1,14 @@
 {
-  "targets": "> 0.25%, not dead"
+  "presets": [
+    ["@babel/preset-env", {
+      "targets": {
+        "browsers": [
+          "last 20 Firefox versions",
+          "last 20 Chrome versions"
+        ]
+      },
+      "useBuiltIns": "usage"
+    }],
+    "@babel/typescript"
+  ],
 }
