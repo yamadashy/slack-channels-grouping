@@ -1,8 +1,10 @@
 const path = require('path')
 const GlobEntriesPlugin = require('webpack-watched-glob-entries-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   webpack: (config, { dev, vendor }) => {
+    const envName = dev ? 'development' : 'production';
     config.resolve.extensions.push('.ts')
     config.entry = GlobEntriesPlugin.getEntries(
       [
@@ -15,10 +17,18 @@ module.exports = {
       exclude: /node_modules/,
       use: [
         {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            envName: envName
+          }
         }
       ],
     })
+    config.plugins.push(new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+      analyzerMode: 'static',
+      reportFilename: __dirname + '/storage/bundle-analyzer/' + vendor + '-' + envName + '.html'
+    }))
 
     return config
   },

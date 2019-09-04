@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "^2.0.0",
     "eslint": "^6.3.0",
     "typescript": "^3.5.1",
-    "webextension-toolbox": "^3.0.0"
+    "webextension-toolbox": "^3.0.0",
+    "webpack-bundle-analyzer": "^3.4.1"
   }
 }
