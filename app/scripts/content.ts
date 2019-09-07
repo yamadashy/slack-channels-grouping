@@ -33,8 +33,8 @@ declare global {
  * @extends EventEmitter
  */
 class ChannelObserver extends EventEmitter<'update'> {
-  private observer: MutationObserver
-  private isObserving: boolean
+  private observer: MutationObserver;
+  private isObserving: boolean;
 
   constructor() {
     super();
