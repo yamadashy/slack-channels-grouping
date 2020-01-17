@@ -29,6 +29,11 @@ module.exports = {
       analyzerMode: 'static',
       reportFilename: __dirname + '/storage/bundle-analyzer/' + vendor + '-' + envName + '.html'
     }));
+    config.optimization.splitChunks = {
+        name: 'scripts/vendor',
+        chunks: 'initial',
+    };
+    config.output.chunkFilename = '[name].js';
 
     return config
   },
