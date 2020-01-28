@@ -34,6 +34,7 @@ module.exports = {
         chunks: 'initial',
     };
     config.output.chunkFilename = '[name].js';
+    config.optimization.minimize = false;
 
     return config
   },
