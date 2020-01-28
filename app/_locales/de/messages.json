@@ -6,6 +6,6 @@
     "message": "slack-ch-group"
   },
   "appDescription": {
-    "message": "Grouping Slack channels by prefix"
+    "message": "Gruppieren von Slack-Kanälen nach Präfix"
   }
 }
