@@ -6,6 +6,6 @@
     "message": "slack-ch-group"
   },
   "appDescription": {
-    "message": "Grouping Slack channels by prefix"
+    "message": "按前缀对松弛通道进行分组"
   }
 }
