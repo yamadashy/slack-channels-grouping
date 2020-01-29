@@ -1,0 +1,8 @@
+Es gruppiert Slack-Kanäle nach Präfix.
+Bindestriche (-) und Unterstriche (_) werden unterstützt.
+• Präfix-Name
+• Präfix_Name
+
+Für Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Quellcode: https://github.com/yamadashy/slack-channels-grouping

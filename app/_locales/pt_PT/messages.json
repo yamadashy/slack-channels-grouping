@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "Slack Channels Grouping"
+  },
+  "appShortName": {
+    "message": "slack-ch-group"
+  },
+  "appDescription": {
+    "message": "Agrupando canais do Slack por prefixo"
+  }
+}

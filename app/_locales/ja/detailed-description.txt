@@ -1,0 +1,8 @@
+Slackのチャンネル一覧をまとめます。
+ハイフン (-) とアンダースコア (_) に対応しています。
+• prefix-name
+• prefix_name
+
+Firefox版: https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/
+
+ソース: https://github.com/yamadashy/slack-channels-grouping

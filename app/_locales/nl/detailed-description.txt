@@ -1,0 +1,8 @@
+Het groepeert Slack-kanalen op prefix.
+Ondersteunde koppeltekens (-) en onderstrepingstekens (_).
+• prefix-naam
+• prefix_naam
+
+Voor Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Broncode: https://github.com/yamadashy/slack-channels-grouping

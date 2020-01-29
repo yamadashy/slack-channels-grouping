@@ -1,0 +1,8 @@
+Agrupa los canales de Slack por prefijo.
+Guiones (-) y guiones bajos (_) admitidos.
+• prefijo-nombre
+• prefijo_nombre
+
+Para Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Código fuente: https://github.com/yamadashy/slack-channels-grouping

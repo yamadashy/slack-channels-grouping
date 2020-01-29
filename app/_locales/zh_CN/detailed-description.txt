@@ -1,0 +1,8 @@
+它按前缀将Slack通道分组。
+支持连字符（-）和下划线（_）。
+• 前缀-名称
+• 前缀_名称
+
+对于Firefox：https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/
+
+源代码：https://github.com/yamadashy/slack-channels-grouping

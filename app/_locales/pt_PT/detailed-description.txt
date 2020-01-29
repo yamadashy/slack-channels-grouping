@@ -1,0 +1,8 @@
+Agrupando canais Slack por prefixo.
+Hífens (-) e sublinhados (_) suportados.
+• prefixo-nome
+• prefixo_nome
+
+Para o Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Código fonte: https://github.com/yamadashy/slack-channels-grouping

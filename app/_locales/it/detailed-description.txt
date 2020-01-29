@@ -1,0 +1,8 @@
+Raggruppa i canali Slack per prefisso.
+Trattini (-) e trattini bassi (_) supportati.
+• prefisso-nome
+• prefisso_nome
+
+Per Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Codice sorgente: https://github.com/yamadashy/slack-channels-grouping

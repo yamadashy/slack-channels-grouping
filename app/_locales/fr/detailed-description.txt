@@ -1,0 +1,8 @@
+Il regroupe les canaux Slack par préfixe.
+Les tirets (-) et les traits de soulignement (_) sont pris en charge.
+• préfixe-nom
+• préfixe_nom
+
+Pour Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Code source: https://github.com/yamadashy/slack-channels-grouping
