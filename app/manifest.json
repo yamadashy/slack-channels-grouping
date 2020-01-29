@@ -21,8 +21,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*.slack.com/*",
-        "https://*.slack.com/*"
+        "http://app.slack.com/*",
+        "https://app.slack.com/*"
       ],
       "css": [
         "styles/content.css"
