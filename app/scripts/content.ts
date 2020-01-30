@@ -99,6 +99,7 @@ class ChannelObserver extends EventEmitter<'update'> {
     }
     this.observer.observe(observeTarget, {
       childList: true,
+      subtree: true,
     });
     this.isObserving = true;
   }
