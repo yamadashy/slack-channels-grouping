@@ -1,6 +1,6 @@
-# Infinity loop caused on 1.0.15.
+# Notice (2020/1/31): Infinity loop caused on 1.0.15.
 Plese wait a moment for version up.
-Currently under review,
+Currently under review.
 
 # Slack Channels Grouping
 
