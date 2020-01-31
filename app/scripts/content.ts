@@ -8,7 +8,9 @@ const CHANNEL_LIST_CONTAINER_SELECTOR = CHANNEL_LIST_SELECTOR + ' .c-virtual_lis
 const CHANNEL_LIST_ITEMS_SELECTOR = CHANNEL_LIST_SELECTOR + ' [role=listitem]';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 const CHANNEL_NAME_ROOT = '-/';
-const MIN_UPDATE_INTERVAL = 500;
+const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 100;
+const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 30;
+const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 100;
 
 // types
 type RequestIdleCallbackHandle = number;
@@ -77,12 +79,12 @@ class ChannelObserver extends EventEmitter<'update'> {
         }
 
         // timeout 30 seconds
-        if (Date.now() - loopStartTime > 1000 * 30) {
+        if (Date.now() - loopStartTime > WAIT_RENDER_CHANNEL_LIST_TIMEOUT) {
           resolve();
           return;
         }
 
-        setTimeout(checkChannelListLoop, 100);
+        setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);
       };
 
       checkChannelListLoop();
@@ -95,7 +97,7 @@ class ChannelObserver extends EventEmitter<'update'> {
     }
     if (!this.observer) {
       this.observer = new MutationObserver((records): void => {
-        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + MIN_UPDATE_INTERVAL - Date.now());
+        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + UPDATE_CHANNEL_LIST_MIN_INTERVAL - Date.now());
 
         if (this.updateTimeoutId !== null) {
           window.clearTimeout(this.updateTimeoutId);
@@ -136,8 +138,14 @@ class ChannelObserver extends EventEmitter<'update'> {
  * Channel Grouping Class
  */
 class ChannelGrouper {
+  private idleCallbackId: number;
+
   groupingAllByPrefixOnIdle(): void {
-    window.requestIdleCallback(() => {
+    if (this.idleCallbackId !== null) {
+      window.cancelIdleCallback(this.idleCallbackId);
+    }
+
+    this.idleCallbackId = window.requestIdleCallback(() => {
       this.groupingAllByPrefix();
     }, {
       timeout: 10 * 1000
