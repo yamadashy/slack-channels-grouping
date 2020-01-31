@@ -1,6 +1,11 @@
 # Notice (2020/1/31): Infinity loop caused on 1.0.15.
 Plese wait a moment for version up.
 Currently under review.
+Sorry.
+
+### Disable chrome extension
+1. Type `chrome://extensions/` to search bar.
+2. Search `Slack Channels Grouping` and click toggle switch.
 
 # Slack Channels Grouping
 
