@@ -7,6 +7,7 @@ const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
 const CHANNEL_LIST_ITEMS_SELECTOR = CHANNEL_LIST_SELECTOR + ' [role=listitem]';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 const CHANNEL_NAME_ROOT = '-/';
+const MIN_UPDATE_INTERVAL = 3000;
 
 // types
 type RequestIdleCallbackHandle = number;
@@ -35,11 +36,13 @@ declare global {
 class ChannelObserver extends EventEmitter<'update'> {
   private observer: MutationObserver;
   private isObserving: boolean;
+  private lastUpdatedTime: number;
 
   constructor() {
     super();
     this.observer = null;
     this.isObserving = false;
+    this.lastUpdatedTime = Date.now();
   }
 
   async start(): Promise<void> {
@@ -88,8 +91,11 @@ class ChannelObserver extends EventEmitter<'update'> {
       return;
     }
     if (!this.observer) {
-      this.observer = new MutationObserver((): void => {
-        this.emit('update');
+      this.observer = new MutationObserver((records): void => {
+        if (this.lastUpdatedTime + MIN_UPDATE_INTERVAL < Date.now()) {
+          this.emit('update');
+          this.lastUpdatedTime = Date.now();
+        }
       });
     }
 
@@ -99,7 +105,7 @@ class ChannelObserver extends EventEmitter<'update'> {
     }
     this.observer.observe(observeTarget, {
       childList: true,
-      subtree: false,
+      subtree: true,
     });
     this.isObserving = true;
   }
