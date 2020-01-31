@@ -4,10 +4,11 @@ import * as EventEmitter from 'eventemitter3';
 
 // constants
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
+const CHANNEL_LIST_CONTAINER_SELECTOR = CHANNEL_LIST_SELECTOR + ' .c-virtual_list__scroll_container';
 const CHANNEL_LIST_ITEMS_SELECTOR = CHANNEL_LIST_SELECTOR + ' [role=listitem]';
 const CHANNEL_NAME_SELECTOR = '.p-channel_sidebar__name';
 const CHANNEL_NAME_ROOT = '-/';
-const MIN_UPDATE_INTERVAL = 3000;
+const MIN_UPDATE_INTERVAL = 500;
 
 // types
 type RequestIdleCallbackHandle = number;
@@ -94,12 +95,13 @@ class ChannelObserver extends EventEmitter<'update'> {
     }
     if (!this.observer) {
       this.observer = new MutationObserver((records): void => {
+        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + MIN_UPDATE_INTERVAL - Date.now());
+
         if (this.updateTimeoutId !== null) {
           window.clearTimeout(this.updateTimeoutId);
         }
 
-        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + MIN_UPDATE_INTERVAL - Date.now());
-
+        // Reduce infinity loop impact
         this.updateTimeoutId = setTimeout(() => {
           this.emit('update');
           this.lastUpdatedTime = Date.now();
@@ -107,13 +109,14 @@ class ChannelObserver extends EventEmitter<'update'> {
       });
     }
 
-    const observeTarget = document.querySelector(CHANNEL_LIST_SELECTOR);
+    const observeTarget = document.querySelector(CHANNEL_LIST_CONTAINER_SELECTOR);
     if (!observeTarget) {
       return;
     }
     this.observer.observe(observeTarget, {
       childList: true,
-      subtree: true,
+      // if set true, cause infinity loop. b/c observe channel name dom change.
+      subtree: false,
     });
     this.isObserving = true;
   }
