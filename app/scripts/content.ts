@@ -37,12 +37,14 @@ class ChannelObserver extends EventEmitter<'update'> {
   private observer: MutationObserver;
   private isObserving: boolean;
   private lastUpdatedTime: number;
+  private updateTimeoutId: number;
 
   constructor() {
     super();
     this.observer = null;
     this.isObserving = false;
     this.lastUpdatedTime = Date.now();
+    this.updateTimeoutId = null
   }
 
   async start(): Promise<void> {
@@ -92,10 +94,16 @@ class ChannelObserver extends EventEmitter<'update'> {
     }
     if (!this.observer) {
       this.observer = new MutationObserver((records): void => {
-        if (this.lastUpdatedTime + MIN_UPDATE_INTERVAL < Date.now()) {
+        if (this.updateTimeoutId !== null) {
+          window.clearTimeout(this.updateTimeoutId);
+        }
+
+        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + MIN_UPDATE_INTERVAL - Date.now());
+
+        this.updateTimeoutId = setTimeout(() => {
           this.emit('update');
           this.lastUpdatedTime = Date.now();
-        }
+        }, nextUpdateInterval);
       });
     }
 
