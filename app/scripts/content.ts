@@ -1,6 +1,7 @@
 // modules
 import * as $ from 'jquery';
 import * as EventEmitter from 'eventemitter3';
+import 'requestidlecallback-polyfill';
 
 // constants
 const CHANNEL_LIST_SELECTOR = '.p-channel_sidebar__static_list';
@@ -11,26 +12,6 @@ const CHANNEL_NAME_ROOT = '-/';
 const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 100;
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 30;
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 100;
-
-// types
-type RequestIdleCallbackHandle = number;
-type RequestIdleCallbackOptions = {
-  timeout: number;
-};
-type RequestIdleCallbackDeadline = {
-  readonly didTimeout: boolean;
-  timeRemaining: (() => number);
-};
-
-declare global {
-  interface Window {
-    requestIdleCallback: ((
-      callback: ((deadline: RequestIdleCallbackDeadline) => void),
-      opts?: RequestIdleCallbackOptions,
-    ) => RequestIdleCallbackHandle);
-    cancelIdleCallback: ((handle: RequestIdleCallbackHandle) => void);
-  }
-}
 
 /**
  * Channel Observing Class
