@@ -3,12 +3,16 @@
     ["@babel/preset-env", {
       "targets": {
         "browsers": [
-          "last 20 Firefox versions",
-          "last 20 Chrome versions"
+          "last 40 Firefox versions",
+          "last 40 Chrome versions"
         ]
       },
       "useBuiltIns": "usage"
     }],
     "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ]
 }
