@@ -77,7 +77,7 @@ class ChannelObserver extends EventEmitter<'update'> {
       return;
     }
     if (!this.observer) {
-      this.observer = new MutationObserver((records): void => {
+      this.observer = new MutationObserver((): void => {
         const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + UPDATE_CHANNEL_LIST_MIN_INTERVAL - Date.now());
 
         if (this.updateTimeoutId !== null) {
@@ -142,7 +142,7 @@ class ChannelGrouper {
 
     const prefixes: string[] = this.getPrefixes($channelItems);
     this.preprocessForRootChannels($channelItems, prefixes);
-    this.applyGrouing($channelItems, prefixes);
+    this.applyGrouping($channelItems, prefixes);
   }
 
   protected getPrefixes($channelItems: JQuery): string[] {
@@ -151,9 +151,9 @@ class ChannelGrouper {
 
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
-      const isApplied = $channelName.find('span').length > 0;
-      let channelName = '';
-      let prefix = '';
+      const isApplied = $channelName.find('span.scg').length > 0;
+      let channelName: string;
+      let prefix: string;
 
       // Get ch name
       if (isApplied && $channelName.data('scg-channel-name')) {
@@ -197,7 +197,7 @@ class ChannelGrouper {
     });
   }
 
-  protected applyGrouing($channelItems: JQuery, prefixes: string[]): void {
+  protected applyGrouping($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
       const prefix: string = prefixes[index];
@@ -229,13 +229,18 @@ class ChannelGrouper {
           separator = '├';
         }
 
+        // Skip no changed
+        if (separator === $channelName.find('.scg-ch-separator').text()) {
+          return;
+        }
+
         $channelName
-          .removeClass('scg-ch-parent scg-ch-child')
-          .addClass(isParent ? 'scg-ch-parent' : 'scg-ch-child')
+          .removeClass('scg scg-ch-parent scg-ch-child')
+          .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')
           .empty()
-          .append($('<span>').addClass('scg-ch-prefix').text(prefix))
-          .append($('<span>').addClass('scg-ch-separator').text(separator))
-          .append($('<span>').addClass('scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
+          .append($('<span>').addClass('scg scg-ch-prefix').text(prefix))
+          .append($('<span>').addClass('scg scg-ch-separator').text(separator))
+          .append($('<span>').addClass('scg scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
       }
     });
   }
