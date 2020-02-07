@@ -34,6 +34,8 @@ module.exports = {
         chunks: 'initial',
     };
     config.output.chunkFilename = '[name].js';
+
+    // Disable minimize for vendor review
     config.optimization.minimize = false;
 
     return config
