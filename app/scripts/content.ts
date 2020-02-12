@@ -238,9 +238,11 @@ class ChannelGrouper {
           .removeClass('scg scg-ch-parent scg-ch-child')
           .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')
           .empty()
-          .append($('<span>').addClass('scg scg-ch-prefix').text(prefix))
-          .append($('<span>').addClass('scg scg-ch-separator').text(separator))
-          .append($('<span>').addClass('scg scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2')));
+          .append([
+            $('<span>').addClass('scg scg-ch-prefix').text(prefix),
+            $('<span>').addClass('scg scg-ch-separator').text(separator),
+            $('<span>').addClass('scg scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2'))
+          ]);
       }
     });
   }
