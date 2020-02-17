@@ -1,7 +1,7 @@
 // modules
 import * as $ from 'jquery';
 import 'requestidlecallback-polyfill';
-import { CHANNEL_LIST_ITEMS_SELECTOR, CHANNEL_NAME_SELECTOR } from './selectors';
+import * as domConstants from './dom-constants';
 
 // constants
 const CHANNEL_NAME_ROOT = '-/';
@@ -25,7 +25,7 @@ export default class ChannelGrouper {
   }
 
   groupingAllByPrefix(): void {
-    const $channelItems = $(CHANNEL_LIST_ITEMS_SELECTOR);
+    const $channelItems = $(domConstants.CHANNEL_LIST_ITEMS_SELECTOR);
 
     if ($channelItems.length === 0) {
       return;
@@ -41,7 +41,7 @@ export default class ChannelGrouper {
     const prefixes: string[] = [];
 
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
-      const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
+      const $channelName = $(channelItem).find(domConstants.CHANNEL_ITEM_NAME_SELECTOR);
       const isApplied = $channelName.find('span.scg').length > 0;
       let channelName: string;
       let prefix: string;
@@ -76,7 +76,7 @@ export default class ChannelGrouper {
 
   protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
-      const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
+      const $channelName = $(channelItem).find(domConstants.CHANNEL_ITEM_NAME_SELECTOR);
       const channelName: string = $channelName.data('scg-channel-name');
       const isRoot = prefixes[index + 1] === channelName;
 
@@ -90,12 +90,19 @@ export default class ChannelGrouper {
 
   protected applyGrouping($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
-      const $channelName = $(channelItem).find(CHANNEL_NAME_SELECTOR);
+      const $channelContentsContainer = $(channelItem).find(domConstants.CHANNEL_ITEM_CONTENTS_CONTAINER);
+      const $channelName = $(channelItem).find(domConstants.CHANNEL_ITEM_NAME_SELECTOR);
+      const channelItemType = $channelContentsContainer.attr(domConstants.CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
       const prefix: string = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
       const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;
       const isLastChild = prefixes[index - 1] === prefix && prefixes[index + 1] !== prefix;
       let separator = '';
+
+      // Skip direct message
+      if (channelItemType === 'im') {
+        return;
+      }
 
       // Skip blank item
       if ($channelName.length === 0) {
