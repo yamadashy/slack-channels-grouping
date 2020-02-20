@@ -1,6 +1,6 @@
 // modules
 import * as EventEmitter from 'eventemitter3';
-import { CHANNEL_LIST_CONTAINER_SELECTOR, CHANNEL_LIST_ITEMS_SELECTOR } from './selectors';
+import * as domConstants from './dom-constants';
 
 const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 100;
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 30;
@@ -47,7 +47,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = (): void => {
-        if (document.querySelectorAll(CHANNEL_LIST_ITEMS_SELECTOR).length > 0) {
+        if (document.querySelectorAll(domConstants.CHANNEL_LIST_ITEMS_SELECTOR).length > 0) {
           resolve();
           return;
         }
@@ -85,7 +85,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       });
     }
 
-    const observeTarget = document.querySelector(CHANNEL_LIST_CONTAINER_SELECTOR);
+    const observeTarget = document.querySelector(domConstants.CHANNEL_LIST_CONTAINER_SELECTOR);
     if (!observeTarget) {
       return;
     }
