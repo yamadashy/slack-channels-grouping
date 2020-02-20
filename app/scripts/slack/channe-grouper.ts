@@ -119,12 +119,17 @@ export default class ChannelGrouper {
           .removeClass('scg-ch-parent scg-ch-child')
           .text($channelName.data('scg-raw-channel-name'));
       } else {
+        let separatorPsedoClass = '';
+
         if (isParent) {
           separator = '┬';
+          separatorPsedoClass = 'scg-ch-separator-pseudo-bottom';
         } else if (isLastChild) {
           separator = '└';
+          separatorPsedoClass = 'scg-ch-separator-pseudo-top';
         } else {
           separator = '├';
+          separatorPsedoClass = 'scg-ch-separator-pseudo-both';
         }
 
         // Skip no changed
@@ -138,7 +143,7 @@ export default class ChannelGrouper {
           .empty()
           .append([
             $('<span>').addClass('scg scg-ch-prefix').text(prefix),
-            $('<span>').addClass('scg scg-ch-separator').text(separator),
+            $('<span>').addClass('scg scg-ch-separator ' + separatorPsedoClass).text(separator),
             $('<span>').addClass('scg scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2'))
           ]);
       }
