@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.scg-ch-separator:before {
+.scg-ch-separator::before {
   content: "│";
   position: absolute;
   top: 0;
@@ -23,16 +23,16 @@
   right: 0;
   bottom: 0;
 }
-.scg-ch-separator.scg-ch-separator-pseudo-top:before {
+.scg-ch-separator.scg-ch-separator-pseudo-top::before {
   top: -1em;
 }
-.scg-ch-separator.scg-ch-separator-pseudo-bottom:before {
+.scg-ch-separator.scg-ch-separator-pseudo-bottom::before {
   top: 1em;
 }
-.scg-ch-separator.scg-ch-separator-pseudo-both:before {
+.scg-ch-separator.scg-ch-separator-pseudo-both::before {
   top: -1em;
 }
-.scg-ch-separator.scg-ch-separator-pseudo-both:after {
+.scg-ch-separator.scg-ch-separator-pseudo-both::after {
   content: "│";
   position: absolute;
   top: 0;
