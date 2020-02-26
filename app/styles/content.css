@@ -9,35 +9,12 @@
 .scg-ch-separator {
   margin: 0 .2em 0 .1em;
   font-weight: 100;
-  transform: scale(1.0, 1.7);
+  transform: scale(1.0, 1.8);
   display: inline-block;
   font-family: monospace;
   position: relative;
-}
-
-.scg-ch-separator::before {
-  content: "│";
-  position: absolute;
-  left: 0;
-  width: 1em;
-  height: 1em;
-}
-.scg-ch-separator.scg-ch-separator-pseudo-top::before {
-  top: -0.6em;
-}
-.scg-ch-separator.scg-ch-separator-pseudo-bottom::before {
-  bottom: -0.6em;
-}
-.scg-ch-separator.scg-ch-separator-pseudo-both::before {
-  top: -0.6em;
-}
-.scg-ch-separator.scg-ch-separator-pseudo-both::after {
-  content: "│";
-  position: absolute;
-  width: 1em;
-  height: 1em;
-  bottom: -0.6em;
-  left: 0;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
 }
 
 .scg-ch-name {}
