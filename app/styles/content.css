@@ -12,7 +12,6 @@
   transform: scale(1.0, 1.8);
   display: inline-block;
   font-family: monospace;
-  position: relative;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
 }
