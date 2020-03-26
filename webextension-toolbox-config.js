@@ -38,6 +38,12 @@ module.exports = {
     // Disable minimize for vendor review
     config.optimization.minimize = false;
 
+    // Disable size warning
+    config.performance = {
+      maxEntrypointSize: 500 * 1000,
+      maxAssetSize: 500 * 1000,
+    };
+
     return config
   },
   copyIgnore: [ '**/*.ts' ]
