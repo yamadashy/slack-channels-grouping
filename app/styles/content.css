@@ -9,11 +9,31 @@
 .scg-ch-separator {
   margin: 0 .2em 0 .1em;
   font-weight: 100;
-  transform: scale(1.0, 1.9);
+  transform: scale(1.0, 1.5);
   display: inline-block;
   font-family: monospace;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
+  position: relative;
+}
+
+.scg-ch-separator:before {
+  content: "│";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.scg-ch-separator.scg-ch-separator-pseudo-top:before {
+  top: -10px;
+}
+.scg-ch-separator.scg-ch-separator-pseudo-bottom:before {
+  top: 10px;
+}
+.scg-ch-separator.scg-ch-separator-pseudo-both:before {
+  top: 0;
+  transform: scale(1.0, 1.5);
 }
 
 .scg-ch-name {}
