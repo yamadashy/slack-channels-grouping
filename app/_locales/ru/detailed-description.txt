@@ -2,6 +2,10 @@
 • префиксу-имя
 • префиксу_имя
 
-Для Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping никуда не отправляет данные пользователя. Это также полностью открытые исходные коды.
+https://github.com/yamadashy/slack-channels-grouping
 
-Исходный код: https://github.com/yamadashy/slack-channels-grouping
+Для Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+After install, please reload your Slack page.

@@ -2,6 +2,10 @@ Bindestriche (-) und Unterstriche (_) werden unterstützt.
 • Präfix-Name
 • Präfix_Name
 
-Für Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Die Slack Channels Grouping sendet die Daten des Benutzers nirgendwohin. Es ist auch vollständig quelloffen.
+https://github.com/yamadashy/slack-channels-grouping
 
-Quellcode: https://github.com/yamadashy/slack-channels-grouping
+Für Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Nach der Installation laden Sie bitte Ihre Slack Seite neu.

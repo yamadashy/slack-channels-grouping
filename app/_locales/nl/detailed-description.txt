@@ -2,6 +2,10 @@ Ondersteunde koppeltekens (-) en onderstrepingstekens (_).
 • prefix-naam
 • prefix_naam
 
-Voor Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping stuurt de gegevens van de gebruiker nergens naartoe. Het is ook volledig open source.
+https://github.com/yamadashy/slack-channels-grouping
 
-Broncode: https://github.com/yamadashy/slack-channels-grouping
+Voor Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Na de installatie dient u uw Slack-pagina opnieuw te laden.

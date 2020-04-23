@@ -2,6 +2,10 @@
 • prefix-name
 • prefix_name
 
-Firefox版: https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/
+Slack Channels Groupingはユーザーのデータをどこにも送信しません。また、完全にオープンソースです
+https://github.com/yamadashy/slack-channels-grouping
 
-ソース: https://github.com/yamadashy/slack-channels-grouping
+Firefox版
+https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/
+
+インストール後、Slackのページを再読み込みしてください。

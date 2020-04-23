@@ -2,6 +2,10 @@ Trattini (-) e trattini bassi (_) supportati.
 • prefisso-nome
 • prefisso_nome
 
-Per Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping non invia i dati dell'utente da nessuna parte. E' anche completamente open source.
+https://github.com/yamadashy/slack-channels-grouping
 
-Codice sorgente: https://github.com/yamadashy/slack-channels-grouping
+Per Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Dopo l'installazione, si prega di ricaricare la pagina Slack.

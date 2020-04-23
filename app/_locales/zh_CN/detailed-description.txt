@@ -2,6 +2,10 @@
 • 前缀-名称
 • 前缀_名称
 
-对于Firefox：https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping不会将用户的数据发送到任何地方。它也是完全开源的。
+https://github.com/yamadashy/slack-channels-grouping
 
-源代码：https://github.com/yamadashy/slack-channels-grouping
+对于Firefox
+https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/
+
+安装后，请重新加载您的Slack页面。

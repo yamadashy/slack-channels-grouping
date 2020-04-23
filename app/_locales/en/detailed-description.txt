@@ -2,6 +2,10 @@ Hyphens (-) and underscores (_) supported.
 • prefix-name
 • prefix_name
 
-For Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping does not send the user's data anywhere. It's also completely open source.
+https://github.com/yamadashy/slack-channels-grouping
 
-Source Code: https://github.com/yamadashy/slack-channels-grouping
+For Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+After install, please reload your Slack page.

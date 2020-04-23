@@ -2,6 +2,10 @@ Guiones (-) y guiones bajos (_) admitidos.
 • prefijo-nombre
 • prefijo_nombre
 
-Para Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping no envía los datos del usuario a ninguna parte. También es completamente de código abierto.
+https://github.com/yamadashy/slack-channels-grouping
 
-Código fuente: https://github.com/yamadashy/slack-channels-grouping
+Para Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Después de la instalación, vuelva a cargar su página de Slack.

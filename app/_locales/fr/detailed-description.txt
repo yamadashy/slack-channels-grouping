@@ -2,6 +2,10 @@ Les tirets (-) et les traits de soulignement (_) sont pris en charge.
 • préfixe-nom
 • préfixe_nom
 
-Pour Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping n'envoie les données de l'utilisateur nulle part. C'est aussi un logiciel complètement ouvert.
+https://github.com/yamadashy/slack-channels-grouping
 
-Code source: https://github.com/yamadashy/slack-channels-grouping
+Pour Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Après l'installation, veuillez recharger votre page Slack.
