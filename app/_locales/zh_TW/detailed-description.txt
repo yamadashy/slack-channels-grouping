@@ -1,8 +1,11 @@
-它按前綴將Slack通道分組。
 支持連字符（-）和下劃線（_）。
 • 前綴-名稱
 • 前綴_名稱
 
-對於Firefox：https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping不會將用戶的數據發送到任何地方。 它也是完全開源的。
+https://github.com/yamadashy/slack-channels-grouping
 
-源代碼：https://github.com/yamadashy/slack-channels-grouping
+對於Firefox
+https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/
+
+安裝後，請重新加載您的Slack頁面。

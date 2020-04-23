@@ -1,8 +1,11 @@
-Ομαδοποιεί τα κανάλια Slack με πρόθεμα.
 Υποστηρίζονται οι υποσέλιδοι (-) και οι υπογραμμίσεις (_).
 • πρόθεμα-όνομα
 • πρόθεμα_όνομα
 
-Για τον Firefox: https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Το Slack Channels Grouping δεν στέλνει τα δεδομένα του χρήστη πουθενά. Είναι επίσης εντελώς ανοιχτού κώδικα.
+https://github.com/yamadashy/slack-channels-grouping
 
-Κωδικός πηγής: https://github.com/yamadashy/slack-channels-grouping
+Για τον Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+Μετά την εγκατάσταση, φορτώστε ξανά τη σελίδα Slack.

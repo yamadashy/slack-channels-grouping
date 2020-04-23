@@ -1,8 +1,11 @@
-접두사별로 슬랙 채널을 그룹화합니다.
 하이픈 (-) 및 밑줄 (_) 이 지원됩니다.
 • 접두사-이름
 • 접두사_이름
 
-Firefox : https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+Slack Channels Grouping는 사용자 데이터를 어디에도 보내지 않습니다. 또한 완전히 오픈 소스입니다.
+https://github.com/yamadashy/slack-channels-grouping
 
-소스 코드 : https://github.com/yamadashy/slack-channels-grouping
+Firefox
+https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
+
+설치 후 Slack 페이지를 다시로드하십시오.
