@@ -6,6 +6,6 @@
     "message": "slack-ch-group"
   },
   "appDescription": {
-    "message": "按前綴將鬆弛通道分組"
+    "message": "它按前綴將Slack通道分組。"
   }
 }

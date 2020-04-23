@@ -6,6 +6,6 @@
     "message": "slack-ch-group"
   },
   "appDescription": {
-    "message": "접두사별로 슬랙 채널 그룹화"
+    "message": "접두사별로 슬랙 채널을 그룹화합니다."
   }
 }

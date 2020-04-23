@@ -1,4 +1,3 @@
-Agrupa los canales de Slack por prefijo.
 Guiones (-) y guiones bajos (_) admitidos.
 • prefijo-nombre
 • prefijo_nombre

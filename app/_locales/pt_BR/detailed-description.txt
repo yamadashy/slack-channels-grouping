@@ -1,4 +1,3 @@
-Agrupando canais Slack por prefixo.
 Hífens (-) e sublinhados (_) suportados.
 • prefixo-nome
 • prefixo_nome

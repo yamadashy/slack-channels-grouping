@@ -1,4 +1,3 @@
-Il regroupe les canaux Slack par préfixe.
 Les tirets (-) et les traits de soulignement (_) sont pris en charge.
 • préfixe-nom
 • préfixe_nom

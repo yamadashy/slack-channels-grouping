@@ -1,4 +1,3 @@
-Es gruppiert Slack-Kanäle nach Präfix.
 Bindestriche (-) und Unterstriche (_) werden unterstützt.
 • Präfix-Name
 • Präfix_Name

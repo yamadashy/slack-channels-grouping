@@ -1,4 +1,3 @@
-Raggruppa i canali Slack per prefisso.
 Trattini (-) e trattini bassi (_) supportati.
 • prefisso-nome
 • prefisso_nome

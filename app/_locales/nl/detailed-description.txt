@@ -1,4 +1,3 @@
-Het groepeert Slack-kanalen op prefix.
 Ondersteunde koppeltekens (-) en onderstrepingstekens (_).
 • prefix-naam
 • prefix_naam
