@@ -119,7 +119,7 @@ export default class ChannelGrouper {
           .removeClass('scg-ch-parent scg-ch-child')
           .text($channelName.data('scg-raw-channel-name'));
       } else {
-        let separatorPseudoClass = '';
+        let separatorPseudoClass: string;
 
         if (isParent) {
           separator = '┬';
