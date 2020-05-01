@@ -1,5 +1,5 @@
 // modules
-import * as $ from 'jquery';
+import * as $ from 'jquery/dist/jquery.slim';
 import 'requestidlecallback-polyfill';
 import * as domConstants from './dom-constants';
 
