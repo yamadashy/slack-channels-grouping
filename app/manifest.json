@@ -30,6 +30,7 @@
     }
   ],
   "background": {
+    "all_frames": true,
     "scripts": [
       "scripts/background.js"
     ]
