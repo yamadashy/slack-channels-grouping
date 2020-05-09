@@ -10,6 +10,22 @@ Grouping slack channels.
 - Chrome: [Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
 - Firefox: [Slack Channels Grouping – Firefox Add-ons](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)
 
+# Supported Languages
+- `de` German
+- `el` Greek
+- `en` English
+- `es` Spanish
+- `fr` French
+- `it` Italian
+- `ja` Japanese
+- `ko` Korean
+- `nl` Dutch
+- `pt_BR` Portuguese - BRAZIL
+- `pt_PT` Portuguese
+- `ru` Russian
+- `zh_CN` Chinese - Simplified
+- `zh_TW` Chinese - Traditional
+
 # Development
 - Node.js v10.16.0
 
@@ -44,9 +60,3 @@ Lint codes with fix.
 ```
 yarn lint:fix
 ```
-
-## Environment
-The build tool also defines a variable named `process.env.NODE_ENV` in your scripts.
-
-## Docs
-* [webextension-toolbox](https://github.com/HaNdTriX/webextension-toolbox)
