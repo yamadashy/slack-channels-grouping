@@ -50,7 +50,7 @@ export default class ChannelGrouper {
       if (isApplied && $channelName.data('scg-channel-name')) {
         channelName = $channelName.data('scg-channel-name');
       } else {
-        channelName = $.trim($channelName.text());
+        channelName = $channelName.text().trim();
         // Store raw channel name
         $channelName.data('scg-raw-channel-name', channelName);
       }
