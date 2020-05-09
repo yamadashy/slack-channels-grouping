@@ -1,12 +1,6 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "targets": {
-        "browsers": [
-          "last 40 Firefox versions",
-          "last 40 Chrome versions"
-        ]
-      },
       "useBuiltIns": "usage",
       "corejs": 3
     }],

@@ -7,7 +7,8 @@
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build",
     "lint": "eslint ./app/scripts/**/*",
-    "lint:fix": "eslint ./app/scripts/**/* --fix"
+    "lint:fix": "eslint ./app/scripts/**/* --fix",
+    "supported-browsers": "yarn browserslist"
   },
   "repository": {
     "type": "git",

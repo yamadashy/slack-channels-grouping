@@ -60,3 +60,8 @@ Lint codes with fix.
 ```
 yarn lint:fix
 ```
+
+## Show supported browsers
+```
+yarn supported-browsers
+```
