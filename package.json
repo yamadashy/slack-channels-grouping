@@ -31,7 +31,7 @@
   "dependencies": {
     "core-js": "3.6.4",
     "eventemitter3": "4.0.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "requestidlecallback-polyfill": "1.0.2"
   },
   "devDependencies": {
