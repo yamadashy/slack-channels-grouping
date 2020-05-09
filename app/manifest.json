@@ -31,5 +31,13 @@
       "run_at": "document_idle"
     }
   ],
-  "permissions": []
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
+  "permissions": [
+    "http://app.slack.com/*",
+    "https://app.slack.com/*"
+  ]
 }
