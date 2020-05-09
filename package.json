@@ -8,7 +8,8 @@
     "build": "webextension-toolbox build",
     "lint": "eslint ./app/scripts/**/*",
     "lint:fix": "eslint ./app/scripts/**/* --fix",
-    "supported-browsers": "yarn browserslist"
+    "supported-browsers": "yarn browserslist",
+    "bundle-source": "zip -r storage/source.zip . -x '.git/*' 'node_modules/*' 'dist/*' 'packages/*' 'storage/*' '.idea/*'"
   },
   "repository": {
     "type": "git",
