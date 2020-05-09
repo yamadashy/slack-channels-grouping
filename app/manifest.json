@@ -18,7 +18,6 @@
   "content_scripts": [
     {
       "matches": [
-        "http://app.slack.com/*",
         "https://app.slack.com/*"
       ],
       "css": [
@@ -37,7 +36,6 @@
     ]
   },
   "permissions": [
-    "http://app.slack.com/*",
     "https://app.slack.com/*"
   ]
 }
