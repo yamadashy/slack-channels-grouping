@@ -15,9 +15,6 @@
     "128": "images/icon-128.png"
   },
   "minimum_chrome_version": "47.0",
-  "omnibox": {
-    "keyword": "slack-ch-group"
-  },
   "content_scripts": [
     {
       "matches": [
