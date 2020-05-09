@@ -8,3 +8,4 @@ export const CHANNEL_ITEM_NAME_SELECTOR = '.p-channel_sidebar__name';
 
 // data attr
 export const CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE = 'data-qa-channel-sidebar-channel-type';
+export const BODY_EXTENSION_APPLIED_FLAG = 'data-slack-channels-grouping-applied';
