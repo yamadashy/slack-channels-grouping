@@ -5,6 +5,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 module.exports = {
   webpack: (config, { dev, vendor }) => {
     const envName = dev ? 'development' : 'production';
+
+    // Support TypeScript
     config.resolve.extensions.push('.ts');
     config.entry = GlobEntriesPlugin.getEntries(
       [
@@ -14,35 +16,15 @@ module.exports = {
     );
     config.module.rules.push({
       test: /\.ts$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            envName: envName
-          }
-        }
-      ],
+      loader: 'babel-loader',
     });
+
+    // BundleAnalyzer
     config.plugins.push(new BundleAnalyzerPlugin({
       openAnalyzer: false,
       analyzerMode: 'static',
       reportFilename: __dirname + '/storage/bundle-analyzer/' + vendor + '-' + envName + '.html'
     }));
-    config.optimization.splitChunks = {
-        name: 'scripts/vendor',
-        chunks: 'initial',
-    };
-    config.output.chunkFilename = '[name].js';
-
-    // Disable minimize for vendor review
-    config.optimization.minimize = false;
-
-    // Disable size warning
-    config.performance = {
-      maxEntrypointSize: 500 * 1000,
-      maxAssetSize: 500 * 1000,
-    };
 
     return config
   },

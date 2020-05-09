@@ -12,11 +12,7 @@ chrome.tabs.query({}, (tabs) => {
       file: 'styles/content.css',
     }, () => {
       chrome.tabs.executeScript(tab.id, {
-        file: 'scripts/vendor.js',
-      }, () => {
-        chrome.tabs.executeScript(tab.id, {
-          file: 'scripts/content.js',
-        });
+        file: 'scripts/content.js',
       });
     });
   }

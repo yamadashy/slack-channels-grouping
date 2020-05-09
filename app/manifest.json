@@ -24,7 +24,6 @@
         "styles/content.css"
       ],
       "js": [
-        "scripts/vendor.js",
         "scripts/content.js"
       ],
       "run_at": "document_idle"
