@@ -1,6 +1,6 @@
-import ChannelObserver from './slack/channel-observer';
-import ChannelGrouper from './slack/channe-grouper';
-import { BODY_EXTENSION_APPLIED_FLAG } from './slack/dom-constants';
+import ChannelObserver from './content/channel-observer';
+import ChannelGrouper from './content/channe-grouper';
+import { BODY_EXTENSION_APPLIED_FLAG } from './content/dom-constants';
 
 ((): void => {
   // Check applied
