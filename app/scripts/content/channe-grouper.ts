@@ -2,6 +2,7 @@
 import * as $ from 'jquery/dist/jquery.slim';
 import 'requestidlecallback-polyfill';
 import * as domConstants from './dom-constants';
+import {DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NAME} from './dom-constants';
 
 // constants
 const CHANNEL_NAME_ROOT = '-/';
@@ -47,17 +48,17 @@ export default class ChannelGrouper {
       let prefix: string;
 
       // Get ch name
-      if (isApplied && $channelName.data('scg-channel-name')) {
-        channelName = $channelName.data('scg-channel-name');
+      if (isApplied && $channelName.data(DATA_KEY_CHANNEL_NAME)) {
+        channelName = $channelName.data(DATA_KEY_CHANNEL_NAME);
       } else {
         channelName = $channelName.text().trim();
         // Store raw channel name
-        $channelName.data('scg-raw-channel-name', channelName);
+        $channelName.data(DATA_KEY_RAW_CHANNEL_NAME, channelName);
       }
 
       // Get ch name prefix
-      if (isApplied && $channelName.data('scg-channel-prefix')) {
-        prefix = $channelName.data('scg-channel-prefix');
+      if (isApplied && $channelName.data(DATA_KEY_CHANNEL_PREFIX)) {
+        prefix = $channelName.data(DATA_KEY_CHANNEL_PREFIX);
       } else {
         if (regChannelMatch.test(channelName)) {
           prefix = channelName.match(regChannelMatch)[1];
@@ -66,8 +67,8 @@ export default class ChannelGrouper {
         }
       }
 
-      $channelName.data('scg-channel-name', channelName);
-      $channelName.data('scg-channel-prefix', prefix);
+      $channelName.data(DATA_KEY_CHANNEL_NAME, channelName);
+      $channelName.data(DATA_KEY_CHANNEL_PREFIX, prefix);
       prefixes[index] = prefix;
     });
 
@@ -77,13 +78,13 @@ export default class ChannelGrouper {
   protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]): void {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelName = $(channelItem).find(domConstants.CHANNEL_ITEM_NAME_SELECTOR);
-      const channelName: string = $channelName.data('scg-channel-name');
+      const channelName: string = $channelName.data(DATA_KEY_CHANNEL_NAME);
       const isRoot = prefixes[index + 1] === channelName;
 
       if (isRoot) {
         prefixes[index] = channelName;
-        $channelName.data('scg-channel-name', `${channelName}${CHANNEL_NAME_ROOT}`);
-        $channelName.data('scg-channel-prefix', channelName);
+        $channelName.data(DATA_KEY_CHANNEL_NAME, `${channelName}${CHANNEL_NAME_ROOT}`);
+        $channelName.data(DATA_KEY_CHANNEL_PREFIX, channelName);
       }
     });
   }
@@ -92,7 +93,7 @@ export default class ChannelGrouper {
     $channelItems.each(function (index: number, channelItem: HTMLElement) {
       const $channelContentsContainer = $(channelItem).find(domConstants.CHANNEL_ITEM_CONTENTS_CONTAINER);
       const $channelName = $(channelItem).find(domConstants.CHANNEL_ITEM_NAME_SELECTOR);
-      const channelItemType = $channelContentsContainer.attr(domConstants.CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
+      const channelItemType = $channelContentsContainer.attr(domConstants.DATA_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
       const prefix: string = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
       const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;
@@ -117,7 +118,7 @@ export default class ChannelGrouper {
       if (isLoneliness) {
         $channelName
           .removeClass('scg-ch-parent scg-ch-child')
-          .text($channelName.data('scg-raw-channel-name'));
+          .text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
       } else {
         let separatorPseudoClass: string;
 
@@ -144,7 +145,7 @@ export default class ChannelGrouper {
           .append([
             $('<span>').addClass('scg scg-ch-prefix').text(prefix),
             $('<span>').addClass('scg scg-ch-separator ' + separatorPseudoClass).text(separator),
-            $('<span>').addClass('scg scg-ch-name').text($channelName.data('scg-channel-name').replace(/(^.+?)[-_](.*)/, '$2'))
+            $('<span>').addClass('scg scg-ch-name').text($channelName.data(DATA_KEY_CHANNEL_NAME).replace(/(^.+?)[-_](.*)/, '$2'))
           ]);
       }
     });
