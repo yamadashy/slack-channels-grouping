@@ -1,6 +1,6 @@
 import * as $ from 'jquery/dist/jquery.slim';
-import {CHANNEL_LIST_ITEMS_SELECTOR} from './dom-constants';
+import {SELECTOR_CHANNEL_LIST_ITEMS} from './dom-constants';
 
 export function alreadyAppliedExtension(): boolean {
-  return $(CHANNEL_LIST_ITEMS_SELECTOR).find( 'span.scg').length > 0;
+  return $(SELECTOR_CHANNEL_LIST_ITEMS).find( 'span.scg').length > 0;
 }

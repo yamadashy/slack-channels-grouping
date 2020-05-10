@@ -47,7 +47,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = (): void => {
-        if (document.querySelectorAll(domConstants.CHANNEL_LIST_ITEMS_SELECTOR).length > 0) {
+        if (document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).length > 0) {
           resolve();
           return;
         }
@@ -85,7 +85,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       });
     }
 
-    const observeTarget = document.querySelector(domConstants.CHANNEL_LIST_CONTAINER_SELECTOR);
+    const observeTarget = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
     if (!observeTarget) {
       return;
     }
