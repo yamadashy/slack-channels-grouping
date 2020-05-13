@@ -50,5 +50,9 @@
     "typescript": "^3.7.5",
     "webextension-toolbox": "^3.0.0",
     "webpack-bundle-analyzer": "^3.4.1"
+  },
+  "engines": {
+    "node": ">=10",
+    "yarn": "^1.18.0"
   }
 }
