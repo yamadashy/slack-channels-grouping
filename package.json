@@ -5,11 +5,12 @@
   "main": "",
   "scripts": {
     "dev": "webextension-toolbox dev",
-    "build": "webextension-toolbox build",
+    "build": "tsc && webextension-toolbox build",
     "lint": "eslint ./app/scripts/**/*",
     "lint:fix": "eslint ./app/scripts/**/* --fix",
     "supported-browsers": "yarn browserslist",
-    "bundle-source": "zip -r storage/source.zip . -x '.git/*' 'node_modules/*' 'dist/*' 'packages/*' 'storage/*' '.idea/*'"
+    "bundle-source": "zip -r storage/source.zip . -x '.git/*' 'node_modules/*' 'dist/*' 'packages/*' 'storage/*' '.idea/*'",
+    "type-check": "tsc"
   },
   "repository": {
     "type": "git",
