@@ -12,7 +12,7 @@ Grouping slack channels.
 - Opera: [Slack Channels Grouping extension - Opera add-ons](https://addons.opera.com/ja/extensions/details/slack-channels-grouping/https://addons.opera.com/ja/extensions/details/slack-channels-grouping/)
 - Edge: under review
 
-# Supported Languages
+## Supported Languages
 - `de` German
 - `el` Greek
 - `en` English
@@ -61,6 +61,11 @@ yarn lint
 Lint codes with fix.
 ```
 yarn lint:fix
+```
+
+## Type Checking
+```
+yarn type-check
 ```
 
 ## Show supported browsers
