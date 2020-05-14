@@ -10,12 +10,12 @@ chrome.tabs.query({}, (tabs) => {
 
     chrome.tabs.insertCSS(tab.id, {
       file: 'styles/content.css',
-      runAt: 'document_idle',
+      runAt: 'document_start',
       allFrames: true
     }, () => {
       chrome.tabs.executeScript(tab.id, {
         file: 'scripts/content.js',
-        runAt: 'document_idle',
+        runAt: 'document_start',
         allFrames: true
       });
     });

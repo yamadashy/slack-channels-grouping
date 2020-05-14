@@ -2,9 +2,9 @@
 import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
 
-const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 100;
+const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 50;
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 30;
-const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 100;
+const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
 
 /**
  * Channel Observing Class
@@ -20,7 +20,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     super();
     this.observer = null;
     this.isObserving = false;
-    this.lastUpdatedTime = Date.now();
+    this.lastUpdatedTime = 0;
     this.updateTimeoutId = null;
   }
 
