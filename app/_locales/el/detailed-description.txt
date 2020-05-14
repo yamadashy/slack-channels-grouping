@@ -7,5 +7,3 @@ https://github.com/yamadashy/slack-channels-grouping
 
 Για τον Firefox
 https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
-
-Μετά την εγκατάσταση, φορτώστε ξανά τη σελίδα Slack.
