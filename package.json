@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "dev": "webextension-toolbox dev",
-    "build": "tsc && webextension-toolbox build",
+    "build": "webextension-toolbox build",
     "lint": "eslint ./app/scripts/**/*",
     "lint:fix": "eslint ./app/scripts/**/* --fix",
     "supported-browsers": "yarn browserslist",
@@ -48,6 +48,7 @@
     "@typescript-eslint/parser": "^2.0.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.3.0",
+    "fork-ts-checker-webpack-plugin": "^4.1.3",
     "typescript": "^3.9.2",
     "webextension-toolbox": "^3.0.0",
     "webpack-bundle-analyzer": "^3.4.1"
