@@ -47,12 +47,13 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = (): void => {
+        // Find
         if (document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).length > 0) {
           resolve();
           return;
         }
 
-        // timeout 30 seconds
+        // Timeout 30 seconds
         if (Date.now() - loopStartTime > WAIT_RENDER_CHANNEL_LIST_TIMEOUT) {
           resolve();
           return;
@@ -66,12 +67,20 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   enableObserver(): void {
+    const observeTarget = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
+
     if (this.isObserving) {
       return;
     }
+
+    if (!observeTarget) {
+      return;
+    }
+
+    // Initialize observeer
     if (!this.observer) {
       this.observer = new MutationObserver((): void => {
-        const nextUpdateInterval = Math.max(0, this.lastUpdatedTime + UPDATE_CHANNEL_LIST_MIN_INTERVAL - Date.now());
+        const nextUpdateInterval = Math.max(UPDATE_CHANNEL_LIST_MIN_INTERVAL, this.lastUpdatedTime - Date.now());
 
         if (this.updateTimeoutId !== null) {
           window.clearTimeout(this.updateTimeoutId);
@@ -85,15 +94,12 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       });
     }
 
-    const observeTarget = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
-    if (!observeTarget) {
-      return;
-    }
     this.observer.observe(observeTarget, {
       childList: true,
       // If set true, cause infinity loop. b/c observe channel name dom change.
       subtree: false,
     });
+
     this.isObserving = true;
   }
 
@@ -101,6 +107,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     if (!this.isObserving) {
       return;
     }
+
     if (this.observer) {
       this.observer.disconnect();
       this.isObserving = false;
