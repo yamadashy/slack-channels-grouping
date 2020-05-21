@@ -25,38 +25,41 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   async start(): Promise<void> {
-    await this.waitRenderChannelList();
-    this.emit('update');
-    this.enableObserver();
+    await this.waitRenderChannelList()
+      .then(() => {
+        this.emit('update');
+        this.enableObserver();
 
-    document.addEventListener('visibilitychange', () => {
-      switch (document.visibilityState) {
-        case 'visible':
-          this.emit('update');
-          this.enableObserver();
-          break;
-        case 'hidden':
-          this.disableObserver();
-          break;
-      }
-    });
+        document.addEventListener('visibilitychange', () => {
+          switch (document.visibilityState) {
+            case 'visible':
+              this.emit('update');
+              this.enableObserver();
+              break;
+            case 'hidden':
+              this.disableObserver();
+              break;
+          }
+        });
+      })
+      .catch(() => {
+        // Nothing to do
+      });
   }
 
   protected waitRenderChannelList(): Promise<null> {
-    return new Promise((resolve): void => {
+    return new Promise((resolve, reject): void => {
       const loopStartTime = Date.now();
 
       const checkChannelListLoop = (): void => {
-        // Find
+        // Found element
         if (document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).length > 0) {
-          resolve();
-          return;
+          return resolve();
         }
 
         // Timeout 30 seconds
         if (Date.now() - loopStartTime > WAIT_RENDER_CHANNEL_LIST_TIMEOUT) {
-          resolve();
-          return;
+          return reject();
         }
 
         setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);
