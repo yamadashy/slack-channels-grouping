@@ -10,7 +10,8 @@
     "lint:fix": "eslint ./app/scripts/**/* --fix",
     "supported-browsers": "yarn browserslist",
     "bundle-source": "zip -r storage/source.zip . -x '.git/*' 'node_modules/*' 'dist/*' 'packages/*' 'storage/*' '.idea/*'",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "preinstall": "typesync | :"
   },
   "repository": {
     "type": "git",
@@ -42,14 +43,20 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-typescript": "^7.8.3",
+    "@types/babel__core": "^7.1.7",
+    "@types/babel__preset-env": "^7.9.0",
     "@types/chrome": "^0.0.107",
+    "@types/core-js": "2.5.3",
+    "@types/eslint": "^6.8.1",
     "@types/jquery": "^3.3.32",
+    "@types/webpack-bundle-analyzer": "^2.13.3",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.3.0",
     "fork-ts-checker-webpack-plugin": "^4.1.3",
     "typescript": "^3.9.2",
+    "typesync": "^0.6.1",
     "webextension-toolbox": "^3.0.0",
     "webpack-bundle-analyzer": "^3.4.1"
   },
