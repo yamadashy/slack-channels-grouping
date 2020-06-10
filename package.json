@@ -9,7 +9,7 @@
     "lint": "eslint ./app/scripts/**/*",
     "lint:fix": "eslint ./app/scripts/**/* --fix",
     "supported-browsers": "yarn browserslist",
-    "bundle-source": "zip -r storage/source.zip . -x '.git/*' 'node_modules/*' 'dist/*' 'packages/*' 'storage/*' '.idea/*'",
+    "archive": "git archive HEAD -o storage/source.zip",
     "type-check": "tsc",
     "preinstall": "typesync | :"
   },
