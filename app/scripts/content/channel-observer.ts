@@ -62,7 +62,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
           return reject();
         }
 
-        setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);
+        window.setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);
       };
 
       checkChannelListLoop();
@@ -90,7 +90,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
         }
 
         // Reduce infinity loop impact
-        this.updateTimeoutId = setTimeout(() => {
+        this.updateTimeoutId = window.setTimeout(() => {
           this.emit('update');
           this.lastUpdatedTime = Date.now();
         }, nextUpdateInterval);
@@ -100,7 +100,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     this.observer.observe(observeTarget, {
       childList: true,
       // If set true, cause infinity loop. b/c observe channel name dom change.
-      subtree: false,
+      subtree: true,
     });
 
     this.isObserving = true;

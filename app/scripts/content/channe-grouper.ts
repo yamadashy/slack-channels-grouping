@@ -12,6 +12,11 @@ const CHANNEL_NAME_ROOT = '-/';
  */
 export default class ChannelGrouper {
   private idleCallbackId: number;
+  private lastChannelListSnapshotText: string;
+
+  generateChannelListSnapshotText(): string {
+    return $(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).text();
+  }
 
   groupingAllByPrefixOnIdle(): void {
     if (this.idleCallbackId !== null) {
@@ -26,6 +31,11 @@ export default class ChannelGrouper {
   }
 
   groupingAllByPrefix(): void {
+    // compare last state
+    if (this.lastChannelListSnapshotText === this.generateChannelListSnapshotText()) {
+      return;
+    }
+
     const $channelItems = $(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
 
     if ($channelItems.length === 0) {
@@ -149,5 +159,7 @@ export default class ChannelGrouper {
           ]);
       }
     });
+
+    this.lastChannelListSnapshotText = this.generateChannelListSnapshotText();
   }
 }
