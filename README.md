@@ -8,8 +8,8 @@ Grouping slack channels.
 ## Install
 
 - Chrome: [Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
-- Firefox: [Slack Channels Grouping – Firefox Add-ons](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)
-- Opera: [Slack Channels Grouping extension - Opera add-ons](https://addons.opera.com/ja/extensions/details/slack-channels-grouping/https://addons.opera.com/ja/extensions/details/slack-channels-grouping/)
+- Firefox: [Slack Channels Grouping – Firefox Add-ons](https://addons.mozilla.org/firefox/addon/slack-channels-grouping/)
+- Opera: [Slack Channels Grouping extension - Opera add-ons](https://addons.opera.com/extensions/details/slack-channels-grouping)
 - Edge: [Slack Channels Grouping – Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/klpmclmecincfgkoebkackfkmkafpgml)
 
 ## Supported Languages
