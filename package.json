@@ -11,7 +11,7 @@
     "supported-browsers": "yarn browserslist",
     "archive": "git archive HEAD -o storage/source.zip",
     "type-check": "tsc",
-    "preinstall": "typesync | :"
+    "preinstall": "typesync || :"
   },
   "repository": {
     "type": "git",
