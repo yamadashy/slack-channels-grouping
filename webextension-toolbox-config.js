@@ -26,9 +26,19 @@ module.exports = {
 
     // Runs typescript type checker on a separate process.
     config.plugins.push(new ForkTsCheckerWebpackPlugin({
-      checkSyntacticErrors: true,
-      eslint: true,
-      tsconfig: path.resolve(__dirname, 'tsconfig.json')
+      async: !!dev,
+      eslint: {
+        enable: !!dev,
+        files: '**/*.ts',
+        options: {
+          extensions: ['ts'],
+          cache: true,
+        }
+      },
+      typescript: {
+        enabled: true,
+        configFile: path.resolve(__dirname, 'tsconfig.json'),
+      },
     }));
 
     // BundleAnalyzer
