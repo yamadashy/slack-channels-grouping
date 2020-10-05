@@ -37,6 +37,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
               this.enableObserver();
               break;
             case 'hidden':
+            default:
               this.disableObserver();
               break;
           }
@@ -54,12 +55,14 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       const checkChannelListLoop = (): void => {
         // Found element
         if (document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).length > 0) {
-          return resolve();
+          resolve();
+          return;
         }
 
         // Timeout 30 seconds
         if (Date.now() - loopStartTime > WAIT_RENDER_CHANNEL_LIST_TIMEOUT) {
-          return reject();
+          reject();
+          return;
         }
 
         window.setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);

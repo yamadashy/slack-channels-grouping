@@ -2,7 +2,7 @@
 import * as $ from 'jquery/dist/jquery.slim';
 import 'requestidlecallback-polyfill';
 import * as domConstants from './dom-constants';
-import {DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NAME} from './dom-constants';
+import { DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NAME } from './dom-constants';
 
 // constants
 const CHANNEL_NAME_ROOT = '-/';
@@ -18,11 +18,14 @@ export default class ChannelGrouper {
       window.cancelIdleCallback(this.idleCallbackId);
     }
 
-    this.idleCallbackId = window.requestIdleCallback(() => {
-      this.groupingAllByPrefix();
-    }, {
-      timeout: 10 * 1000
-    });
+    this.idleCallbackId = window.requestIdleCallback(
+      () => {
+        this.groupingAllByPrefix();
+      },
+      {
+        timeout: 10 * 1000,
+      }
+    );
   }
 
   groupingAllByPrefix(): void {
@@ -32,8 +35,8 @@ export default class ChannelGrouper {
       return;
     }
 
-    const prefixes: string[] = this.getPrefixes($channelItems);
-    this.preprocessForRootChannels($channelItems, prefixes);
+    let prefixes: string[] = this.getPrefixes($channelItems);
+    prefixes = this.preprocessForRootChannels($channelItems, prefixes);
     this.applyGrouping($channelItems, prefixes);
   }
 
@@ -41,7 +44,7 @@ export default class ChannelGrouper {
     const regChannelMatch = /(^.+?)[-_].*/;
     const prefixes: string[] = [];
 
-    $channelItems.each(function (index: number, channelItem: HTMLElement) {
+    $channelItems.each((index: number, channelItem: HTMLElement) => {
       const $channelName = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       const isApplied = $channelName.find('span.scg').length > 0;
       let channelName: string;
@@ -59,12 +62,10 @@ export default class ChannelGrouper {
       // Get ch name prefix
       if (isApplied && $channelName.data(DATA_KEY_CHANNEL_PREFIX)) {
         prefix = $channelName.data(DATA_KEY_CHANNEL_PREFIX);
+      } else if (regChannelMatch.test(channelName)) {
+        prefix = channelName.match(regChannelMatch)[1];
       } else {
-        if (regChannelMatch.test(channelName)) {
-          prefix = channelName.match(regChannelMatch)[1];
-        } else {
-          prefix = '';
-        }
+        prefix = '';
       }
 
       $channelName.data(DATA_KEY_CHANNEL_NAME, channelName);
@@ -75,22 +76,28 @@ export default class ChannelGrouper {
     return prefixes;
   }
 
-  protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]): void {
-    $channelItems.each(function (index: number, channelItem: HTMLElement) {
+  protected preprocessForRootChannels($channelItems: JQuery, prefixes: string[]): string[] {
+    const retPrefixes: string[] = [];
+
+    $channelItems.each((index: number, channelItem: HTMLElement) => {
       const $channelName = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       const channelName: string = $channelName.data(DATA_KEY_CHANNEL_NAME);
       const isRoot = prefixes[index + 1] === channelName;
 
       if (isRoot) {
-        prefixes[index] = channelName;
+        retPrefixes[index] = channelName;
         $channelName.data(DATA_KEY_CHANNEL_NAME, `${channelName}${CHANNEL_NAME_ROOT}`);
         $channelName.data(DATA_KEY_CHANNEL_PREFIX, channelName);
+      } else {
+        retPrefixes[index] = prefixes[index];
       }
     });
+
+    return retPrefixes;
   }
 
   protected applyGrouping($channelItems: JQuery, prefixes: string[]): void {
-    $channelItems.each(function (index: number, channelItem: HTMLElement) {
+    $channelItems.each((index: number, channelItem: HTMLElement) => {
       const $channelContentsContainer = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER);
       const $channelName = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       const channelItemType = $channelContentsContainer.attr(domConstants.DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
@@ -116,9 +123,7 @@ export default class ChannelGrouper {
       }
 
       if (isLoneliness) {
-        $channelName
-          .removeClass('scg-ch-parent scg-ch-child')
-          .text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
+        $channelName.removeClass('scg-ch-parent scg-ch-child').text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
       } else {
         let separatorPseudoClass: string;
 
@@ -144,8 +149,12 @@ export default class ChannelGrouper {
           .empty()
           .append([
             $('<span>').addClass('scg scg-ch-prefix').text(prefix),
-            $('<span>').addClass('scg scg-ch-separator ' + separatorPseudoClass).text(separator),
-            $('<span>').addClass('scg scg-ch-name').text($channelName.data(DATA_KEY_CHANNEL_NAME).replace(/(^.+?)[-_](.*)/, '$2'))
+            $('<span>')
+              .addClass('scg scg-ch-separator ' + separatorPseudoClass)
+              .text(separator),
+            $('<span>')
+              .addClass('scg scg-ch-name')
+              .text($channelName.data(DATA_KEY_CHANNEL_NAME).replace(/(^.+?)[-_](.*)/, '$2')),
           ]);
       }
     });
