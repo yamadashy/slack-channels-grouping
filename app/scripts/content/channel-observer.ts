@@ -3,7 +3,7 @@ import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
 
 const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 50;
-const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 30;
+const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 60;
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
 
 /**

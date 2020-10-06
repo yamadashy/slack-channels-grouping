@@ -6,6 +6,7 @@ import { DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NA
 
 // constants
 const CHANNEL_NAME_ROOT = '-/';
+const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
 
 /**
  * Channel Grouping Class
@@ -23,7 +24,7 @@ export default class ChannelGrouper {
         this.groupingAllByPrefix();
       },
       {
-        timeout: 10 * 1000,
+        timeout: GROUPING_IDLE_CALLBACK_TIMEOUT,
       }
     );
   }
