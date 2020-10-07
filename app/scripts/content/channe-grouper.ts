@@ -25,7 +25,7 @@ export default class ChannelGrouper {
       },
       {
         timeout: GROUPING_IDLE_CALLBACK_TIMEOUT,
-      }
+      },
     );
   }
 
@@ -101,7 +101,9 @@ export default class ChannelGrouper {
     $channelItems.each((index: number, channelItem: HTMLElement) => {
       const $channelContentsContainer = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER);
       const $channelName = $(channelItem).find(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-      const channelItemType = $channelContentsContainer.attr(domConstants.DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
+      const channelItemType = $channelContentsContainer.attr(
+        domConstants.DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE,
+      );
       const prefix: string = prefixes[index];
       const isLoneliness = prefixes[index - 1] !== prefix && prefixes[index + 1] !== prefix;
       const isParent = prefixes[index - 1] !== prefix && prefixes[index + 1] === prefix;

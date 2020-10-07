@@ -11,13 +11,15 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'airbnb-base',
+    'plugin:import/warnings',
+    'plugin:import/errors',
     'prettier',
     'prettier/@typescript-eslint',
   ],
   plugins: [
     '@typescript-eslint',
     'prettier',
+    'import',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -25,19 +27,10 @@ module.exports = {
     'project': './tsconfig.json'
   },
   rules: {
-    'prettier/prettier': ['warn'],
+    'prettier/prettier': 'warn',
 
     // plugin import
-    'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
-
-    // off
-    'max-len': 'off',
-    'no-unused-vars': 'off',
-    'prefer-destructuring': 'off',
-    'prefer-template': 'off',
-    'class-methods-use-this': 'off',
-    'lines-between-class-members': 'off',
   },
 }

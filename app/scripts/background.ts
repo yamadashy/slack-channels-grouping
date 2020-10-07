@@ -8,17 +8,20 @@ chrome.tabs.query({}, (tabs) => {
       continue;
     }
 
-    chrome.tabs.insertCSS(tab.id, {
-      file: 'styles/content.css',
-      runAt: 'document_start',
-      allFrames: true
-    }, () => {
-      chrome.tabs.executeScript(tab.id, {
-        file: 'scripts/content.js',
+    chrome.tabs.insertCSS(
+      tab.id,
+      {
+        file: 'styles/content.css',
         runAt: 'document_start',
-        allFrames: true
-      });
-    });
+        allFrames: true,
+      },
+      () => {
+        chrome.tabs.executeScript(tab.id, {
+          file: 'scripts/content.js',
+          runAt: 'document_start',
+          allFrames: true,
+        });
+      },
+    );
   }
 });
-

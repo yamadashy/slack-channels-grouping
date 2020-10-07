@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build",
-    "lint": "eslint --format 'node_modules/eslint-formatter-friendly' ./app/scripts/**/*",
-    "lint:fix": "eslint --format 'node_modules/eslint-formatter-friendly' ./app/scripts/**/* --fix",
+    "lint": "eslint ./app/scripts --ext .ts --cache --format 'node_modules/eslint-formatter-friendly'",
+    "lint:fix": "yarn lint --fix",
     "supported-browsers": "yarn browserslist",
     "archive": "git archive HEAD -o storage/source.zip",
     "type-check": "tsc",
