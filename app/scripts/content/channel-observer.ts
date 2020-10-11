@@ -14,14 +14,14 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   private observer: MutationObserver;
   private isObserving: boolean;
   private lastUpdatedTime: number;
-  private updateTimeoutId: number;
+  private debounceEmitUpdateTimeoutId: number;
 
   constructor() {
     super();
     this.observer = null;
     this.isObserving = false;
     this.lastUpdatedTime = 0;
-    this.updateTimeoutId = null;
+    this.debounceEmitUpdateTimeoutId = null;
   }
 
   async start(): Promise<void> {
@@ -72,44 +72,45 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     });
   }
 
-  enableObserver(): void {
-    const observeTarget = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
+  protected enableObserver(): void {
+    const channelListContainer = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
 
     if (this.isObserving) {
       return;
     }
 
-    if (!observeTarget) {
+    if (!channelListContainer) {
       return;
     }
 
-    // Initialize observeer
+    // Initialize observer
     if (!this.observer) {
-      this.observer = new MutationObserver((): void => {
-        const nextUpdateInterval = Math.max(UPDATE_CHANNEL_LIST_MIN_INTERVAL, this.lastUpdatedTime - Date.now());
+      this.observer = new MutationObserver((mutations): void => {
+        // Observe added channel list item
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((addedNode: Element) => {
+            const channelListItem = addedNode.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+            if (channelListItem !== null) {
+              this.observeChannelListItem(channelListItem);
+            }
+          });
+        });
 
-        if (this.updateTimeoutId !== null) {
-          window.clearTimeout(this.updateTimeoutId);
-        }
-
-        // Reduce infinity loop impact
-        this.updateTimeoutId = window.setTimeout(() => {
-          this.emit('update');
-          this.lastUpdatedTime = Date.now();
-        }, nextUpdateInterval);
+        // Emit update
+        this.debounceEmitUpdate();
       });
     }
 
-    this.observer.observe(observeTarget, {
-      childList: true,
-      // If set true, cause infinity loop. b/c observe channel name dom change.
-      subtree: false,
+    // Observe elements
+    this.observeChannelListContainer(channelListContainer);
+    document.querySelectorAll(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR).forEach((channelListItem) => {
+      this.observeChannelListItem(channelListItem);
     });
 
     this.isObserving = true;
   }
 
-  disableObserver(): void {
+  protected disableObserver(): void {
     if (!this.isObserving) {
       return;
     }
@@ -118,5 +119,34 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       this.observer.disconnect();
       this.isObserving = false;
     }
+  }
+
+  protected observeChannelListContainer(channelListContainer: Node): void {
+    this.observer.observe(channelListContainer, {
+      childList: true,
+      // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
+      subtree: false,
+    });
+  }
+
+  protected observeChannelListItem(channelListItem: Node): void {
+    this.observer.observe(channelListItem, {
+      attributes: true,
+      attributeFilter: ['data-qa'],
+    });
+  }
+
+  protected debounceEmitUpdate(): void {
+    const nextUpdateInterval = Math.max(UPDATE_CHANNEL_LIST_MIN_INTERVAL, this.lastUpdatedTime - Date.now());
+
+    if (this.debounceEmitUpdateTimeoutId !== null) {
+      window.clearTimeout(this.debounceEmitUpdateTimeoutId);
+    }
+
+    // Reduce infinity loop impact
+    this.debounceEmitUpdateTimeoutId = window.setTimeout(() => {
+      this.emit('update');
+      this.lastUpdatedTime = Date.now();
+    }, nextUpdateInterval);
   }
 }
