@@ -29,7 +29,7 @@ export default class ChannelGrouper {
     );
   }
 
-  groupingAllByPrefix(): void {
+  protected groupingAllByPrefix(): void {
     const $channelItems = $(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
 
     if ($channelItems.length === 0) {

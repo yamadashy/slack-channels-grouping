@@ -2,8 +2,6 @@
 import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
 
-const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 50;
-const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 60;
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
 
 /**
@@ -24,51 +22,21 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     this.debounceEmitUpdateTimeoutId = null;
   }
 
-  async start(): Promise<void> {
-    await this.waitRenderChannelList()
-      .then(() => {
-        this.emit('update');
-        this.enableObserver();
+  async startObserve(): Promise<void> {
+    this.enableObserver();
 
-        document.addEventListener('visibilitychange', () => {
-          switch (document.visibilityState) {
-            case 'visible':
-              this.emit('update');
-              this.enableObserver();
-              break;
-            case 'hidden':
-            default:
-              this.disableObserver();
-              break;
-          }
-        });
-      })
-      .catch(() => {
-        // Nothing to do
-      });
-  }
-
-  protected waitRenderChannelList(): Promise<null> {
-    return new Promise((resolve, reject): void => {
-      const loopStartTime = Date.now();
-
-      const checkChannelListLoop = (): void => {
-        // Found element
-        if (document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS).length > 0) {
-          resolve();
-          return;
-        }
-
-        // Timeout 30 seconds
-        if (Date.now() - loopStartTime > WAIT_RENDER_CHANNEL_LIST_TIMEOUT) {
-          reject();
-          return;
-        }
-
-        window.setTimeout(checkChannelListLoop, WAIT_RENDER_CHANNEL_LIST_INTERVAL);
-      };
-
-      checkChannelListLoop();
+    // Switch observer on visibility changed
+    document.addEventListener('visibilitychange', () => {
+      switch (document.visibilityState) {
+        case 'visible':
+          this.debounceEmitUpdate();
+          this.enableObserver();
+          break;
+        case 'hidden':
+        default:
+          this.disableObserver();
+          break;
+      }
     });
   }
 
