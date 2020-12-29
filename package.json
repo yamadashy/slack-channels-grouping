@@ -36,6 +36,7 @@
     "eventemitter3": "4.0.7",
     "fsevents": "^2.2.1",
     "jquery": "3.5.1",
+    "loglevel": "^1.7.1",
     "requestidlecallback-polyfill": "1.0.2"
   },
   "devDependencies": {

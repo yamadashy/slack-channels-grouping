@@ -4,6 +4,7 @@ const path = require('path');
 const GlobEntriesPlugin = require('webpack-watched-glob-entries-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
 module.exports = {
   webpack: (config, { dev, vendor }) => {
@@ -23,6 +24,11 @@ module.exports = {
       test: /\.ts$/,
       loader: 'babel-loader?cacheDirectory',
     });
+
+    // Definitions
+    config.plugins.push(new DefinePlugin({
+      IS_PRODUCTION_BUILD: !dev,
+    }))
 
     // Runs typescript type checker on a separate process.
     config.plugins.push(new ForkTsCheckerWebpackPlugin({
