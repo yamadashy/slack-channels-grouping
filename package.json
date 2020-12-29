@@ -32,9 +32,9 @@
     "url": "https://github.com/yamadashy/slack-channels-grouping/issues"
   },
   "dependencies": {
-    "core-js": "3.6.5",
+    "core-js": "3.8.1",
     "eventemitter3": "4.0.7",
-    "fsevents": "^2.1.3",
+    "fsevents": "^2.2.1",
     "jquery": "3.5.1",
     "requestidlecallback-polyfill": "1.0.2"
   },
@@ -46,7 +46,7 @@
     "@babel/preset-typescript": "^7.8.3",
     "@types/babel__core": "^7.1.10",
     "@types/babel__preset-env": "^7.9.1",
-    "@types/chrome": "^0.0.124",
+    "@types/chrome": "^0.0.127",
     "@types/core-js": "2.5.4",
     "@types/eslint": "^7.2.3",
     "@types/eslint-plugin-prettier": "^3.1.0",
@@ -57,16 +57,16 @@
     "@typescript-eslint/parser": "^4.4.0",
     "babel-loader": "^8.0.6",
     "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-formatter-friendly": "^7.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "fork-ts-checker-webpack-plugin": "^5.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.8",
     "prettier": "^2.1.2",
     "typescript": "^4.0.3",
-    "typesync": "^0.7.0",
+    "typesync": "^0.8.0",
     "webextension-toolbox": "^3.0.0",
-    "webpack-bundle-analyzer": "^3.9.0"
+    "webpack-bundle-analyzer": "^4.3.0"
   },
   "engines": {
     "node": ">=10",
