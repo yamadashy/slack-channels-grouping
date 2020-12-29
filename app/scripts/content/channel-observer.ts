@@ -1,6 +1,7 @@
 // modules
 import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
+import { labeledLog } from './utils/console-logger';
 
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
 
@@ -29,11 +30,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     document.addEventListener('visibilitychange', () => {
       switch (document.visibilityState) {
         case 'visible':
+          labeledLog('Changed visibility to [visible] state');
           this.debounceEmitUpdate();
           this.enableObserver();
           break;
         case 'hidden':
+          labeledLog('Changed visibility to [hidden] state');
+          this.disableObserver();
+          break;
         default:
+          labeledLog('Changed visibility to [unknown] state');
           this.disableObserver();
           break;
       }
@@ -57,9 +63,9 @@ export default class ChannelObserver extends EventEmitter<'update'> {
         // Observe added channel list item
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((addedNode: Element) => {
-            const channelListItem = addedNode.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-            if (channelListItem !== null) {
-              this.observeChannelListItem(channelListItem);
+            const channelListItemNameElem = addedNode.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+            if (channelListItemNameElem !== null) {
+              this.observeChannelListItemName(channelListItemNameElem);
             }
           });
         });
@@ -71,8 +77,8 @@ export default class ChannelObserver extends EventEmitter<'update'> {
 
     // Observe elements
     this.observeChannelListContainer(channelListContainer);
-    document.querySelectorAll(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR).forEach((channelListItem) => {
-      this.observeChannelListItem(channelListItem);
+    document.querySelectorAll(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR).forEach((channelListItemElem) => {
+      this.observeChannelListItemName(channelListItemElem);
     });
 
     this.isObserving = true;
@@ -89,16 +95,20 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     }
   }
 
-  protected observeChannelListContainer(channelListContainer: Node): void {
-    this.observer.observe(channelListContainer, {
+  protected observeChannelListContainer(channelListContainerElem: Node): void {
+    labeledLog('Observe channel list container');
+
+    this.observer.observe(channelListContainerElem, {
       childList: true,
       // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
       subtree: false,
     });
   }
 
-  protected observeChannelListItem(channelListItem: Node): void {
-    this.observer.observe(channelListItem, {
+  protected observeChannelListItemName(channelListItemNameElem: Node): void {
+    labeledLog('Observe channel list item name');
+
+    this.observer.observe(channelListItemNameElem, {
       attributes: true,
       attributeFilter: ['data-qa'],
     });
@@ -114,6 +124,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     // Reduce infinity loop impact
     this.debounceEmitUpdateTimeoutId = window.setTimeout(() => {
       this.emit('update');
+      labeledLog('Emitted [update] event');
       this.lastUpdatedTime = Date.now();
     }, nextUpdateInterval);
   }
