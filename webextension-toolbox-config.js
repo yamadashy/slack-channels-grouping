@@ -5,6 +5,7 @@ const GlobEntriesPlugin = require('webpack-watched-glob-entries-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const { ESBuildPlugin } = require('esbuild-loader');
 
 module.exports = {
   webpack: (config, { dev, vendor }) => {
@@ -21,9 +22,16 @@ module.exports = {
 
     // Loader
     config.module.rules.push({
-      test: /\.ts$/,
-      loader: 'babel-loader?cacheDirectory',
+      test: /\.tsx?$/,
+      loader: 'esbuild-loader',
+      options: {
+        loader: 'tsx', // Or 'ts' if you don't need tsx
+        target: 'es2015'
+      }
     });
+
+    // es build
+    config.plugins.push(new ESBuildPlugin());
 
     // Definitions
     config.plugins.push(new DefinePlugin({
