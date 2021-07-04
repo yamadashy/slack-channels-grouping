@@ -8,6 +8,11 @@ chrome.tabs.query({}, (tabs) => {
       continue;
     }
 
+    // Skip execute on discarded tab
+    if (tab.discarded) {
+      return;
+    }
+
     chrome.tabs.insertCSS(
       tab.id,
       {
