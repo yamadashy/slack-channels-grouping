@@ -32,10 +32,9 @@
     "url": "https://github.com/yamadashy/slack-channels-grouping/issues"
   },
   "dependencies": {
-    "core-js": "3.8.1",
+    "core-js": "3.17.2",
     "eventemitter3": "4.0.7",
-    "fsevents": "^2.2.1",
-    "jquery": "3.5.1",
+    "jquery": "3.6.0",
     "loglevel": "^1.7.1",
     "requestidlecallback-polyfill": "1.0.2"
   },
@@ -72,8 +71,5 @@
   "engines": {
     "node": ">=10",
     "yarn": "^1.18.0"
-  },
-  "resolutions": {
-    "**/**/fsevents": "^1.2.9"
   }
 }
