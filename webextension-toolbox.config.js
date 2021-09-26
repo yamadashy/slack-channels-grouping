@@ -59,5 +59,7 @@ module.exports = {
 
     return config
   },
-  copyIgnore: [ '**/*.ts' ]
+  copyIgnore: [
+    path.resolve('**/*.ts'),
+  ]
 };
