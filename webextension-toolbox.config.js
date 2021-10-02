@@ -22,7 +22,10 @@ module.exports = {
     // Loader
     config.module.rules.push({
       test: /\.ts$/,
-      loader: 'babel-loader?cacheDirectory',
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true
+      }
     });
 
     // Definitions
@@ -56,5 +59,7 @@ module.exports = {
 
     return config
   },
-  copyIgnore: [ '**/*.ts' ]
+  copyIgnore: [
+    path.resolve('**/*.ts'),
+  ]
 };
