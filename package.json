@@ -68,6 +68,37 @@
     "webextension-toolbox": "^4.0.3",
     "webpack-bundle-analyzer": "^4.4.2"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ],
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/proposal-class-properties",
+      "@babel/proposal-object-rest-spread"
+    ]
+  },
+  "browserslist": [
+    "last 40 Chrome version",
+    "last 40 Firefox version",
+    "last 40 Opera version",
+    "last 40 Edge version"
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "trailingComma": "all",
+    "quoteProps": "consistent"
+  },
   "engines": {
     "node": ">=10",
     "yarn": "^1.18.0"
