@@ -1,6 +1,8 @@
-const WAIT_ELEMENT_RENDER_INTERVAL = 50;
-
-export function waitElementRender(elementSelector: string, waitTimeout: number): Promise<void> {
+export function waitElementRender(
+  elementSelector: string,
+  waitRenderInterval: number,
+  waitTimeout: number,
+): Promise<void> {
   return new Promise((resolve, reject): void => {
     const loopStartTime = Date.now();
 
@@ -17,7 +19,7 @@ export function waitElementRender(elementSelector: string, waitTimeout: number):
         return;
       }
 
-      window.setTimeout(checkElementLoop, WAIT_ELEMENT_RENDER_INTERVAL);
+      window.setTimeout(checkElementLoop, waitRenderInterval);
     };
 
     checkElementLoop();

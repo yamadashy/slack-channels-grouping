@@ -1,7 +1,5 @@
-const RUNNING_CHECK_META_NAME = 'slack-channels-grouping';
-
-export function isAlreadyRunningExtension(): boolean {
-  const meta: HTMLMetaElement = document.querySelector(`meta[name="${RUNNING_CHECK_META_NAME}"]`);
+export function isAlreadyRunningExtension(identifier: string): boolean {
+  const meta: HTMLMetaElement = document.querySelector(`meta[name="${identifier}"]`);
 
   if (meta) {
     return true;
@@ -9,7 +7,7 @@ export function isAlreadyRunningExtension(): boolean {
 
   // Insert meta to head
   const metaElement: HTMLMetaElement = document.createElement('meta');
-  metaElement.name = RUNNING_CHECK_META_NAME;
+  metaElement.name = identifier;
   metaElement.content = 'true';
   document.head.appendChild(metaElement);
 

@@ -1,7 +1,7 @@
 // modules
 import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
-import { labeledLog } from './utils/console-logger';
+import { logger } from './logger';
 
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
 
@@ -30,16 +30,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     document.addEventListener('visibilitychange', () => {
       switch (document.visibilityState) {
         case 'visible':
-          labeledLog('Changed visibility to [visible] state');
+          logger.labeledLog('Changed visibility to [visible] state');
           this.debounceEmitUpdate();
           this.enableObserver();
           break;
         case 'hidden':
-          labeledLog('Changed visibility to [hidden] state');
+          logger.labeledLog('Changed visibility to [hidden] state');
           this.disableObserver();
           break;
         default:
-          labeledLog('Changed visibility to [unknown] state');
+          logger.labeledLog('Changed visibility to [unknown] state');
           this.disableObserver();
           break;
       }
@@ -96,7 +96,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected observeChannelListContainer(channelListContainerElem: Node): void {
-    labeledLog('Observe channel list container');
+    logger.labeledLog('Observe channel list container');
 
     this.observer.observe(channelListContainerElem, {
       childList: true,
@@ -106,7 +106,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected observeChannelListItemName(channelListItemNameElem: Node): void {
-    labeledLog('Observe channel list item name');
+    logger.labeledLog('Observe channel list item name');
 
     this.observer.observe(channelListItemNameElem, {
       attributes: true,
@@ -124,7 +124,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     // Reduce infinity loop impact
     this.debounceEmitUpdateTimeoutId = window.setTimeout(() => {
       this.emit('update');
-      labeledLog('Emitted [update] event');
+      logger.labeledLog('Emitted [update] event');
       this.lastUpdatedTime = Date.now();
     }, nextUpdateInterval);
   }

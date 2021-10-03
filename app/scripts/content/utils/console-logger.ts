@@ -1,13 +1,18 @@
 import * as loglevel from 'loglevel';
 
-declare let IS_PRODUCTION_BUILD: boolean;
+export class ConsoleLogger {
+  public static levels = loglevel.levels;
+  private label: string;
+  private logger: loglevel.Logger;
 
-const LOG_LABEL = 'slack-ch-group';
+  constructor(label: string, logLevel: loglevel.LogLevelDesc) {
+    this.label = label;
+    this.logger = loglevel.getLogger(label);
+    this.logger.setLevel(logLevel);
+  }
 
-// Set loglevel
-loglevel.setLevel(IS_PRODUCTION_BUILD ? 'warn' : 'trace');
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function labeledLog(...values: any[]): void {
-  loglevel.debug('%c' + LOG_LABEL, 'background: #67b083; color: #000; padding: 0.2em 0.5em', ...values);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  labeledLog(...values: any[]): void {
+    this.logger.debug('%c' + this.label, 'background: #67b083; color: #000; padding: 0.2em 0.5em', ...values);
+  }
 }
