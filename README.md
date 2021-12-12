@@ -5,6 +5,10 @@ Grouping slack channels.
 ![](./promo/Screenshot_1280x800.png)
 
 
+[![Chrome Users](https://img.shields.io/chrome-web-store/users/lcbnhfianneihfgkmfncnhpkpghedbkm?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)   [![Firefox Users](https://img.shields.io/amo/users/slack-channels-grouping?logo=firefox&color=blightcreen)](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lcbnhfianneihfgkmfncnhpkpghedbkm?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)   [![Mozilla Add-on](https://img.shields.io/amo/v/slack-channels-grouping?logo=firefox)](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)
+
+
+
 ## Install
 
 - Chrome: [Slack Channels Grouping - Chrome Web Store](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)
