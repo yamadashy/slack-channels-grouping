@@ -8,7 +8,7 @@ import { isAlreadyRunningExtension } from './content/utils/extension-running-che
 
 const RUNNING_CHECK_IDENTIFIER = 'slack-channels-grouping';
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 60;
-const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 50;
+const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 200;
 
 ((): void => {
   waitElementRender(

@@ -3,7 +3,7 @@ import * as EventEmitter from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
-const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 50;
+const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
 
 /**
  * Channel Observing Class
@@ -115,8 +115,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected debounceEmitUpdate(): void {
-    const nextUpdateInterval = Math.max(UPDATE_CHANNEL_LIST_MIN_INTERVAL, this.lastUpdatedTime - Date.now());
-
     if (this.debounceEmitUpdateTimeoutId !== null) {
       window.clearTimeout(this.debounceEmitUpdateTimeoutId);
     }
@@ -126,6 +124,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       this.emit('update');
       logger.labeledLog('Emitted [update] event');
       this.lastUpdatedTime = Date.now();
-    }, nextUpdateInterval);
+    }, UPDATE_CHANNEL_LIST_MIN_INTERVAL);
   }
 }
