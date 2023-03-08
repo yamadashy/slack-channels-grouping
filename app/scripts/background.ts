@@ -1,5 +1,5 @@
 // Update extension content for slack tabs
-chrome.tabs.query({}, (tabs) => {
+chrome.tabs.query({}, async (tabs) => {
   for (const tabKey in tabs) {
     const tab = tabs[tabKey];
 
@@ -13,20 +13,19 @@ chrome.tabs.query({}, (tabs) => {
       return;
     }
 
-    chrome.tabs.insertCSS(
-      tab.id,
-      {
-        file: 'styles/content.css',
-        runAt: 'document_start',
+    await chrome.scripting.insertCSS({
+      target: {
+        tabId: tab.id,
         allFrames: true,
       },
-      () => {
-        chrome.tabs.executeScript(tab.id, {
-          file: 'scripts/content.js',
-          runAt: 'document_start',
-          allFrames: true,
-        });
+      files: ['styles/content.css'],
+    });
+    chrome.scripting.executeScript({
+      target: {
+        tabId: tab.id,
+        allFrames: true,
       },
-    );
+      files: ['scripts/content.js'],
+    });
   }
 });

@@ -7,6 +7,7 @@
       "dom",
       "esnext"
     ],
+    "baseUrl": ".",
     "allowJs": false,
     "noImplicitAny": true,
     "removeComments": true,
