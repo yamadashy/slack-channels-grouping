@@ -85,10 +85,7 @@
     ]
   },
   "browserslist": [
-    "last 40 Chrome version",
-    "last 40 Firefox version",
-    "last 40 Opera version",
-    "last 40 Edge version"
+    "last 2 versions, not dead, > 0.2%"
   ],
   "prettier": {
     "tabWidth": 2,
