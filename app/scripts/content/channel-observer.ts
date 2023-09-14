@@ -44,6 +44,22 @@ export default class ChannelObserver extends EventEmitter<'update'> {
           break;
       }
     });
+
+    // Force re-observe on workspace tab changed
+    const workspace = document.querySelector(domConstants.SELECTOR_WORKSPACE);
+    const observer = new MutationObserver((): void => {
+      logger.labeledLog('Workspace tab changed');
+
+      this.debounceEmitUpdate();
+
+      // re-observe
+      this.disableObserver();
+      this.enableObserver();
+    });
+    observer.observe(workspace, {
+      attributes: true,
+      attributeFilter: ['aria-label'],
+    });
   }
 
   protected enableObserver(): void {
@@ -60,6 +76,8 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     // Initialize observer
     if (!this.observer) {
       this.observer = new MutationObserver((mutations): void => {
+        logger.labeledLog('Observed channel dom change');
+
         // Observe added channel list item
         mutations.forEach((mutation) => {
           mutation.addedNodes.forEach((addedNode: Element) => {
