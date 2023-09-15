@@ -3,7 +3,7 @@
     "message": "Slack Channels Grouping"
   },
   "appShortName": {
-    "message": "slack-ch-group"
+    "message": "slack-ch-grp"
   },
   "appDescription": {
     "message": "접두사별로 슬랙 채널을 그룹화합니다."

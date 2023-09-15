@@ -3,7 +3,7 @@
     "message": "Slack Channels Grouping"
   },
   "appShortName": {
-    "message": "slack-ch-group"
+    "message": "slack-ch-grp"
   },
   "appDescription": {
     "message": "It grouping Slack channels by prefix."
