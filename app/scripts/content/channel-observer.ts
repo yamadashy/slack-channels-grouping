@@ -1,5 +1,5 @@
 // modules
-import * as EventEmitter from 'eventemitter3';
+import { EventEmitter } from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
@@ -10,17 +10,34 @@ const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
  * @extends EventEmitter
  */
 export default class ChannelObserver extends EventEmitter<'update'> {
-  private observer: MutationObserver;
   private isObserving: boolean;
   private lastUpdatedTime: number;
-  private debounceEmitUpdateTimeoutId: number;
+  private debounceEmitUpdateTimeoutId: number | null;
+  private channelListObserver: MutationObserver;
 
   constructor() {
     super();
-    this.observer = null;
     this.isObserving = false;
     this.lastUpdatedTime = 0;
     this.debounceEmitUpdateTimeoutId = null;
+    this.channelListObserver = new MutationObserver((mutations): void => {
+      logger.labeledLog('Observed channel dom change');
+
+      // Observe added channel list item
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((addedNode) => {
+          if (addedNode instanceof HTMLElement) {
+            const channelListItemNameElem = addedNode.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+            if (channelListItemNameElem !== null) {
+              this.observeChannelListItemName(channelListItemNameElem);
+            }
+          }
+        });
+      });
+
+      // Emit update
+      this.debounceEmitUpdate();
+    });
   }
 
   async startObserve(): Promise<void> {
@@ -47,7 +64,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
 
     // Force re-observe on workspace tab changed
     const workspace = document.querySelector(domConstants.SELECTOR_WORKSPACE);
-    const observer = new MutationObserver((): void => {
+    const workspaceObserver = new MutationObserver((): void => {
       logger.labeledLog('Workspace tab changed');
 
       this.debounceEmitUpdate();
@@ -56,7 +73,13 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       this.disableObserver();
       this.enableObserver();
     });
-    observer.observe(workspace, {
+
+    if (!workspace) {
+      logger.labeledLog('Workspace element not found');
+      return;
+    }
+
+    workspaceObserver.observe(workspace, {
       attributes: true,
       attributeFilter: ['aria-label'],
     });
@@ -73,26 +96,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       return;
     }
 
-    // Initialize observer
-    if (!this.observer) {
-      this.observer = new MutationObserver((mutations): void => {
-        logger.labeledLog('Observed channel dom change');
-
-        // Observe added channel list item
-        mutations.forEach((mutation) => {
-          mutation.addedNodes.forEach((addedNode: Element) => {
-            const channelListItemNameElem = addedNode.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-            if (channelListItemNameElem !== null) {
-              this.observeChannelListItemName(channelListItemNameElem);
-            }
-          });
-        });
-
-        // Emit update
-        this.debounceEmitUpdate();
-      });
-    }
-
     // Observe elements
     this.observeChannelListContainer(channelListContainer);
     document.querySelectorAll(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR).forEach((channelListItemElem) => {
@@ -107,16 +110,14 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       return;
     }
 
-    if (this.observer) {
-      this.observer.disconnect();
-      this.isObserving = false;
-    }
+    this.channelListObserver.disconnect();
+    this.isObserving = false;
   }
 
   protected observeChannelListContainer(channelListContainerElem: Node): void {
     logger.labeledLog('Observe channel list container');
 
-    this.observer.observe(channelListContainerElem, {
+    this.channelListObserver.observe(channelListContainerElem, {
       childList: true,
       // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
       subtree: false,
@@ -126,7 +127,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   protected observeChannelListItemName(channelListItemNameElem: Node): void {
     logger.labeledLog('Observe channel list item name');
 
-    this.observer.observe(channelListItemNameElem, {
+    this.channelListObserver.observe(channelListItemNameElem, {
       attributes: true,
       attributeFilter: ['data-qa'],
     });

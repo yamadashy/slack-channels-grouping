@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "lib": [
       "dom",
       "esnext"
     ],
-    "baseUrl": ".",
     "allowJs": false,
     "noImplicitAny": true,
     "removeComments": true,
-    "sourceMap": true,
-    "noEmit": true
+    "skipLibCheck": true,
+    "sourceMap": true
   }
 }
