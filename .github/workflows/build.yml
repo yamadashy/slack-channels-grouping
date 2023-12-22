@@ -40,8 +40,8 @@ jobs:
     - name: Build Safari Extension
       run: yarn build safari
 
-    - name: Archive builds
+    - name: Archive packages
       uses: actions/upload-artifact@v3
       with:
-        name: builds
-        path: dist
+        name: packages
+        path: packages
