@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # NOTE: UTC time
+    - cron: 0 0 * * 6
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: .tool-versions
+        cache: yarn
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Run type check
+      run: yarn type-check
+
+    - name: Lint
+      run: yarn lint

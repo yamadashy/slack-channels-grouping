@@ -1,0 +1,47 @@
+name: Build Extensions
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: .tool-versions
+        cache: yarn
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build Chrome Extension
+      run: yarn build chrome
+
+    - name: Build Firefox Extension
+      run: yarn build firefox
+
+    - name: Build Edge Extension
+      run: yarn build edge
+
+    - name: Build Opera Extension
+      run: yarn build opera
+
+    - name: Build Safari Extension
+      run: yarn build safari
+
+    - name: Archive builds
+      uses: actions/upload-artifact@v3
+      with:
+        name: builds
+        path: dist
