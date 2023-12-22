@@ -10,7 +10,12 @@ chrome.tabs.query({}, async (tabs) => {
 
     // Skip execute on discarded tab
     if (tab.discarded) {
-      return;
+      continue;
+    }
+
+    // Under some circumstances a Tab may not be assigned an ID
+    if (tab.id === undefined) {
+      continue;
     }
 
     await chrome.scripting.insertCSS({

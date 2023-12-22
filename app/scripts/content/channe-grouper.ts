@@ -1,5 +1,5 @@
 // modules
-import * as $ from 'jquery/dist/jquery.slim';
+import $ from 'jquery/dist/jquery.slim';
 import 'requestidlecallback-polyfill';
 import * as domConstants from './dom-constants';
 import { DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NAME } from './dom-constants';
@@ -12,7 +12,11 @@ const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
  * Channel Grouping Class
  */
 export default class ChannelGrouper {
-  private idleCallbackId: number;
+  private idleCallbackId: number | null;
+
+  constructor() {
+    this.idleCallbackId = null;
+  }
 
   groupingAllByPrefixOnIdle(): void {
     if (this.idleCallbackId !== null) {
@@ -64,7 +68,7 @@ export default class ChannelGrouper {
       if (isApplied && $channelName.data(DATA_KEY_CHANNEL_PREFIX)) {
         prefix = $channelName.data(DATA_KEY_CHANNEL_PREFIX);
       } else if (regChannelMatch.test(channelName)) {
-        prefix = channelName.match(regChannelMatch)[1];
+        prefix = channelName.match(regChannelMatch)![1];
       } else {
         prefix = '';
       }

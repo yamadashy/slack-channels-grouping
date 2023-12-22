@@ -1,5 +1,5 @@
 export function isAlreadyRunningExtension(identifier: string): boolean {
-  const meta: HTMLMetaElement = document.querySelector(`meta[name="${identifier}"]`);
+  const meta: HTMLMetaElement | null = document.querySelector(`meta[name="${identifier}"]`);
 
   if (meta) {
     return true;
