@@ -40,5 +40,16 @@
   "host_permissions": [
     "http://app.slack.com/*",
     "https://app.slack.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/SlackChannelsGrounping-NotoSansJP-Medium.ttf"
+      ],
+      "matches": [
+        "http://app.slack.com/*",
+        "https://app.slack.com/*"
+      ]
+    }
   ]
 }
