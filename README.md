@@ -46,6 +46,7 @@ yarn dev chrome
 yarn dev firefox
 yarn dev opera
 yarn dev edge
+yarn dev safari
 ```
 
 ## Build extension
@@ -54,6 +55,7 @@ yarn build chrome
 yarn build firefox
 yarn build opera
 yarn build edge
+yarn build safari
 ```
 
 ## Lint codes
@@ -72,7 +74,20 @@ yarn lint:fix
 yarn type-check
 ```
 
+## Generate font file for Box-drawing character
+```
+pip install fonttools
+```
+
+```
+cd ./tools/font-builder
+. build.sh
+```
+
 ## Show supported browsers
 ```
 yarn supported-browsers
 ```
+
+# LICENSE
+MIT
