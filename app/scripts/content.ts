@@ -35,12 +35,13 @@ const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 200;
       const channelGrouper = new ChannelGrouper();
 
       // Grouping
-      channelGrouper.groupingAllByPrefixOnIdle();
+      channelGrouper.groupingAllByPrefixOnIdleAndDebounce();
 
       // Grouping on update
       channelObserver.on('update', () => {
-        channelGrouper.groupingAllByPrefixOnIdle();
+        channelGrouper.groupingAllByPrefixOnIdleAndDebounce();
       });
+
       channelObserver.startObserve();
     })
     .catch(() => {
