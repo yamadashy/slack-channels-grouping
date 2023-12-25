@@ -1,12 +1,10 @@
-# Slack Channels Grouping
+# <img src="app/images/icon-128.png" height=26> Slack Channels Grouping
 
 Grouping slack channels.
 
 ![](./promo/Screenshot_1280x800.png)
 
-
 [![Chrome Users](https://img.shields.io/chrome-web-store/users/lcbnhfianneihfgkmfncnhpkpghedbkm?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)   [![Firefox Users](https://img.shields.io/amo/users/slack-channels-grouping?logo=firefox&color=blightcreen)](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)   [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lcbnhfianneihfgkmfncnhpkpghedbkm?logo=google-chrome&logoColor=white)](https://chrome.google.com/webstore/detail/slack-channels-grouping/lcbnhfianneihfgkmfncnhpkpghedbkm)   [![Mozilla Add-on](https://img.shields.io/amo/v/slack-channels-grouping?logo=firefox)](https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/)
-
 
 
 ## Install
@@ -32,15 +30,15 @@ Grouping slack channels.
 - `zh_CN` Chinese - Simplified
 - `zh_TW` Chinese - Traditional
 
-# Development
+## Development
 - Node.js >= v18
 
-## Setup
+### Setup
 ```
 $ yarn
 ```
 
-## Watch and build
+### Watch and build
 ```
 yarn dev chrome
 yarn dev firefox
@@ -49,7 +47,7 @@ yarn dev edge
 yarn dev safari
 ```
 
-## Build extension
+### Build extension
 ```
 yarn build chrome
 yarn build firefox
@@ -58,7 +56,7 @@ yarn build edge
 yarn build safari
 ```
 
-## Lint codes
+### Lint codes
 Lint only.
 ```
 yarn lint
@@ -69,12 +67,12 @@ Lint codes with fix.
 yarn lint:fix
 ```
 
-## Type Checking
+### Type Checking
 ```
 yarn type-check
 ```
 
-## Generate font file for Box-drawing character
+### Generate font file for Box-drawing character
 ```
 pip install fonttools
 ```
@@ -84,10 +82,10 @@ cd ./tools/font-builder
 . build.sh
 ```
 
-## Show supported browsers
+### Show supported browsers
 ```
 yarn supported-browsers
 ```
 
-# LICENSE
+## LICENSE
 MIT
