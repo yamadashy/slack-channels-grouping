@@ -3,23 +3,17 @@ import { EventEmitter } from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
-const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
-
 /**
  * Channel Observing Class
  * @extends EventEmitter
  */
 export default class ChannelObserver extends EventEmitter<'update'> {
   private isObserving: boolean;
-  private lastUpdatedTime: number;
-  private debounceEmitUpdateTimeoutId: number | null;
   private channelListObserver: MutationObserver;
 
   constructor() {
     super();
     this.isObserving = false;
-    this.lastUpdatedTime = 0;
-    this.debounceEmitUpdateTimeoutId = null;
     this.channelListObserver = new MutationObserver((mutations): void => {
       logger.labeledLog('Observed channel dom change');
 
@@ -36,8 +30,12 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       });
 
       // Emit update
-      this.debounceEmitUpdate();
+      this.emitUpdate();
     });
+  }
+
+  protected emitUpdate(): void {
+    this.emit('update');
   }
 
   async startObserve(): Promise<void> {
@@ -48,7 +46,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       switch (document.visibilityState) {
         case 'visible':
           logger.labeledLog('Changed visibility to [visible] state');
-          this.debounceEmitUpdate();
+          this.emitUpdate();
           this.enableObserver();
           break;
         case 'hidden':
@@ -67,7 +65,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     const workspaceObserver = new MutationObserver((): void => {
       logger.labeledLog('Workspace tab changed');
 
-      this.debounceEmitUpdate();
+      this.emitUpdate();
 
       // re-observe
       this.disableObserver();
@@ -131,18 +129,5 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       attributes: true,
       attributeFilter: ['data-qa'],
     });
-  }
-
-  protected debounceEmitUpdate(): void {
-    if (this.debounceEmitUpdateTimeoutId !== null) {
-      window.clearTimeout(this.debounceEmitUpdateTimeoutId);
-    }
-
-    // Reduce infinity loop impact
-    this.debounceEmitUpdateTimeoutId = window.setTimeout(() => {
-      this.emit('update');
-      logger.labeledLog('Emitted [update] event');
-      this.lastUpdatedTime = Date.now();
-    }, UPDATE_CHANNEL_LIST_MIN_INTERVAL);
   }
 }

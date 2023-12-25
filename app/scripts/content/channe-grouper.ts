@@ -7,30 +7,40 @@ import { DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NA
 // constants
 const CHANNEL_NAME_ROOT = '-/';
 const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
+const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
 
 /**
  * Channel Grouping Class
  */
 export default class ChannelGrouper {
+  private debounceEmitUpdateTimeoutId: number | null;
   private idleCallbackId: number | null;
 
   constructor() {
+    this.debounceEmitUpdateTimeoutId = null;
     this.idleCallbackId = null;
   }
 
-  groupingAllByPrefixOnIdle(): void {
-    if (this.idleCallbackId !== null) {
-      window.cancelIdleCallback(this.idleCallbackId);
+  groupingAllByPrefixOnIdleAndDebounce(): void {
+    if (this.debounceEmitUpdateTimeoutId !== null) {
+      window.clearTimeout(this.debounceEmitUpdateTimeoutId);
     }
 
-    this.idleCallbackId = window.requestIdleCallback(
-      () => {
-        this.groupingAllByPrefix();
-      },
-      {
-        timeout: GROUPING_IDLE_CALLBACK_TIMEOUT,
-      },
-    );
+    // Reduce infinity loop impact
+    this.debounceEmitUpdateTimeoutId = window.setTimeout(() => {
+      if (this.idleCallbackId !== null) {
+        window.cancelIdleCallback(this.idleCallbackId);
+      }
+
+      this.idleCallbackId = window.requestIdleCallback(
+        () => {
+          this.groupingAllByPrefix();
+        },
+        {
+          timeout: GROUPING_IDLE_CALLBACK_TIMEOUT,
+        },
+      );
+    }, UPDATE_CHANNEL_LIST_MIN_INTERVAL);
   }
 
   protected groupingAllByPrefix(): void {
