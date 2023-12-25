@@ -1,6 +1,5 @@
 import ChannelObserver from './content/channel-observer';
 import ChannelGrouper from './content/channe-grouper';
-import { alreadyAppliedExtension } from './content/apply-checker';
 import { waitElementRender } from './content/utils/wait-element-render';
 import * as domConstants from './content/dom-constants';
 import { logger } from './content/logger';
@@ -20,12 +19,6 @@ const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 200;
       // Check already running extension
       if (isAlreadyRunningExtension(RUNNING_CHECK_IDENTIFIER)) {
         logger.labeledLog('Extension is already running. Skip apply.');
-        return;
-      }
-
-      // Check already running extension (For backward compatibility)
-      if (alreadyAppliedExtension()) {
-        logger.labeledLog('Extension is already applied. Skip apply.');
         return;
       }
 
