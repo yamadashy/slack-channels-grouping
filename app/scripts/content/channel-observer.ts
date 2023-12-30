@@ -35,6 +35,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected emitUpdate(): void {
+    logger.labeledLog('Emit update event');
     this.emit('update');
   }
 

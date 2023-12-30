@@ -3,6 +3,7 @@ import $ from 'jquery/dist/jquery.slim';
 import 'requestidlecallback-polyfill';
 import * as domConstants from './dom-constants';
 import { DATA_KEY_CHANNEL_NAME, DATA_KEY_CHANNEL_PREFIX, DATA_KEY_RAW_CHANNEL_NAME } from './dom-constants';
+import { logger } from './logger';
 
 // constants
 const CHANNEL_NAME_ROOT = '-/';
@@ -44,6 +45,8 @@ export default class ChannelGrouper {
   }
 
   protected groupingAllByPrefix(): void {
+    logger.labeledLog('Grouping all by prefix');
+
     const $channelItems = $(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
 
     if ($channelItems.length === 0) {
