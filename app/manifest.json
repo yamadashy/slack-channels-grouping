@@ -22,6 +22,11 @@
         "https://app.slack.com/*"
       ],
       "css": [
+        "styles/font-face.css",
+        "styles/content.css"
+      ],
+      "__firefox__css": [
+        "styles/font-face-firefox.css",
         "styles/content.css"
       ],
       "js": [
@@ -33,6 +38,11 @@
   ],
   "background": {
     "service_worker": "scripts/background.js"
+  },
+  "__firefox__background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
   },
   "permissions": [
     "scripting"
