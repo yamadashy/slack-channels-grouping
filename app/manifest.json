@@ -39,17 +39,8 @@
   "background": {
     "service_worker": "scripts/background.js"
   },
-  "__firefox__background": {
-    "scripts": [
-      "scripts/background.js"
-    ]
-  },
   "permissions": [
     "scripting"
-  ],
-  "host_permissions": [
-    "http://app.slack.com/*",
-    "https://app.slack.com/*"
   ],
   "web_accessible_resources": [
     {
@@ -61,5 +52,31 @@
         "https://app.slack.com/*"
       ]
     }
-  ]
+  ],
+
+  "__chrome|opera|edge|safari__host_permissions": [
+    "http://app.slack.com/*",
+    "https://app.slack.com/*"
+  ],
+
+  "__firefox__manifest_version": 2,
+  "__firefox__background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
+  "__firefox__permissions": [
+    "scripting",
+    "http://app.slack.com/*",
+    "https://app.slack.com/*"
+  ],
+  "__firefox__web_accessible_resources": [
+    "fonts/SlackChannelsGrounping-NotoSansJP-Medium.ttf"
+  ],
+  "__firefox__browser_specific_settings": {
+    "gecko": {
+      "id": "{24d54390-97ea-4c57-b4be-7e32232ca609}",
+      "strict_min_version": "102.0"
+    }
+  }
 }
