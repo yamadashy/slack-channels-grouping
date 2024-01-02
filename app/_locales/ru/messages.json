@@ -1,10 +1,4 @@
 {
-  "appName": {
-    "message": "Slack Channels Grouping"
-  },
-  "appShortName": {
-    "message": "slack-ch-grp"
-  },
   "appDescription": {
     "message": "Он группирует каналы Slack по префиксу."
   }
