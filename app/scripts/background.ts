@@ -18,19 +18,23 @@ chrome.tabs.query({}, async (tabs) => {
       continue;
     }
 
+    const manifest = chrome.runtime.getManifest();
+    const cssFiles = manifest.content_scripts![0].css!;
+    const jsFiles = manifest.content_scripts![0].js!;
+
     await chrome.scripting.insertCSS({
       target: {
         tabId: tab.id,
         allFrames: true,
       },
-      files: ['styles/content.css'],
+      files: cssFiles,
     });
     chrome.scripting.executeScript({
       target: {
         tabId: tab.id,
         allFrames: true,
       },
-      files: ['scripts/content.js'],
+      files: jsFiles,
     });
   }
 });
