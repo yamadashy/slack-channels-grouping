@@ -61,7 +61,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       }
     });
 
-    // Force re-observe on workspace tab changed
+
+    this.observeWorkspace();
+    this.observeWorkspaceWrapperChildren();
+  }
+
+  /**
+   * Force re-observe on workspace tab changed
+   * This is backward compatibility
+   */
+  protected observeWorkspace(): void {
     const workspace = document.querySelector(domConstants.SELECTOR_WORKSPACE);
     const workspaceObserver = new MutationObserver((): void => {
       logger.labeledLog('Workspace tab changed');
@@ -78,9 +87,38 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       return;
     }
 
+    logger.labeledLog('Observe workspace');
     workspaceObserver.observe(workspace, {
       attributes: true,
       attributeFilter: ['aria-label'],
+    });
+  }
+
+  /**
+   * Force re-observe on workspace wrapper children changed
+   */
+  protected observeWorkspaceWrapperChildren(): void {
+    const workspaceWrapper = document.querySelector(domConstants.SELECTOR_WORKSPACE_WRAPPER);
+    const workspaceWrapperObserver = new MutationObserver((): void => {
+      logger.labeledLog('Workspace wrapper children changed');
+
+      this.emitUpdate();
+
+      // re-observe
+      this.disableObserver();
+      this.enableObserver();
+    });
+
+    if (!workspaceWrapper) {
+      logger.labeledLog('Workspace wrapper element not found');
+      return;
+    }
+
+    logger.labeledLog('Observe workspace wrapper children');
+    workspaceWrapperObserver.observe(workspaceWrapper, {
+      childList: true,
+      // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
+      subtree: false,
     });
   }
 
