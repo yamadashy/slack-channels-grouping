@@ -47,7 +47,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@types/babel__core": "^7.20.5",
     "@types/babel__preset-env": "^7.9.6",
-    "@types/chrome": "^0.0.265",
+    "@types/chrome": "^0.0.266",
     "@types/core-js": "2.5.8",
     "@types/eslint": "^8.56.0",
     "@types/eslint-config-prettier": "^6.11.3",
