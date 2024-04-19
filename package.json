@@ -32,7 +32,7 @@
     "url": "https://github.com/yamadashy/slack-channels-grouping/issues"
   },
   "dependencies": {
-    "core-js": "3.36.1",
+    "core-js": "3.37.0",
     "eventemitter3": "5.0.1",
     "jquery": "3.7.1",
     "loglevel": "^1.8.1",
