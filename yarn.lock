@@ -4322,25 +4322,7 @@ bzip-deflate@^1.0.0:
   resolved "https://registry.yarnpkg.com/bzip-deflate/-/bzip-deflate-1.0.0.tgz#b02db007ef37bebcc29384a4b2c6f4f0f4c796c9"
   integrity sha512-9RMnpiJqMYMJcLdr4pxwowZ8Zh3P+tVswE/bnX6tZ14UGKNcdV5WVK2P+lGp2As+RCjl+i3SFJ117HyCaaHNDA==
 
-cacache@18.0.2:
-  version "18.0.2"
-  resolved "https://registry.yarnpkg.com/cacache/-/cacache-18.0.2.tgz#fd527ea0f03a603be5c0da5805635f8eef00c60c"
-  integrity sha512-r3NU8h/P+4lVUHfeRw1dtgQYar3DZMm4/cm2bZgOvrFC/su7budSOeqh52VJIC4U4iG1WWwV6vRW0znqBvxNuw==
-  dependencies:
-    "@npmcli/fs" "^3.1.0"
-    fs-minipass "^3.0.0"
-    glob "^10.2.2"
-    lru-cache "^10.0.1"
-    minipass "^7.0.3"
-    minipass-collect "^2.0.1"
-    minipass-flush "^1.0.5"
-    minipass-pipeline "^1.2.4"
-    p-map "^4.0.0"
-    ssri "^10.0.0"
-    tar "^6.1.11"
-    unique-filename "^3.0.0"
-
-cacache@^18.0.0:
+cacache@18.0.3, cacache@^18.0.0:
   version "18.0.3"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-18.0.3.tgz#864e2c18414e1e141ae8763f31e46c2cb96d1b21"
   integrity sha512-qXCd4rh6I07cnDqh8V48/94Tc/WSfj+o3Gn6NZ0aZovS255bUx8O13uKxRFd2eWG0xgsco7+YItQNPaa5E85hg==
@@ -8410,9 +8392,9 @@ remark@13.0.0:
     unified "^9.1.0"
 
 renovate@^37.326.2:
-  version "37.354.5"
-  resolved "https://registry.yarnpkg.com/renovate/-/renovate-37.354.5.tgz#768e39f8566dc77d04797837144e592f18ca71bd"
-  integrity sha512-MnQcb/1TAIChzOgcrzl5iY9tODzbcqNXJlX5s0INjbGzEfLUx8Qu5cu4ciTZXjfv3j6gFG6Q+/nx6pKuIGGWMg==
+  version "37.354.6"
+  resolved "https://registry.yarnpkg.com/renovate/-/renovate-37.354.6.tgz#bf3c7263a9bc9ea6474bd22dd8648fc02700efee"
+  integrity sha512-u1kwtOMzsOnt3y0cj6lEAe3FGfKn1CpDk/ysRv++U/G+xGbjru8QmUSdv5qYQwvK/fdsuQq72RMsF0q53N+SZg==
   dependencies:
     "@aws-sdk/client-codecommit" "3.565.0"
     "@aws-sdk/client-ec2" "3.565.0"
@@ -8446,7 +8428,7 @@ renovate@^37.326.2:
     aws4 "1.12.0"
     azure-devops-node-api "13.0.0"
     bunyan "1.8.15"
-    cacache "18.0.2"
+    cacache "18.0.3"
     cacheable-lookup "5.0.4"
     chalk "4.1.2"
     changelog-filename-regex "2.0.1"
