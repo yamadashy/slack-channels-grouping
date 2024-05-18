@@ -61,7 +61,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       }
     });
 
-
     this.observeWorkspace();
     this.observeWorkspaceWrapperChildren();
   }

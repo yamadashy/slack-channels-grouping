@@ -19,7 +19,7 @@ jobs:
         lfs: true
 
     - name: Setup node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version-file: .tool-versions
         cache: yarn
@@ -43,7 +43,7 @@ jobs:
       run: yarn build safari
 
     - name: Archive packages
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: packages
         path: packages

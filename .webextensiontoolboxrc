@@ -1,0 +1,6 @@
+src: app
+target: dist/[vendor]
+devtool: cheap-source-map
+manifestValidation: true
+minimize: true
+config: webextension-toolbox.config.js
