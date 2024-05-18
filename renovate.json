@@ -11,13 +11,21 @@
   "automerge": true,
   "branchConcurrentLimit": 0,
   "prHourlyLimit": 0,
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "minor and patch dependencies"
+      "groupName": "minor and patch dependencies",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": "major dependencies",
+      "automerge": false
+    },
+    {
+      "matchPackageNames": ["renovate"],
+      "enabled": false
     }
-  ],
-  "major": {
-    "enabled": false
-  }
+  ]
 }
