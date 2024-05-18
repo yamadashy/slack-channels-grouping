@@ -81,7 +81,7 @@ export default class ChannelGrouper {
       if (isApplied && $channelName.data(DATA_KEY_CHANNEL_PREFIX)) {
         prefix = $channelName.data(DATA_KEY_CHANNEL_PREFIX);
       } else if (regChannelMatch.test(channelName)) {
-        prefix = channelName.match(regChannelMatch)![1];
+        prefix = channelName.match(regChannelMatch)?.[1] ?? '';
       } else {
         prefix = '';
       }
