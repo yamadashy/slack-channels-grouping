@@ -1,7 +1,7 @@
 Esta extensão agrupa os canais do Slack por prefixo, tornando mais fácil encontrar os canais visualmente.
 Ela suporta tanto hifens (-) quanto sublinhados (_), permitindo que você agrupe canais com nomes como:
-- prefixo-nome
-- prefixo_nome
+• prefixo-nome
+• prefixo_nome
 
 O código-fonte também está disponível, para que você possa compilar e instalar por conta própria.
 Para mais informações, por favor, visite:

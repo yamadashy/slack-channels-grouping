@@ -1,7 +1,7 @@
 Cette extension regroupe les canaux Slack par préfixe, ce qui facilite la recherche visuelle des canaux.
 Elle prend en charge les traits d'union (-) et les traits de soulignement (_), vous permettant de regrouper les canaux avec des noms comme:
-- préfixe-nom
-- préfixe_nom
+• préfixe-nom
+• préfixe_nom
 
 Le code source est également disponible, vous pouvez donc le construire et l'installer vous-même.
 Pour plus d'informations, veuillez visiter:

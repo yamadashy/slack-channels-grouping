@@ -1,7 +1,7 @@
 Deze extensie groepeert Slack-kanalen op basis van voorvoegsel, waardoor het gemakkelijker wordt om kanalen visueel te vinden.
 Het ondersteunt zowel afbreekstreepjes (-) als onderstrepingstekens (_), zodat je kanalen met namen als volgt kunt groeperen:
-- voorvoegsel-naam
-- voorvoegsel_naam
+• voorvoegsel-naam
+• voorvoegsel_naam
 
 De broncode is ook beschikbaar, zodat je het zelf kunt bouwen en installeren.
 Voor meer informatie, bezoek:

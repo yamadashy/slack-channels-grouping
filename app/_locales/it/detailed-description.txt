@@ -1,7 +1,7 @@
 Questa estensione raggruppa i canali Slack per prefisso, rendendo più facile trovare visivamente i canali.
 Supporta sia i trattini (-) che i trattini bassi (_), consentendo di raggruppare i canali con nomi come:
-- prefisso-nome
-- prefisso_nome
+• prefisso-nome
+• prefisso_nome
 
 Il codice sorgente è disponibile, in modo da poterlo costruire e installare da soli.
 Per ulteriori informazioni, visitare:
