@@ -1,9 +1,8 @@
-支持连字符（-）和下划线（_）。
-• 前缀-名称
-• 前缀_名称
+此扩展程序按前缀对 Slack 频道进行分组，使得在视觉上更容易找到频道。
+它同时支持连字符（-）和下划线（_），允许您将具有以下名称的频道进行分组：
+- 前缀-名称
+- 前缀_名称
 
-Slack Channels Grouping不会将用户的数据发送到任何地方。它也是完全开源的。
+源代码也是可用的，因此您可以自行构建和安装。
+欲了解更多信息，请访问：
 https://github.com/yamadashy/slack-channels-grouping
-
-对于Firefox
-https：//addons.mozilla.org/zh-CN/firefox/addon/slack-channels-grouping/

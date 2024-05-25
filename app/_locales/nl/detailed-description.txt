@@ -1,9 +1,8 @@
-Ondersteunde koppeltekens (-) en onderstrepingstekens (_).
-• prefix-naam
-• prefix_naam
+Deze extensie groepeert Slack-kanalen op basis van voorvoegsel, waardoor het gemakkelijker wordt om kanalen visueel te vinden.
+Het ondersteunt zowel afbreekstreepjes (-) als onderstrepingstekens (_), zodat je kanalen met namen als volgt kunt groeperen:
+- voorvoegsel-naam
+- voorvoegsel_naam
 
-Slack Channels Grouping stuurt de gegevens van de gebruiker nergens naartoe. Het is ook volledig open source.
+De broncode is ook beschikbaar, zodat je het zelf kunt bouwen en installeren.
+Voor meer informatie, bezoek:
 https://github.com/yamadashy/slack-channels-grouping
-
-Voor Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/

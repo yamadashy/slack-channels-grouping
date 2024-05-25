@@ -1,9 +1,8 @@
-Hífens (-) e sublinhados (_) suportados.
-• prefixo-nome
-• prefixo_nome
+Esta extensão agrupa os canais do Slack por prefixo, tornando mais fácil encontrar os canais visualmente.
+Ela suporta tanto hifens (-) quanto sublinhados (_), permitindo que você agrupe canais com nomes como:
+- prefixo-nome
+- prefixo_nome
 
-O Slack Channels Grouping não envia os dados do usuário para nenhum lugar. Também é completamente código aberto.
+O código-fonte também está disponível, para que você possa compilar e instalar por conta própria.
+Para mais informações, por favor, visite:
 https://github.com/yamadashy/slack-channels-grouping
-
-Para o Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/

@@ -1,9 +1,8 @@
-Trattini (-) e trattini bassi (_) supportati.
-• prefisso-nome
-• prefisso_nome
+Questa estensione raggruppa i canali Slack per prefisso, rendendo più facile trovare visivamente i canali.
+Supporta sia i trattini (-) che i trattini bassi (_), consentendo di raggruppare i canali con nomi come:
+- prefisso-nome
+- prefisso_nome
 
-Slack Channels Grouping non invia i dati dell'utente da nessuna parte. E' anche completamente open source.
+Il codice sorgente è disponibile, in modo da poterlo costruire e installare da soli.
+Per ulteriori informazioni, visitare:
 https://github.com/yamadashy/slack-channels-grouping
-
-Per Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/

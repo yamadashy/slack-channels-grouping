@@ -1,9 +1,8 @@
-하이픈 (-) 및 밑줄 (_) 이 지원됩니다.
-• 접두사-이름
-• 접두사_이름
+이 확장 프로그램은 Slack 채널을 접두사별로 그룹화하여 채널을 시각적으로 찾기 쉽게 만듭니다.
+하이픈(-)과 밑줄(_) 모두 지원하므로 다음과 같은 이름의 채널을 그룹화할 수 있습니다:
+- 접두사-이름
+- 접두사_이름
 
-Slack Channels Grouping는 사용자 데이터를 어디에도 보내지 않습니다. 또한 완전히 오픈 소스입니다.
+소스 코드도 공개되어 있어 직접 빌드하여 설치할 수 있습니다.
+자세한 내용은 다음을 참조하세요:
 https://github.com/yamadashy/slack-channels-grouping
-
-Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/

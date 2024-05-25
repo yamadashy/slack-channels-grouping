@@ -1,9 +1,8 @@
-Hyphens (-) and underscores (_) supported.
+This extension groups Slack channels by prefix, making it easier to find channels visually.
+It supports both hyphens (-) and underscores (_), allowing you to group channels with names like:
 • prefix-name
 • prefix_name
 
-Slack Channels Grouping does not send the user's data anywhere. It's also completely open source.
+The source code is also available, so you can build and install it yourself.
+For more information, please visit:
 https://github.com/yamadashy/slack-channels-grouping
-
-For Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/

@@ -1,9 +1,8 @@
-ハイフン (-) とアンダースコア (_) に対応しています。
+Slackのチャンネルをプレフィックスでまとめて表示し、視覚的にチャンネルを探しやすくします。
+ハイフン (-) とアンダースコア (_) に対応しており、次のような名前のチャンネルをグループ化できます。
 • prefix-name
 • prefix_name
 
-Slack Channels Groupingはユーザーのデータをどこにも送信しません。また、完全にオープンソースです
+ソースコードも公開されており、自身でビルドしてインストールすることも可能です。
+詳しくは、こちらをご覧ください。
 https://github.com/yamadashy/slack-channels-grouping
-
-Firefox版
-https://addons.mozilla.org/ja/firefox/addon/slack-channels-grouping/

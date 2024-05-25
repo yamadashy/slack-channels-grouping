@@ -1,9 +1,8 @@
-Les tirets (-) et les traits de soulignement (_) sont pris en charge.
-• préfixe-nom
-• préfixe_nom
+Cette extension regroupe les canaux Slack par préfixe, ce qui facilite la recherche visuelle des canaux.
+Elle prend en charge les traits d'union (-) et les traits de soulignement (_), vous permettant de regrouper les canaux avec des noms comme:
+- préfixe-nom
+- préfixe_nom
 
-Slack Channels Grouping n'envoie les données de l'utilisateur nulle part. C'est aussi un logiciel complètement ouvert.
+Le code source est également disponible, vous pouvez donc le construire et l'installer vous-même.
+Pour plus d'informations, veuillez visiter:
 https://github.com/yamadashy/slack-channels-grouping
-
-Pour Firefox
-https://addons.mozilla.org/en-US/firefox/addon/slack-channels-grouping/
