@@ -3,6 +3,8 @@ Het ondersteunt zowel afbreekstreepjes (-) als onderstrepingstekens (_), zodat j
 • voorvoegsel-naam
 • voorvoegsel_naam
 
+Er wordt geen informatie van Slack of andere gegevens naar ontwikkelaars of derden verzonden of openbaar gemaakt.
+
 De broncode is ook beschikbaar, zodat je het zelf kunt bouwen en installeren.
 Voor meer informatie, bezoek:
 https://github.com/yamadashy/slack-channels-grouping

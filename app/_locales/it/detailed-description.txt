@@ -3,6 +3,8 @@ Supporta sia i trattini (-) che i trattini bassi (_), consentendo di raggruppare
 • prefisso-nome
 • prefisso_nome
 
+Nessuna informazione da Slack o altri dati viene trasmessa o divulgata agli sviluppatori o a terzi.
+
 Il codice sorgente è disponibile, in modo da poterlo costruire e installare da soli.
 Per ulteriori informazioni, visitare:
 https://github.com/yamadashy/slack-channels-grouping

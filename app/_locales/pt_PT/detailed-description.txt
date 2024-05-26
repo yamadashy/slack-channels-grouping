@@ -3,6 +3,8 @@ Suporta tanto hífenes (-) como sublinhados (_), permitindo-lhe agrupar canais c
 • prefixo-nome
 • prefixo_nome
 
+Nenhuma informação do Slack ou outros dados são transmitidos ou divulgados a desenvolvedores ou terceiros.
+
 O código fonte também está disponível, para que possa compilar e instalar você mesmo.
 Para mais informações, por favor, visite:
 https://github.com/yamadashy/slack-channels-grouping

@@ -3,6 +3,8 @@
 • 前綴-名稱
 • 前綴_名稱
 
+Slack或其他信息不會發送或公開給開發人員或第三方。
+
 原始碼也是可用的，因此您可以自行構建和安裝。
 欲瞭解更多資訊，請訪問：
 https://github.com/yamadashy/slack-channels-grouping

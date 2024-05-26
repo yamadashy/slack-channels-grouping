@@ -3,6 +3,8 @@ Es unterstützt sowohl Bindestriche (-) als auch Unterstriche (_), sodass Sie Ka
 • präfix-name
 • präfix_name
 
+Es werden keine Informationen von Slack oder anderen Daten an Entwickler oder Dritte übermittelt oder veröffentlicht.
+
 Der Quellcode ist ebenfalls verfügbar, sodass Sie ihn selbst erstellen und installieren können.
 Weitere Informationen finden Sie unter:
 https://github.com/yamadashy/slack-channels-grouping

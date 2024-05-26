@@ -3,6 +3,8 @@ Elle prend en charge les traits d'union (-) et les traits de soulignement (_), v
 • préfixe-nom
 • préfixe_nom
 
+Aucune information de Slack ou autre donnée n'est transmise ou divulguée aux développeurs ou à des tiers.
+
 Le code source est également disponible, vous pouvez donc le construire et l'installer vous-même.
 Pour plus d'informations, veuillez visiter:
 https://github.com/yamadashy/slack-channels-grouping

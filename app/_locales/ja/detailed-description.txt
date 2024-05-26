@@ -3,6 +3,8 @@ Slackのチャンネルをプレフィックスでまとめて表示し、視覚
 • prefix-name
 • prefix_name
 
+Slackやその他の情報が開発者および第三者に送信されたり公開されたりする事はありません。
+
 ソースコードも公開されており、自身でビルドしてインストールすることも可能です。
 詳しくは、こちらをご覧ください。
 https://github.com/yamadashy/slack-channels-grouping
