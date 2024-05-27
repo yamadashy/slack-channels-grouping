@@ -2,7 +2,7 @@
   "name": "Slack Channels Grouping",
   "short_name": "slack-ch-grp",
   "description": "__MSG_appDescription__",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "manifest_version": 3,
   "default_locale": "en",
   "icons": {
