@@ -4,6 +4,7 @@ import { waitElementRender } from './content/utils/wait-element-render';
 import * as domConstants from './content/dom-constants';
 import { logger } from './content/logger';
 import { isAlreadyRunningExtension } from './content/utils/extension-running-checker';
+import { DomChannelManipulator } from './content/channel-manipulators/dom-channel-manipulator';
 
 const RUNNING_CHECK_IDENTIFIER = 'slack-channels-grouping';
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 60;
@@ -25,14 +26,15 @@ const WAIT_RENDER_CHANNEL_LIST_INTERVAL = 200;
       logger.labeledLog('Rendered channel list item.');
 
       const channelObserver = new ChannelObserver();
-      const channelGrouper = new ChannelGrouper();
+      const domChannnelManipulator = new DomChannelManipulator();
+      const channelGrouper = new ChannelGrouper(domChannnelManipulator);
 
       // Grouping
-      channelGrouper.groupingAllByPrefixOnIdleAndDebounce();
+      channelGrouper.groupingOnIdleAndDebounce();
 
       // Grouping on update
       channelObserver.on('update', () => {
-        channelGrouper.groupingAllByPrefixOnIdleAndDebounce();
+        channelGrouper.groupingOnIdleAndDebounce();
       });
 
       channelObserver.startObserve();
