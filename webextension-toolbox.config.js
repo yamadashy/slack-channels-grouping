@@ -6,12 +6,15 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { DefinePlugin } = require('webpack');
 
 module.exports = {
-  webpack: (config, { dev, vendor }) => {
-    const envName = dev ? 'development' : 'production';
+  webpack: (config, { vendor }) => {
+    // NOTE: This is a workaround for this issue.
+    // @see https://github.com/webextension-toolbox/webextension-toolbox/issues/882
+    const isDev = process.argv.includes('dev');
+    const envName = isDev ? 'development' : 'production';
 
     // Definitions
     config.plugins.push(new DefinePlugin({
-      IS_PRODUCTION_BUILD: !dev,
+      IS_PRODUCTION_BUILD: !isDev,
     }))
 
     // BundleAnalyzer
