@@ -1,5 +1,5 @@
 import ChannelObserver from './content/channel-observer';
-import ChannelGrouper from './content/channe-grouper';
+import ChannelGrouper from './content/channel-grouper';
 import { waitElementRender } from './content/utils/wait-element-render';
 import * as domConstants from './content/dom-constants';
 import { logger } from './content/logger';

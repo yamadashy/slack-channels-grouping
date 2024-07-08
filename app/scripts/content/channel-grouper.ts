@@ -5,11 +5,14 @@ import {
   ChannelItemContext,
   ChannelItemContextGroupType,
   ChannelManipulator,
+  GroupedChannelItemContext,
 } from './channel-manipulators/channel-manipulator';
 
 // constants
 const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
+const REGEX_CHANNEL_MATCH = /(^.+?)[-_].*/;
+const CHANNEL_NAME_ROOT = '-/';
 
 /**
  * Channel Grouping Class
@@ -45,30 +48,66 @@ export default class ChannelGrouper {
     }, UPDATE_CHANNEL_LIST_MIN_INTERVAL);
   }
 
-  protected grouping(): void {
+  public grouping(): GroupedChannelItemContext[] | null {
     logger.labeledLog('Grouping all by prefix');
 
     let channelItemContexts = this.adapter.getChannelItemContexts();
     if (!channelItemContexts) {
-      return;
+      return null;
     }
 
-    this.adapter.persistChannelItemContexts(channelItemContexts);
+    const groupedChannelItemContext = this.applyGroupingToContexts(channelItemContexts);
 
-    channelItemContexts = this.applyGroupingToContexts(channelItemContexts);
+    logger.labeledLog('Grouped channelItemContexts:', groupedChannelItemContext);
 
-    logger.labeledLog('Grouped channelItemContexts:', channelItemContexts);
+    this.adapter.persistGroupedChannelItemContexts(groupedChannelItemContext);
 
-    this.adapter.updateChannelItems(channelItemContexts);
+    this.adapter.updateChannelItems(groupedChannelItemContext);
+
+    return groupedChannelItemContext;
   }
 
-  private applyGroupingToContexts(channelItemContexts: readonly ChannelItemContext[]): ChannelItemContext[] {
-    return channelItemContexts.map((context, index) => {
-      const currentPrefix = channelItemContexts[index].prefix;
-      const prevPrefix = channelItemContexts[index - 1]?.prefix ?? null;
-      const nextPrefix = channelItemContexts[index + 1]?.prefix ?? null;
+  private applyGroupingToContexts(channelItemContexts: ChannelItemContext[]): GroupedChannelItemContext[] {
+    let prefixeMap = new Map<number, string | null>();
 
-      let groupType = ChannelItemContextGroupType.None;
+    // Process for root
+    // If next channel name is same as prefix, rename it like 'prefix-/'
+    channelItemContexts.forEach((context, index) => {
+      const nextName = channelItemContexts[index + 1]?.name ?? null;
+      if (nextName === null) {
+        return;
+      }
+
+      const nextPrefix = nextName.match(REGEX_CHANNEL_MATCH)?.[1] ?? null;
+      const isRoot = nextPrefix === context.name;
+
+      if (isRoot) {
+        context.name = `${context.name}${CHANNEL_NAME_ROOT}`;
+      }
+    });
+
+    // Get prefix map
+    for (const context of channelItemContexts) {
+      const prefix = context.name.match(REGEX_CHANNEL_MATCH)?.[1] ?? null;
+      prefixeMap.set(context.index, prefix);
+    }
+
+    // Grouping
+    return channelItemContexts.map((context, index): GroupedChannelItemContext => {
+      const currentPrefix = prefixeMap.get(index) ?? null;
+      const prevPrefix = prefixeMap.get(index - 1) ?? null;
+      const nextPrefix = prefixeMap.get(index + 1) ?? null;
+
+      let groupType: ChannelItemContextGroupType | null = null;
+
+      // If channelItemType is 'im' or 'mpim', skip grouping
+      if (context.channelItemType === 'im' || context.channelItemType === 'mpim') {
+        return {
+          ...context,
+          prefix: null,
+          groupType: ChannelItemContextGroupType.Alone,
+        };
+      }
 
       if (currentPrefix === null || (currentPrefix !== prevPrefix && currentPrefix !== nextPrefix)) {
         groupType = ChannelItemContextGroupType.Alone;

@@ -8,11 +8,13 @@ import {
   SELECTOR_CHANNEL_LIST_ITEMS,
 } from '../dom-constants';
 import $ from 'jquery/dist/jquery.slim';
-import { ChannelItemContext, ChannelItemContextGroupType, ChannelManipulator } from './channel-manipulator';
-import { logger } from '../logger';
-
-const CHANNEL_NAME_ROOT = '-/';
-const REGEX_CHANNEL_MATCH = /(^.+?)[-_].*/;
+import {
+  ChannelItemContext,
+  ChannelItemContextGroupType,
+  ChannelItemType,
+  ChannelManipulator,
+  GroupedChannelItemContext,
+} from './channel-manipulator';
 
 export class DomChannelManipulator implements ChannelManipulator {
   public getChannelItemContexts(): ChannelItemContext[] {
@@ -20,68 +22,46 @@ export class DomChannelManipulator implements ChannelManipulator {
 
     const channelItemContexts = Array.from($channelItems).map((channelItemElement, index): ChannelItemContext => {
       const $channelName = $(channelItemElement).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+      const $channelContentsContainer = $(channelItemElement).find(SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER);
+      const dataChannelItemType = $channelContentsContainer.attr(DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
+      const channelItemType = (dataChannelItemType ?? null) as ChannelItemType;
       const isAlreadyApplied = $channelName.find('span.scg').length > 0;
       let channelName: string;
-      let prefix: string | null = null;
 
       // Get ch name
       if (isAlreadyApplied && $channelName.data(DATA_KEY_CHANNEL_NAME)) {
         channelName = $channelName.data(DATA_KEY_CHANNEL_NAME);
       } else {
         channelName = $channelName.text().trim();
-        // Store raw channel name
-        $channelName.data(DATA_KEY_RAW_CHANNEL_NAME, channelName);
-      }
-
-      // Get ch name prefix
-      if (isAlreadyApplied && $channelName.data(DATA_KEY_CHANNEL_PREFIX)) {
-        prefix = $channelName.data(DATA_KEY_CHANNEL_PREFIX);
-      } else if (REGEX_CHANNEL_MATCH.test(channelName)) {
-        prefix = channelName.match(REGEX_CHANNEL_MATCH)?.[1] ?? '';
       }
 
       return {
         index,
         name: channelName,
-        prefix: prefix,
-        groupType: ChannelItemContextGroupType.None,
+        channelItemType,
       };
-    });
-
-    // Process for root
-    channelItemContexts.forEach((context, index) => {
-      const nextPrefix = channelItemContexts[index + 1]?.prefix ?? null;
-      const isRoot = nextPrefix === context.name;
-
-      if (isRoot) {
-        context.prefix = context.name;
-        context.name = `${context.name}${CHANNEL_NAME_ROOT}`;
-        logger.labeledLog('Root channel:', context.name);
-      }
     });
 
     return channelItemContexts;
   }
 
-  public persistChannelItemContexts(channelItemContexts: ChannelItemContext[]): void {
+  public persistGroupedChannelItemContexts(channelItemContexts: GroupedChannelItemContext[]): void {
     const $channelItems = $(SELECTOR_CHANNEL_LIST_ITEMS);
 
     channelItemContexts.forEach((context, index) => {
       const $channelName = $channelItems.eq(index).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-
       $channelName.data(DATA_KEY_CHANNEL_NAME, context.name);
       $channelName.data(DATA_KEY_CHANNEL_PREFIX, context.prefix);
     });
   }
 
-  public updateChannelItems(channelItemContexts: ChannelItemContext[]): void {
+  public updateChannelItems(channelItemContexts: GroupedChannelItemContext[]): void {
     const $channelItems = $(SELECTOR_CHANNEL_LIST_ITEMS);
 
     $channelItems.each((index: number, channelItem: HTMLElement) => {
       const context = channelItemContexts[index];
-      const $channelContentsContainer = $(channelItem).find(SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER);
       const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-      const channelItemType = $channelContentsContainer.attr(DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE);
+      const channelItemType = context.channelItemType;
       const prefix: string | null = context.prefix;
       const isParent = context.groupType === ChannelItemContextGroupType.Parent;
       const isLastChild = context.groupType === ChannelItemContextGroupType.LastChild;
