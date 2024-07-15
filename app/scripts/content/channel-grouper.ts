@@ -1,4 +1,3 @@
-// modules
 import 'requestidlecallback-polyfill';
 import { logger } from './logger';
 import {
@@ -11,7 +10,6 @@ import {
 // constants
 const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
 const UPDATE_CHANNEL_LIST_MIN_INTERVAL = 200;
-const REGEX_CHANNEL_MATCH = /(^.+?)[-_].*/;
 const CHANNEL_NAME_ROOT = '-/';
 
 /**
@@ -20,10 +18,32 @@ const CHANNEL_NAME_ROOT = '-/';
 export default class ChannelGrouper {
   private debounceEmitUpdateTimeoutId: number | null;
   private idleCallbackId: number | null;
+  private multiLevelGrouping: boolean;
 
   constructor(private readonly adapter: ChannelManipulator) {
     this.debounceEmitUpdateTimeoutId = null;
     this.idleCallbackId = null;
+    this.multiLevelGrouping = false;
+
+    this.loadSettingsFromStorage();
+
+    // Set up message listener
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.action === 'settingsUpdated') {
+        this.loadSettingsFromStorage();
+        sendResponse({ success: true });
+      }
+      return true; // Needed for asynchronous response
+    });
+  }
+
+  private loadSettingsFromStorage(): void {
+    chrome.storage.local.get(['multiLevelGrouping'], (result) => {
+      if (result.multiLevelGrouping !== undefined) {
+        this.multiLevelGrouping = result.multiLevelGrouping;
+        this.groupingOnIdleAndDebounce();
+      }
+    });
   }
 
   groupingOnIdleAndDebounce(): void {
@@ -68,37 +88,22 @@ export default class ChannelGrouper {
   }
 
   private applyGroupingToContexts(channelItemContexts: ChannelItemContext[]): GroupedChannelItemContext[] {
-    let prefixeMap = new Map<number, string | null>();
-
-    // Process for root
-    // If next channel name is same as prefix, rename it like 'prefix-/'
-    channelItemContexts.forEach((context, index) => {
-      const nextName = channelItemContexts[index + 1]?.name ?? null;
-      if (nextName === null) {
-        return;
-      }
-
-      const nextPrefix = nextName.match(REGEX_CHANNEL_MATCH)?.[1] ?? null;
-      const isRoot = nextPrefix === context.name;
-
-      if (isRoot) {
-        context.name = `${context.name}${CHANNEL_NAME_ROOT}`;
-      }
-    });
+    let prefixMap = new Map<number, string[]>();
 
     // Get prefix map
     for (const context of channelItemContexts) {
-      const prefix = context.name.match(REGEX_CHANNEL_MATCH)?.[1] ?? null;
-      prefixeMap.set(context.index, prefix);
+      const prefixes = context.name.split(/[-_]/);
+      prefixMap.set(context.index, prefixes);
     }
 
     // Grouping
     return channelItemContexts.map((context, index): GroupedChannelItemContext => {
-      const currentPrefix = prefixeMap.get(index) ?? null;
-      const prevPrefix = prefixeMap.get(index - 1) ?? null;
-      const nextPrefix = prefixeMap.get(index + 1) ?? null;
+      const currentPrefixes = prefixMap.get(index) ?? [];
+      const prevPrefixes = prefixMap.get(index - 1) ?? [];
+      const nextPrefixes = prefixMap.get(index + 1) ?? [];
 
-      let groupType: ChannelItemContextGroupType | null = null;
+      let groupType: ChannelItemContextGroupType;
+      let prefix: string | null = null;
 
       // If channelItemType is 'im' or 'mpim', skip grouping
       if (context.channelItemType === 'im' || context.channelItemType === 'mpim') {
@@ -109,25 +114,50 @@ export default class ChannelGrouper {
         };
       }
 
-      if (currentPrefix === null || (currentPrefix !== prevPrefix && currentPrefix !== nextPrefix)) {
-        groupType = ChannelItemContextGroupType.Alone;
-      } else {
-        if (prevPrefix !== currentPrefix && nextPrefix === currentPrefix) {
+      if (this.multiLevelGrouping) {
+        const commonPrefixLength = this.getCommonPrefixLength(currentPrefixes, prevPrefixes, nextPrefixes);
+        prefix = currentPrefixes.slice(0, commonPrefixLength).join('-');
+
+        if (commonPrefixLength === 0) {
+          groupType = ChannelItemContextGroupType.Alone;
+        } else if (this.getCommonPrefixLength(currentPrefixes, prevPrefixes, nextPrefixes) < commonPrefixLength) {
           groupType = ChannelItemContextGroupType.Parent;
+        } else if (this.getCommonPrefixLength(currentPrefixes, nextPrefixes, nextPrefixes) < commonPrefixLength) {
+          groupType = ChannelItemContextGroupType.LastChild;
         } else {
-          if (nextPrefix !== currentPrefix) {
-            groupType = ChannelItemContextGroupType.LastChild;
-          } else {
-            groupType = ChannelItemContextGroupType.Child;
-          }
+          groupType = ChannelItemContextGroupType.Child;
+        }
+      } else {
+        // Original single-level grouping logic
+        prefix = currentPrefixes[0] ?? null;
+        if (prefix === null || (prefix !== prevPrefixes[0] && prefix !== nextPrefixes[0])) {
+          groupType = ChannelItemContextGroupType.Alone;
+        } else if (prefix !== prevPrefixes[0] && prefix === nextPrefixes[0]) {
+          groupType = ChannelItemContextGroupType.Parent;
+        } else if (prefix !== nextPrefixes[0]) {
+          groupType = ChannelItemContextGroupType.LastChild;
+        } else {
+          groupType = ChannelItemContextGroupType.Child;
         }
       }
 
       return {
         ...context,
-        prefix: currentPrefix,
+        prefix,
         groupType,
       };
     });
+  }
+
+  private getCommonPrefixLength(current: string[], prev: string[], next: string[]): number {
+    let length = 0;
+    while (
+      length < current.length &&
+      ((length < prev.length && current[length] === prev[length]) ||
+        (length < next.length && current[length] === next[length]))
+    ) {
+      length++;
+    }
+    return length;
   }
 }

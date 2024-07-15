@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const GlobEntriesPlugin = require('webpack-watched-glob-entries-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { DefinePlugin } = require('webpack');
 
@@ -14,7 +13,7 @@ module.exports = {
 
     // Definitions
     config.plugins.push(new DefinePlugin({
-      IS_PRODUCTION_BUILD: !isDev,
+      __DEVELOPMENT__: isDev,
     }))
 
     // BundleAnalyzer
@@ -24,9 +23,27 @@ module.exports = {
       reportFilename: __dirname + '/storage/bundle-analyzer/' + vendor + '-' + envName + '.html'
     }));
 
+    // css
+    config.module.rules.push({
+      test: /\.(css|pcss)$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        // {
+        //   loader: 'css-loader',
+        //   options: {
+        //     importLoaders: 1,
+        //   },
+        // },
+        'postcss-loader',
+      ],
+    });
+
     return config
   },
   copyIgnore: [
     path.resolve('**/*.ts'),
+    path.resolve('**/*.tsx'),
+    path.resolve('**/*.pcss'),
   ]
 };

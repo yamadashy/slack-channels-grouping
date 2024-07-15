@@ -36,11 +36,21 @@
       "all_frames": true
     }
   ],
+  "action": {
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
+    }
+  },
   "background": {
     "service_worker": "scripts/background.js"
   },
   "permissions": [
-    "scripting"
+    "scripting",
+    "storage",
+    "activeTab"
   ],
   "web_accessible_resources": [
     {
@@ -67,6 +77,8 @@
   },
   "__firefox__permissions": [
     "scripting",
+    "storage",
+    "activeTab",
     "http://app.slack.com/*",
     "https://app.slack.com/*"
   ],

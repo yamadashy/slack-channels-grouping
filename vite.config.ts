@@ -7,6 +7,6 @@ export default defineConfig({
     include: ['tests/**/*.test.ts'],
   },
   define: {
-    IS_PRODUCTION_BUILD: true,
+    __DEVELOPMENT__: true,
   },
 });

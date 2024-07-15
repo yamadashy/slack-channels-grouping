@@ -1,8 +1,6 @@
 import {
   DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE,
   DATA_KEY_CHANNEL_NAME,
-  DATA_KEY_CHANNEL_PREFIX,
-  DATA_KEY_RAW_CHANNEL_NAME,
   SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER,
   SELECTOR_CHANNEL_ITEM_NAME_SELECTOR,
   SELECTOR_CHANNEL_LIST_ITEMS,
@@ -15,6 +13,7 @@ import {
   ChannelManipulator,
   GroupedChannelItemContext,
 } from './channel-manipulator';
+import { logger } from '../logger';
 
 export class DomChannelManipulator implements ChannelManipulator {
   public getChannelItemContexts(): ChannelItemContext[] {
@@ -51,7 +50,6 @@ export class DomChannelManipulator implements ChannelManipulator {
     channelItemContexts.forEach((context, index) => {
       const $channelName = $channelItems.eq(index).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       $channelName.data(DATA_KEY_CHANNEL_NAME, context.name);
-      $channelName.data(DATA_KEY_CHANNEL_PREFIX, context.prefix);
     });
   }
 
@@ -77,13 +75,18 @@ export class DomChannelManipulator implements ChannelManipulator {
         return;
       }
 
+      // reset
+      // $channelName.removeClass('scg-ch-parent scg-ch-child').text(context.name);
+
       // Skip no prefix
       if (prefix === null) {
         return;
       }
 
+      // TODO: 戻したらやりなおすように
+      // TODO: ON/OFFできる？
       if (context.groupType === ChannelItemContextGroupType.Alone) {
-        $channelName.removeClass('scg-ch-parent scg-ch-child').text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
+        $channelName.removeClass('scg-ch-parent scg-ch-child').text(context.name);
       } else {
         let separatorPseudoClass: string;
 

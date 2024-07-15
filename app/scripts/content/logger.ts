@@ -1,8 +1,8 @@
 import { ConsoleLogger } from './utils/console-logger';
 
-declare let IS_PRODUCTION_BUILD: boolean;
+declare let __DEVELOPMENT__: boolean;
 
 export const logger = new ConsoleLogger(
   'slack-ch-group',
-  IS_PRODUCTION_BUILD ? ConsoleLogger.levels.WARN : ConsoleLogger.levels.TRACE,
+  __DEVELOPMENT__ ? ConsoleLogger.levels.TRACE : ConsoleLogger.levels.WARN,
 );
