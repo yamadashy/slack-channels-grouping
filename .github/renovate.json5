@@ -8,6 +8,7 @@
   "rangeStrategy": "bump",
   "dependencyDashboard": false,
   "labels": ["dependencies", "renovate"],
+  "automerge": true,
   "packageRules": [
     {
       matchDepTypes: ['peerDependencies'],
