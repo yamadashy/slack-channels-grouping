@@ -69,7 +69,7 @@
     "globals": "^15.12.0",
     "happy-dom": "^15.11.6",
     "prettier": "^3.3.3",
-    "renovate": "^37.440.7",
+    "renovate": "^39.28.0",
     "typescript": "^5.7.2",
     "typesync": "^0.13.4",
     "vitest": "^2.1.5",
