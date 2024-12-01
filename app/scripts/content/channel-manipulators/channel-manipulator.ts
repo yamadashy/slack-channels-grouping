@@ -15,7 +15,52 @@ export interface ChannelItemContext {
 
 export interface GroupedChannelItemContext extends ChannelItemContext {
   prefix: string | null;
-  groupType: ChannelItemContextGroupType;
+  prefix2: string | null;
+  prefix3: string | null;
+}
+
+export type ConnectionType = '┬' | '└' | '├' | '│' | "─" | '┐' | "　";
+export const hasUpConnection = (conn: ConnectionType | null): boolean => {
+  return conn == '└' || conn == '├' || conn == '│';
+}
+export const hasDownConnection = (conn: ConnectionType | null): boolean => {
+  return conn == '┬' || conn == '├' || conn == '│' || conn == '┐';
+}
+export const hasLeftConnection = (conn: ConnectionType | null): boolean => {
+  return conn == '┬' || conn == '─' || conn == '┐';
+}
+export const hasRightConnection = (conn: ConnectionType | null): boolean => {
+  return conn == '┬' || conn == '└' || conn == '├' || conn == '─';
+}
+export const removeRightConnection = (conn: ConnectionType | null): ConnectionType | null => {
+  if (conn === '┬') {
+    return '┐';
+  // } else if (conn === '└' || conn === "─") {
+  //   return "　";
+  } else if (conn === '├') {
+    return '│';
+  } else if (conn === '│') {
+    return '│';
+  } else if (conn === '┐') {
+    return '┐';
+  }
+  return "　";
+}
+
+export const removeDownConnection = (conn: ConnectionType | null): ConnectionType | null => {
+  // '┬' | '└' | '├' | '│' | "─" | '┐'
+  if (conn === '┬') {
+    return '─';
+  } else if (conn === '├') {
+    return '└';
+  }
+  return "　";
+}
+
+export interface ConnectedGroupedChannelItemContext extends GroupedChannelItemContext {
+  connection1: ConnectionType | null;
+  connection2: ConnectionType | null;
+  connection3: ConnectionType | null;
 }
 
 export interface ChannelManipulator {
