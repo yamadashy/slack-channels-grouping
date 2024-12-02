@@ -144,10 +144,12 @@ export default class ChannelGrouper {
         connection2 = null;
       } else if (context.prefix2 != prev?.prefix2 && context.prefix2 == next?.prefix2) {
         connection2 = '┬';
-      } else if (context.prefix2 == prev?.prefix2 && context.prefix2 == next?.prefix2) {
-        connection2 = '├';
-      } else if (context.prefix2 == prev?.prefix2 && context.prefix2 != next?.prefix2) {
-        connection2 = '└';
+      } else if (context.prefix == prev?.prefix && context.prefix2 == prev?.prefix2) {
+        if (context.prefix2 == next?.prefix2) {
+          connection2 = '├';
+        } else if (context.prefix2 != next?.prefix2) {
+          connection2 = '└';
+        }
       }
 
       let connection3: ConnectionType | null = null;
@@ -157,10 +159,12 @@ export default class ChannelGrouper {
         connection3 = null;
       } else if (context.prefix3 != prev?.prefix3 && context.prefix3 == next?.prefix3) {
         connection3 = '┬';
-      } else if (context.prefix3 == prev?.prefix3 && context.prefix3 == next?.prefix3) {
-        connection3 = '├';
-      } else if (context.prefix3 == prev?.prefix3 && context.prefix3 != next?.prefix3) {
-        connection3 = '└';
+      } else if (context.prefix == prev?.prefix && context.prefix2 == prev?.prefix2 && context.prefix3 == prev?.prefix3) {
+        if (context.prefix3 == next?.prefix3) {
+          connection3 = '├';
+        } else if (context.prefix3 != next?.prefix3) {
+          connection3 = '└';
+        }
       }
 
       return {
