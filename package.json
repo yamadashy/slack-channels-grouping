@@ -39,7 +39,7 @@
     "requestidlecallback-polyfill": "1.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.25.9",
+    "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
@@ -57,8 +57,8 @@
     "@types/jquery": "^3.5.32",
     "@types/prettier": "^3.0.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "@typescript-eslint/eslint-plugin": "^8.16.0",
-    "@typescript-eslint/parser": "^8.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^9.2.1",
     "eslint": "^9.16.0",
@@ -68,11 +68,11 @@
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
     "happy-dom": "^15.11.7",
-    "prettier": "^3.4.1",
-    "renovate": "^39.42.4",
+    "prettier": "^3.4.2",
+    "renovate": "^39.57.4",
     "typescript": "^5.7.2",
-    "typesync": "^0.13.4",
-    "vitest": "^2.1.6",
+    "typesync": "^0.14.0",
+    "vitest": "^2.1.8",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "babel": {
