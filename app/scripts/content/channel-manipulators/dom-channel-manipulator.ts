@@ -12,9 +12,10 @@ import {
   ChannelItemContext,
   ChannelItemContextGroupType,
   ChannelItemType,
-  ChannelManipulator,
-  GroupedChannelItemContext,
+  ChannelManipulator, ConnectedGroupedChannelItemContext, ConnectionType,
+  GroupedChannelItemContext, hasLeftConnection, hasRightConnection,
 } from './channel-manipulator';
+import { logger } from '../logger';
 
 export class DomChannelManipulator implements ChannelManipulator {
   public getChannelItemContexts(): ChannelItemContext[] {
@@ -55,7 +56,7 @@ export class DomChannelManipulator implements ChannelManipulator {
     });
   }
 
-  public updateChannelItems(channelItemContexts: GroupedChannelItemContext[]): void {
+  public updateChannelItems(channelItemContexts: ConnectedGroupedChannelItemContext[]): void {
     const $channelItems = $(SELECTOR_CHANNEL_LIST_ITEMS);
 
     $channelItems.each((index: number, channelItem: HTMLElement) => {
@@ -63,8 +64,6 @@ export class DomChannelManipulator implements ChannelManipulator {
       const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       const channelItemType = context.channelItemType;
       const prefix: string | null = context.prefix;
-      const isParent = context.groupType === ChannelItemContextGroupType.Parent;
-      const isLastChild = context.groupType === ChannelItemContextGroupType.LastChild;
       let separator = '';
 
       // Skip direct message
@@ -82,43 +81,96 @@ export class DomChannelManipulator implements ChannelManipulator {
         return;
       }
 
-      if (context.groupType === ChannelItemContextGroupType.Alone) {
+      if (context.connection1 === null) {
         $channelName.removeClass('scg-ch-parent scg-ch-child').text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
       } else {
         let separatorPseudoClass: string;
 
-        if (isParent) {
-          separator = '┬';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-bottom';
-        } else if (isLastChild) {
-          separator = '└';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-top';
-        } else {
-          separator = '├';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-both';
-        }
-
         // Skip no changed
-        if (separator === $channelName.find('.scg-ch-separator').text()) {
+        if (context.connection1 === $channelName.find('.scg-ch-separator').text()) {
           return;
         }
 
         $channelName
           .removeClass('scg scg-ch-parent scg-ch-child')
-          .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')
+          .addClass(hasLeftConnection(context.connection1!) ? 'scg scg-ch-parent' : 'scg scg-ch-child')
           .empty()
-          .append([
-            $('<span>')
-              .addClass('scg scg-ch-prefix')
-              .text(prefix ?? ''),
-            $('<span>')
-              .addClass('scg scg-ch-separator ' + separatorPseudoClass)
-              .text(separator),
-            $('<span>')
-              .addClass('scg scg-ch-name')
-              .text(context.name.replace(/(^.+?)[-_](.*)/, '$2')),
-          ]);
+          .append(this.getSpans(context));
       }
     });
+  }
+
+  getSpans(item: ConnectedGroupedChannelItemContext) {
+
+    let regex = new RegExp(`${item.prefix}[-_]?`, "g")
+    if (item.connection2 == null && item.connection3 == null) {
+      return [
+        $('<span>')
+          .addClass('scg scg-ch-prefix')
+          .text(item.prefix ?? ''),
+        $('<span>')
+          .addClass(this.getPseudoClass(item.connection1!))
+          .text(item.connection1!),
+        $('<span>')
+          .addClass('scg scg-ch-name')
+          .text(item.name.replace(regex, "")),
+      ];
+    }
+    if (item.connection3 == null) {
+      regex = new RegExp(`${item.prefix}[-_]${item.prefix2}[-_]?`, "g")
+      logger.labeledLog(item.name, item.connection1, hasLeftConnection(item.connection1!))
+      return [
+        $('<span>')
+          .addClass('scg ' + (hasLeftConnection(item.connection1!) ? 'scg-ch-name' : 'scg-ch-prefix'))
+          .text(item.prefix ?? ''),
+        $('<span>')
+          .addClass(this.getPseudoClass(item.connection1!))
+          .text(item.connection1!),
+        $('<span>')
+          .addClass('scg ' + (hasRightConnection(item.connection1!) ? 'scg-ch-name' : 'scg-ch-prefix'))
+          .text(item.prefix2 ?? ''),
+        $('<span>')
+          .addClass(this.getPseudoClass(item.connection2!))
+          .text(item.connection2!),
+        $('<span>')
+          .addClass('scg scg-ch-name')
+          .text(item.name.replace(regex, "")),
+      ];
+    }
+    regex = new RegExp(`${item.prefix}[-_]${item.prefix2}[-_]${item.prefix3}[-_]?`, "g")
+    return [
+      $('<span>')
+        .addClass('scg ' + (hasLeftConnection(item.connection1!) ? 'scg-ch-name' : 'scg-ch-prefix'))
+        .text(item.prefix ?? ''),
+      $('<span>')
+        .addClass(this.getPseudoClass(item.connection1!))
+        .text(item.connection1!),
+      $('<span>')
+        .addClass('scg ' + (hasRightConnection(item.connection1!) ? 'scg-ch-name' : 'scg-ch-prefix'))
+        .text(item.prefix2 ?? ''),
+      $('<span>')
+        .addClass(this.getPseudoClass(item.connection2!))
+        .text(item.connection2!),
+      $('<span>')
+        .addClass('scg ' + (hasRightConnection(item.connection2!) ? 'scg-ch-name' : 'scg-ch-prefix'))
+        .text(item.prefix3 ?? ''),
+      $('<span>')
+        .addClass(this.getPseudoClass(item.connection3!))
+        .text(item.connection3!),
+      $('<span>')
+        .addClass('scg scg-ch-name')
+        .text(item.name.replace(regex, "")),
+    ];
+  }
+
+  getPseudoClass(conn: ConnectionType) {
+    if (conn === '┬' || conn === '┐') {
+      return 'scg scg-ch-separator scg-ch-separator-pseudo-bottom';
+    } else if (conn === '└') {
+      return 'scg scg-ch-separator scg-ch-separator-pseudo-top';
+    } else if (conn === '　' || conn === '─') {
+      return 'scg scg-ch-separator-no-vertical-line scg-ch-separator-pseudo-both';
+    }
+    return 'scg scg-ch-separator scg-ch-separator-pseudo-both';
   }
 }
