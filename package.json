@@ -57,8 +57,8 @@
     "@types/jquery": "^3.5.32",
     "@types/prettier": "^3.0.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "@typescript-eslint/eslint-plugin": "^8.18.1",
-    "@typescript-eslint/parser": "^8.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^9.2.1",
     "eslint": "^9.17.0",
@@ -69,7 +69,7 @@
     "globals": "^15.14.0",
     "happy-dom": "^15.11.7",
     "prettier": "^3.4.2",
-    "renovate": "^39.82.1",
+    "renovate": "^39.86.0",
     "typescript": "^5.7.2",
     "typesync": "^0.14.0",
     "vitest": "^2.1.8",
@@ -104,7 +104,7 @@
   },
   "engines": {
     "node": ">=18",
-    "yarn": ">=4.5.3"
+    "yarn": ">=4.6.0"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.6.0"
 }
