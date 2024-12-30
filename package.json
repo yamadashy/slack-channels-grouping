@@ -67,7 +67,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.14.0",
-    "happy-dom": "^15.11.7",
+    "happy-dom": "^16.0.1",
     "prettier": "^3.4.2",
     "renovate": "^39.86.0",
     "typescript": "^5.7.2",
