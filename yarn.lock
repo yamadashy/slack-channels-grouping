@@ -9673,13 +9673,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^16.8.1":
-  version: 16.8.1
-  resolution: "happy-dom@npm:16.8.1"
+"happy-dom@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "happy-dom@npm:17.0.2"
   dependencies:
     webidl-conversions: "npm:^7.0.0"
     whatwg-mimetype: "npm:^3.0.0"
-  checksum: 10/3a019c2806a508e829d3d5bd1907611e9a445cbf0b4152e5a9fb61963d260dc87234a0df017c8623f1e7217c759139e09f9fa2e37f05ceae13ae8e59f6e3d7f2
+  checksum: 10/cc3bde0126747a2f5828cccf538914116afa7b9ba4f072ee720f1784c97a60e5fb67a342e42399011bf7f242b669fe53e205d6838dcd3721c07cc409b584b3da
   languageName: node
   linkType: hard
 
@@ -14062,7 +14062,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.2.3"
     eventemitter3: "npm:5.0.1"
     globals: "npm:^15.14.0"
-    happy-dom: "npm:^16.8.1"
+    happy-dom: "npm:^17.0.2"
     jquery: "npm:3.7.1"
     loglevel: "npm:^1.9.2"
     prettier: "npm:^3.5.0"
