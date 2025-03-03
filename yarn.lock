@@ -3368,23 +3368,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@one-ini/wasm@npm:0.1.1":
-  version: 0.1.1
-  resolution: "@one-ini/wasm@npm:0.1.1"
-  checksum: 10/673c11518dba2e582e42415cbefe928513616f3af25e12f6e4e6b1b98b52b3e6c14bc251a361654af63cd64f208f22a1f7556fa49da2bf7efcf28cb14f16f807
+"@one-ini/wasm@npm:0.2.0":
+  version: 0.2.0
+  resolution: "@one-ini/wasm@npm:0.2.0"
+  checksum: 10/3949fb4a54c0f9373f9ff4b6dfa449c65e397acb11e191767dd0a6f64983fdf22fbc28c6f97032c99e2ebf0f3e56449f5df358c395fd77e05db1277d1f6f2692
   languageName: node
   linkType: hard
 
-"@opentelemetry/api-logs@npm:0.57.0, @opentelemetry/api-logs@npm:^0.57.0":
-  version: 0.57.0
-  resolution: "@opentelemetry/api-logs@npm:0.57.0"
-  dependencies:
-    "@opentelemetry/api": "npm:^1.3.0"
-  checksum: 10/8dd3092f8f2b1fb34a7ace38377925d0ed9bc8633a0a93868ba6a174efabac147e5d36f3060545a39315b209eb0e7ca42514e7a1192a3898bd32506cc7babbe5
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/api-logs@npm:0.57.2":
+"@opentelemetry/api-logs@npm:0.57.2, @opentelemetry/api-logs@npm:^0.57.1":
   version: 0.57.2
   resolution: "@opentelemetry/api-logs@npm:0.57.2"
   dependencies:
@@ -3435,16 +3426,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation-bunyan@npm:0.45.0":
-  version: 0.45.0
-  resolution: "@opentelemetry/instrumentation-bunyan@npm:0.45.0"
+"@opentelemetry/instrumentation-bunyan@npm:0.45.1":
+  version: 0.45.1
+  resolution: "@opentelemetry/instrumentation-bunyan@npm:0.45.1"
   dependencies:
-    "@opentelemetry/api-logs": "npm:^0.57.0"
-    "@opentelemetry/instrumentation": "npm:^0.57.0"
-    "@types/bunyan": "npm:1.8.9"
+    "@opentelemetry/api-logs": "npm:^0.57.1"
+    "@opentelemetry/instrumentation": "npm:^0.57.1"
+    "@types/bunyan": "npm:1.8.11"
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
-  checksum: 10/bffe87c059e3406892ddb65e2d99c3c23b0c98e956f0cc79cbaba6bde2778e430f2783e60d2f0d46a3cd5eb7a1df1c0e5f15a62b689419acccdd9a05896fc9b4
+  checksum: 10/a1062f71cce2bb376feabce224e910394c55911352fe89e4808e770fb297905dfdc4079a9885f359504f403b49ff6bc36b0ae12b1bb8bc0c078ce203fc03ce95
   languageName: node
   linkType: hard
 
@@ -3463,7 +3454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opentelemetry/instrumentation@npm:0.57.2":
+"@opentelemetry/instrumentation@npm:0.57.2, @opentelemetry/instrumentation@npm:^0.57.1":
   version: 0.57.2
   resolution: "@opentelemetry/instrumentation@npm:0.57.2"
   dependencies:
@@ -3476,22 +3467,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.3.0
   checksum: 10/b66b840e87976a5edf551a7011a395df8df5985571ac0506412943d07b4309fcc78fe71d3f55217a00f44384fbf61f59f1e54d544ab12f5490f6a7a56b71e02a
-  languageName: node
-  linkType: hard
-
-"@opentelemetry/instrumentation@npm:^0.57.0":
-  version: 0.57.0
-  resolution: "@opentelemetry/instrumentation@npm:0.57.0"
-  dependencies:
-    "@opentelemetry/api-logs": "npm:0.57.0"
-    "@types/shimmer": "npm:^1.2.0"
-    import-in-the-middle: "npm:^1.8.1"
-    require-in-the-middle: "npm:^7.1.1"
-    semver: "npm:^7.5.2"
-    shimmer: "npm:^1.2.1"
-  peerDependencies:
-    "@opentelemetry/api": ^1.3.0
-  checksum: 10/f6ccd277393421a769de3408770264d51fa020b258b1a7492f1b3812b7277e76800ae1d0ac8894b70629112126669f9b11b8be01135676d40ffa37c2d373d2f5
   languageName: node
   linkType: hard
 
@@ -5073,12 +5048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bunyan@npm:1.8.9":
-  version: 1.8.9
-  resolution: "@types/bunyan@npm:1.8.9"
+"@types/bunyan@npm:1.8.11":
+  version: 1.8.11
+  resolution: "@types/bunyan@npm:1.8.11"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10/5d6e818cc324eee60ad4658fc169bad2a7ec794de383de5333327951c7be74804cf70230ac4a93b4e6ce5d86106e81e6fcc8c617454617bad6a721011b619435
+  checksum: 10/8906ec6c0573f563139681344c2a1d220c394e4aa5b88ff99b011894734f74aafc9d0b3a71758dda3b0ee30e9b6370a8aa48ac26b5585f3c8d7e0fe8db6ca844
   languageName: node
   linkType: hard
 
@@ -5104,13 +5079,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.306":
-  version: 0.0.306
-  resolution: "@types/chrome@npm:0.0.306"
+"@types/chrome@npm:^0.0.307":
+  version: 0.0.307
+  resolution: "@types/chrome@npm:0.0.307"
   dependencies:
     "@types/filesystem": "npm:*"
     "@types/har-format": "npm:*"
-  checksum: 10/c4972ed1a388e1ccaa825e306d423bb8193f079f5d632ef9ba4fa417a126003f01b334c2c7e79374a5b8bd3281c95757a6dac4021ee8b2c03256376eecaa0bb3
+  checksum: 10/6bb05ec7cc4986681f118448787e9f1029b8add25d0b85c73d05b822ee7b40c94613a72ac99a2693edeed9c067eb3037557f300b96207e59441dd6666fa1ae1b
   languageName: node
   linkType: hard
 
@@ -7240,14 +7215,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:13.1.0":
+"commander@npm:13.1.0, commander@npm:^13.1.0":
   version: 13.1.0
   resolution: "commander@npm:13.1.0"
   checksum: 10/d3b4b79e6be8471ddadacbb8cd441fe82154d7da7393b50e76165a9e29ccdb74fa911a186437b9a211d0fc071db6051915c94fb8ef16d77511d898e9dbabc6af
   languageName: node
   linkType: hard
 
-"commander@npm:^11.0.0, commander@npm:^11.1.0":
+"commander@npm:^11.1.0":
   version: 11.1.0
   resolution: "commander@npm:11.1.0"
   checksum: 10/66bd2d8a0547f6cb1d34022efb25f348e433b0e04ad76a65279b1b09da108f59a4d3001ca539c60a7a46ea38bcf399fc17d91adad76a8cf43845d8dcbaf5cda1
@@ -7440,10 +7415,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.40.0":
-  version: 3.40.0
-  resolution: "core-js@npm:3.40.0"
-  checksum: 10/9c7e7d2839db6c3c7b72725a3ce5edf6dd61fc771e1551e08b5622ca7da330f2f5d3c7dcd6a6e7889baa8d4cc5a909ba75b4add0d1f3da940a2a60a3e0603be5
+"core-js@npm:3.41.0":
+  version: 3.41.0
+  resolution: "core-js@npm:3.41.0"
+  checksum: 10/a06ebae2264dd24c8e4b331a68412f7d0730557c41901f80fa910a9398dbef4670482d9ef5a41fef7efd41307c612d3d4051df7640ac4c01ff6feda45f8b92be
   languageName: node
   linkType: hard
 
@@ -7912,17 +7887,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"editorconfig@npm:2.0.0":
-  version: 2.0.0
-  resolution: "editorconfig@npm:2.0.0"
+"editorconfig@npm:2.0.1":
+  version: 2.0.1
+  resolution: "editorconfig@npm:2.0.1"
   dependencies:
-    "@one-ini/wasm": "npm:0.1.1"
-    commander: "npm:^11.0.0"
-    minimatch: "npm:9.0.2"
-    semver: "npm:^7.5.3"
+    "@one-ini/wasm": "npm:0.2.0"
+    commander: "npm:^13.1.0"
+    minimatch: "npm:10.0.1"
+    semver: "npm:^7.7.1"
   bin:
     editorconfig: bin/editorconfig
-  checksum: 10/897896a0bdc2b3fcf5ed1466943b0e9676fe4a9dac7c71bcd0e6455efeff2e4e358a5a46dd38b24fb047f2599b2dfb23d2f4dba839c5c76cbce670448b68c1c2
+  checksum: 10/5ee2770d0d3be7a09288a7123e5604d22280394ab5ac64ffb7b9bdf90ad8e7c29d40fb9a9cdd7136a7d606ef48274ce260d20f7246ba5da6352883ea95be1b03
   languageName: node
   linkType: hard
 
@@ -8320,14 +8295,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "eslint-config-prettier@npm:10.0.1"
+"eslint-config-prettier@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "eslint-config-prettier@npm:10.0.2"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: build/bin/cli.js
-  checksum: 10/ba6875df0fc4fd3c7c6e2ec9c2e6a224462f7afc662f4cf849775c598a3571c1be136a9b683b12971653b3dcf3f31472aaede3076524b46ec9a77582630158e5
+  checksum: 10/6d4bbdd5d1810457c63035eef1a085e00bfce34873a5cf461fc696eb635c6aa408184aab6ff6c7e979bb0992485f6dc75e0c993f7193b0d4ceec25f32505c531
   languageName: node
   linkType: hard
 
@@ -11438,15 +11413,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:9.0.2":
-  version: 9.0.2
-  resolution: "minimatch@npm:9.0.2"
-  dependencies:
-    brace-expansion: "npm:^2.0.1"
-  checksum: 10/b468863a8b5071ffdfd63ad2cbe01c2b708807d80907036102b3c1499502fcc6d8965f571707f8ff820aa23c67784344a77cc2c3e0e9ec7778dab56f76a61595
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^9.0.1, minimatch@npm:^9.0.4":
   version: 9.0.4
   resolution: "minimatch@npm:9.0.4"
@@ -12661,12 +12627,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.5.2":
-  version: 3.5.2
-  resolution: "prettier@npm:3.5.2"
+"prettier@npm:^3.5.3":
+  version: 3.5.3
+  resolution: "prettier@npm:3.5.3"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/ac7a157c8ec76459b13d81a03ff65d228015992cb926b676b0f1c83edd47e5db8ba257336b400be20942fc671816f1afde377cffe94d9e4368762a3d3acbffe5
+  checksum: 10/7050c08f674d9e49fbd9a4c008291d0715471f64e94cc5e4b01729affce221dfc6875c8de7e66b728c64abc9352eefb7eaae071b5f79d30081be207b53774b78
   languageName: node
   linkType: hard
 
@@ -13147,9 +13113,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"renovate@npm:^39.180.2":
-  version: 39.180.2
-  resolution: "renovate@npm:39.180.2"
+"renovate@npm:^39.185.0":
+  version: 39.185.0
+  resolution: "renovate@npm:39.185.0"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.738.0"
     "@aws-sdk/client-ec2": "npm:3.738.0"
@@ -13163,7 +13129,7 @@ __metadata:
     "@opentelemetry/context-async-hooks": "npm:1.30.1"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.57.2"
     "@opentelemetry/instrumentation": "npm:0.57.2"
-    "@opentelemetry/instrumentation-bunyan": "npm:0.45.0"
+    "@opentelemetry/instrumentation-bunyan": "npm:0.45.1"
     "@opentelemetry/instrumentation-http": "npm:0.57.2"
     "@opentelemetry/resources": "npm:1.30.1"
     "@opentelemetry/sdk-trace-base": "npm:1.30.1"
@@ -13199,7 +13165,7 @@ __metadata:
     dequal: "npm:2.0.3"
     detect-indent: "npm:6.1.0"
     diff: "npm:7.0.0"
-    editorconfig: "npm:2.0.0"
+    editorconfig: "npm:2.0.1"
     email-addresses: "npm:5.0.0"
     emoji-regex: "npm:10.4.0"
     emojibase: "npm:16.0.0"
@@ -13274,7 +13240,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10/2e1d6e8134c8952b2688d75c3cabdbf58af7486583a0454ad8ba04034ff2d03cb92b586f95c0f04b188f2269190dda61954990906e83026b4492caee493de9ff
+  checksum: 10/abf137f32c52dccfd4deaca648f211211121ffc1a5a806f12a4570b27335cf88e6aeee5f43803bc3a9fa5381ab53951c310017e0ea36299cad039ceb7a044042
   languageName: node
   linkType: hard
 
@@ -13669,7 +13635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.7.1, semver@npm:^7.7.0":
+"semver@npm:7.7.1, semver@npm:^7.7.0, semver@npm:^7.7.1":
   version: 7.7.1
   resolution: "semver@npm:7.7.1"
   bin:
@@ -13696,7 +13662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.1.2, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.6.0":
+"semver@npm:^7.1.2, semver@npm:^7.3.2, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.2, semver@npm:^7.6.0":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:
@@ -13943,7 +13909,7 @@ __metadata:
     "@eslint/js": "npm:^9.21.0"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__preset-env": "npm:^7.10.0"
-    "@types/chrome": "npm:^0.0.306"
+    "@types/chrome": "npm:^0.0.307"
     "@types/core-js": "npm:2.5.8"
     "@types/eslint": "npm:^9.6.1"
     "@types/eslint-config-prettier": "npm:^6.11.3"
@@ -13956,9 +13922,9 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.25.0"
     "@webextension-toolbox/webextension-toolbox": "npm:^7.1.1"
     babel-loader: "npm:^9.2.1"
-    core-js: "npm:3.40.0"
+    core-js: "npm:3.41.0"
     eslint: "npm:^9.21.0"
-    eslint-config-prettier: "npm:^10.0.1"
+    eslint-config-prettier: "npm:^10.0.2"
     eslint-formatter-friendly: "npm:^7.0.0"
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-prettier: "npm:^5.2.3"
@@ -13967,10 +13933,10 @@ __metadata:
     happy-dom: "npm:^17.1.8"
     jquery: "npm:3.7.1"
     loglevel: "npm:^1.9.2"
-    prettier: "npm:^3.5.2"
-    renovate: "npm:^39.180.2"
+    prettier: "npm:^3.5.3"
+    renovate: "npm:^39.185.0"
     requestidlecallback-polyfill: "npm:1.0.2"
-    typescript: "npm:^5.7.3"
+    typescript: "npm:^5.8.2"
     typesync: "npm:^0.14.1"
     vitest: "npm:^3.0.7"
     webpack-bundle-analyzer: "npm:^4.10.2"
@@ -14986,23 +14952,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.7.3":
-  version: 5.7.3
-  resolution: "typescript@npm:5.7.3"
+"typescript@npm:^5.8.2":
+  version: 5.8.2
+  resolution: "typescript@npm:5.8.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/6a7e556de91db3d34dc51cd2600e8e91f4c312acd8e52792f243c7818dfadb27bae677175fad6947f9c81efb6c57eb6b2d0c736f196a6ee2f1f7d57b74fc92fa
+  checksum: 10/dbc2168a55d56771f4d581997be52bab5cbc09734fec976cfbaabd787e61fb4c6cf9125fd48c6f98054ce549c77ecedefc7f64252a830dd8e9c3381f61fbeb78
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>":
-  version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+"typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>":
+  version: 5.8.2
+  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/dc58d777eb4c01973f7fbf1fd808aad49a0efdf545528dab9b07d94fdcb65b8751742804c3057e9619a4627f2d9cc85547fdd49d9f4326992ad0181b49e61d81
+  checksum: 10/97920a082ffc57583b1cb6bc4faa502acc156358e03f54c7fc7fdf0b61c439a717f4c9070c449ee9ee683d4cfc3bb203127c2b9794b2950f66d9d307a4ff262c
   languageName: node
   linkType: hard
 
