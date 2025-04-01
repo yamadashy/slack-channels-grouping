@@ -48,7 +48,7 @@
     "@eslint/js": "^9.23.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__preset-env": "^7.10.0",
-    "@types/chrome": "^0.0.310",
+    "@types/chrome": "^0.0.313",
     "@types/core-js": "2.5.8",
     "@types/eslint": "^9.6.1",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -57,22 +57,22 @@
     "@types/jquery": "^3.5.32",
     "@types/prettier": "^3.0.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.0.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-formatter-friendly": "^7.0.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.4",
+    "eslint-plugin-prettier": "^5.2.5",
     "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
     "prettier": "^3.5.3",
-    "renovate": "^39.213.4",
+    "renovate": "^39.230.1",
     "typescript": "^5.8.2",
     "typesync": "^0.14.1",
-    "vitest": "^3.0.9",
+    "vitest": "^3.1.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "babel": {
@@ -104,7 +104,7 @@
   },
   "engines": {
     "node": ">=18",
-    "yarn": ">=4.7.0"
+    "yarn": ">=4.8.1"
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.8.1"
 }
