@@ -5212,13 +5212,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.313":
-  version: 0.0.313
-  resolution: "@types/chrome@npm:0.0.313"
+"@types/chrome@npm:^0.0.315":
+  version: 0.0.315
+  resolution: "@types/chrome@npm:0.0.315"
   dependencies:
     "@types/filesystem": "npm:*"
     "@types/har-format": "npm:*"
-  checksum: 10/2ce13e799a02c591ac2565ad7a006bcda27f02ce33969cfb602713fab33a644e96502a2b02ed197e055436117d0a1393debf7701f22aec8fa288e99c4509e3fe
+  checksum: 10/8a4f9f377118cb0b3d1afdb35b7ec45575b8f86e90949283a1e6e6868a8d045b34197133b3a7e8f4a834c51e7cd73ece79d4854324c65cebce4858809a072cf6
   languageName: node
   linkType: hard
 
@@ -7556,12 +7556,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cronstrue@npm:2.57.0":
-  version: 2.57.0
-  resolution: "cronstrue@npm:2.57.0"
+"cronstrue@npm:2.58.0":
+  version: 2.58.0
+  resolution: "cronstrue@npm:2.58.0"
   bin:
     cronstrue: bin/cli.js
-  checksum: 10/71ebb55aa5a0fa8b0d48d9cadb451c5607f73a6feb6d90f08d4a888d27f4a15a7fd25179a88052f0e20d5b27d39d46bef0bb5106a1fdea54dafee997319e65ad
+  checksum: 10/781110c318bc140a5f34e471e9d91b159a10be64c73abcf892af765a61ce24c33c76a016051dcba255e489481cb5ac107b6f197569a97dd2bcdb84c18b9e2c09
   languageName: node
   linkType: hard
 
@@ -8398,14 +8398,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^10.1.1":
-  version: 10.1.1
-  resolution: "eslint-config-prettier@npm:10.1.1"
+"eslint-config-prettier@npm:^10.1.2":
+  version: 10.1.2
+  resolution: "eslint-config-prettier@npm:10.1.2"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: bin/cli.js
-  checksum: 10/e78e195a4f19e0de9bf655648bb3433877d6a5368537f1b1049976b74180844a00dd7c1ba3144e3da6e8b6864f8dcdfcda6c7338a537883fcf5b212ef6dcd0e0
+  checksum: 10/7b096cbb75ff57cee933451e9c8bd2926688bc603a7d74c3d89b2bd57324cb0346c7e95ac24b17ef2dd2050bb870602c032368f11bf57c2962210418a99caf3f
   languageName: node
   linkType: hard
 
@@ -13183,9 +13183,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"renovate@npm:^39.235.2":
-  version: 39.235.2
-  resolution: "renovate@npm:39.235.2"
+"renovate@npm:^39.240.1":
+  version: 39.240.1
+  resolution: "renovate@npm:39.240.1"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.777.0"
     "@aws-sdk/client-ec2": "npm:3.779.0"
@@ -13232,7 +13232,7 @@ __metadata:
     commander: "npm:13.1.0"
     conventional-commits-detector: "npm:1.0.3"
     croner: "npm:9.0.0"
-    cronstrue: "npm:2.57.0"
+    cronstrue: "npm:2.58.0"
     deepmerge: "npm:4.3.1"
     dequal: "npm:2.0.3"
     detect-indent: "npm:6.1.0"
@@ -13312,7 +13312,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10/030ce3d7c5a6b1858e0d1d6da0879ed85543033f6087383ce9d4e0cdf1a62af3e5230ff20e51e4c19a824617b404856d04af951f887a381778ae7cbb2b63e20c
+  checksum: 10/dff74af4992850cb006fd9934e49db5c099b920016400b91b14424017a5a39862425365ec68abb4d61d30116574ea6887e2414356d0383184c2e7a7e3cf8fc63
   languageName: node
   linkType: hard
 
@@ -13971,7 +13971,7 @@ __metadata:
     "@eslint/js": "npm:^9.24.0"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__preset-env": "npm:^7.10.0"
-    "@types/chrome": "npm:^0.0.313"
+    "@types/chrome": "npm:^0.0.315"
     "@types/core-js": "npm:2.5.8"
     "@types/eslint": "npm:^9.6.1"
     "@types/eslint-config-prettier": "npm:^6.11.3"
@@ -13986,7 +13986,7 @@ __metadata:
     babel-loader: "npm:^10.0.0"
     core-js: "npm:3.41.0"
     eslint: "npm:^9.24.0"
-    eslint-config-prettier: "npm:^10.1.1"
+    eslint-config-prettier: "npm:^10.1.2"
     eslint-formatter-friendly: "npm:^7.0.0"
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-prettier: "npm:^5.2.6"
@@ -13996,7 +13996,7 @@ __metadata:
     jquery: "npm:3.7.1"
     loglevel: "npm:^1.9.2"
     prettier: "npm:^3.5.3"
-    renovate: "npm:^39.235.2"
+    renovate: "npm:^39.240.1"
     requestidlecallback-polyfill: "npm:1.0.2"
     typescript: "npm:^5.8.3"
     typesync: "npm:^0.14.3"
