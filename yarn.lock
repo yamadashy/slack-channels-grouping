@@ -3026,12 +3026,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cdktf/hcl2json@npm:0.20.11":
-  version: 0.20.11
-  resolution: "@cdktf/hcl2json@npm:0.20.11"
+"@cdktf/hcl2json@npm:0.20.12":
+  version: 0.20.12
+  resolution: "@cdktf/hcl2json@npm:0.20.12"
   dependencies:
-    fs-extra: "npm:11.2.0"
-  checksum: 10/7e1b982d2f90da8ababebadd48f814ddd7456ec86a07862d840eb12286ed376084e21a8f40031e09e525368bd03daab388c48b19865c632f0ec80812bdd06fd6
+    fs-extra: "npm:11.3.0"
+  checksum: 10/a158f3eb6dbd1aeec809f471ab2919a0713df79cae08cdd271f470cefde112693fc94954d5264cf575d869a294b786d55b8d328b20adf1c2732fa73a296e5be4
   languageName: node
   linkType: hard
 
@@ -5270,13 +5270,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.315":
-  version: 0.0.315
-  resolution: "@types/chrome@npm:0.0.315"
+"@types/chrome@npm:^0.0.317":
+  version: 0.0.317
+  resolution: "@types/chrome@npm:0.0.317"
   dependencies:
     "@types/filesystem": "npm:*"
     "@types/har-format": "npm:*"
-  checksum: 10/8a4f9f377118cb0b3d1afdb35b7ec45575b8f86e90949283a1e6e6868a8d045b34197133b3a7e8f4a834c51e7cd73ece79d4854324c65cebce4858809a072cf6
+  checksum: 10/7f1239754a692b8ca6880d7a61fd52eac6c2782f961fbd1b30f511cedc3e46ec61a855b263553989c9deeed46c742305bb1423b966f9a10f6ea4e3035caa951d
   languageName: node
   linkType: hard
 
@@ -9193,17 +9193,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:11.2.0, fs-extra@npm:^11.2.0":
-  version: 11.2.0
-  resolution: "fs-extra@npm:11.2.0"
-  dependencies:
-    graceful-fs: "npm:^4.2.0"
-    jsonfile: "npm:^6.0.1"
-    universalify: "npm:^2.0.0"
-  checksum: 10/0579bf6726a4cd054d4aa308f10b483f52478bb16284f32cf60b4ce0542063d551fca1a08a2af365e35db21a3fa5a06cf2a6ed614004b4368982bc754cb816b3
-  languageName: node
-  linkType: hard
-
 "fs-extra@npm:11.3.0, fs-extra@npm:^11.3.0":
   version: 11.3.0
   resolution: "fs-extra@npm:11.3.0"
@@ -9212,6 +9201,17 @@ __metadata:
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
   checksum: 10/c9fe7b23dded1efe7bbae528d685c3206477e20cc60e9aaceb3f024f9b9ff2ee1f62413c161cb88546cc564009ab516dec99e9781ba782d869bb37e4fe04a97f
+  languageName: node
+  linkType: hard
+
+"fs-extra@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "fs-extra@npm:11.2.0"
+  dependencies:
+    graceful-fs: "npm:^4.2.0"
+    jsonfile: "npm:^6.0.1"
+    universalify: "npm:^2.0.0"
+  checksum: 10/0579bf6726a4cd054d4aa308f10b483f52478bb16284f32cf60b4ce0542063d551fca1a08a2af365e35db21a3fa5a06cf2a6ed614004b4368982bc754cb816b3
   languageName: node
   linkType: hard
 
@@ -12846,7 +12846,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"protobufjs@npm:7.4.0, protobufjs@npm:^7.3.0":
+"protobufjs@npm:7.5.0":
+  version: 7.5.0
+  resolution: "protobufjs@npm:7.5.0"
+  dependencies:
+    "@protobufjs/aspromise": "npm:^1.1.2"
+    "@protobufjs/base64": "npm:^1.1.2"
+    "@protobufjs/codegen": "npm:^2.0.4"
+    "@protobufjs/eventemitter": "npm:^1.1.0"
+    "@protobufjs/fetch": "npm:^1.1.0"
+    "@protobufjs/float": "npm:^1.0.2"
+    "@protobufjs/inquire": "npm:^1.1.0"
+    "@protobufjs/path": "npm:^1.1.2"
+    "@protobufjs/pool": "npm:^1.1.0"
+    "@protobufjs/utf8": "npm:^1.1.0"
+    "@types/node": "npm:>=13.7.0"
+    long: "npm:^5.0.0"
+  checksum: 10/c4fcc116b7aa5f15250420cf95a669969e1e29379d70ff2f4e3e2f5dbbc2dab2be0adef9ade02d1d6ea94179b34bac8b8458f30b089fe040e4e9fc2a29fdb713
+  languageName: node
+  linkType: hard
+
+"protobufjs@npm:^7.3.0":
   version: 7.4.0
   resolution: "protobufjs@npm:7.4.0"
   dependencies:
@@ -13271,9 +13291,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"renovate@npm:^39.253.2":
-  version: 39.253.2
-  resolution: "renovate@npm:39.253.2"
+"renovate@npm:^39.261.4":
+  version: 39.261.4
+  resolution: "renovate@npm:39.261.4"
   dependencies:
     "@aws-sdk/client-codecommit": "npm:3.777.0"
     "@aws-sdk/client-ec2": "npm:3.779.0"
@@ -13284,7 +13304,7 @@ __metadata:
     "@aws-sdk/credential-providers": "npm:3.778.0"
     "@baszalmstra/rattler": "npm:0.2.1"
     "@breejs/later": "npm:4.2.0"
-    "@cdktf/hcl2json": "npm:0.20.11"
+    "@cdktf/hcl2json": "npm:0.20.12"
     "@opentelemetry/api": "npm:1.9.0"
     "@opentelemetry/context-async-hooks": "npm:2.0.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.200.0"
@@ -13371,7 +13391,7 @@ __metadata:
     p-throttle: "npm:4.1.1"
     parse-link-header: "npm:2.0.0"
     prettier: "npm:3.5.3"
-    protobufjs: "npm:7.4.0"
+    protobufjs: "npm:7.5.0"
     punycode: "npm:2.3.1"
     re2: "npm:1.21.4"
     redis: "npm:4.7.0"
@@ -13393,7 +13413,7 @@ __metadata:
     vuln-vects: "npm:1.1.0"
     xmldoc: "npm:1.3.0"
     yaml: "npm:2.7.1"
-    zod: "npm:3.24.2"
+    zod: "npm:3.24.3"
   dependenciesMeta:
     better-sqlite3:
       optional: true
@@ -13404,7 +13424,7 @@ __metadata:
   bin:
     renovate: dist/renovate.js
     renovate-config-validator: dist/config-validator.js
-  checksum: 10/149dbb50f79015d8c94c4b87a76f3a84caecc3bbf4e7da6e85565dab151c399eaf7c0b65365b746eb2e7829385507c95a3003b87c57a02c7406d931c0700fc0d
+  checksum: 10/1cdd0367282ec71aa3e6effa638febba5bdbcc3c0ceb5f23d53d759dad646c8b0f71c996db6ec2fd13b8152d7e81f7cb08036330eb8d43ef6d9806bf2811bd10
   languageName: node
   linkType: hard
 
@@ -14063,7 +14083,7 @@ __metadata:
     "@eslint/js": "npm:^9.25.1"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__preset-env": "npm:^7.10.0"
-    "@types/chrome": "npm:^0.0.315"
+    "@types/chrome": "npm:^0.0.317"
     "@types/core-js": "npm:2.5.8"
     "@types/eslint": "npm:^9.6.1"
     "@types/eslint-config-prettier": "npm:^6.11.3"
@@ -14088,7 +14108,7 @@ __metadata:
     jquery: "npm:3.7.1"
     loglevel: "npm:^1.9.2"
     prettier: "npm:^3.5.3"
-    renovate: "npm:^39.253.2"
+    renovate: "npm:^39.261.4"
     requestidlecallback-polyfill: "npm:1.0.2"
     typescript: "npm:^5.8.3"
     typesync: "npm:^0.14.3"
@@ -16135,10 +16155,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.24.2":
-  version: 3.24.2
-  resolution: "zod@npm:3.24.2"
-  checksum: 10/604c62a8cf8e330d78b106a557f4b44f5d14845d20b1360a423ccc09b58cb8525ccf7e4b40cf1bd4852d22393d2c67774b5817ec5a2fedab25f543b36ed15943
+"zod@npm:3.24.3":
+  version: 3.24.3
+  resolution: "zod@npm:3.24.3"
+  checksum: 10/1b15db625ca633324084f3a8587bfb907043bbca407a09f7d5da6a9781b3838c68e9312b49e91e479d2f8bf04cdda5810803ac9504e3b7ccbec3adf2de625fb8
   languageName: node
   linkType: hard
 
