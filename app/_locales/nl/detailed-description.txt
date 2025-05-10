@@ -1,10 +1,27 @@
-Deze extensie groepeert Slack-kanalen op basis van voorvoegsel, waardoor het gemakkelijker wordt om kanalen visueel te vinden.
-Het ondersteunt zowel afbreekstreepjes (-) als onderstrepingstekens (_), zodat je kanalen met namen als volgt kunt groeperen:
-• voorvoegsel-naam
-• voorvoegsel_naam
+Deze extensie groepeert Slack-kanalen automatisch op basis van hun voorvoegsels, waardoor het gemakkelijker wordt om je werkruimte visueel te organiseren en te navigeren.
 
-Er wordt geen informatie van Slack of andere gegevens naar ontwikkelaars of derden verzonden of openbaar gemaakt.
+🔍 Belangrijkste functies:
+- Groepeert automatisch kanalen met hetzelfde voorvoegsel
+- Ondersteunt zowel afbreekstreepjes (-) als onderstrepingstekens (_)
+- Organiseert kanalen visueel in de Slack-zijbalk
+- Werkt in alle Slack-werkruimtes
+- Geen configuratie vereist
 
-De broncode is ook beschikbaar, zodat je het zelf kunt bouwen en installeren.
+🚀 Hoe te gebruiken:
+1. Installeer de extensie
+2. Open Slack in je browser
+3. Kanalen met hetzelfde voorvoegsel (zoals "team-algemeen" en "team-willekeurig") worden automatisch gegroepeerd
+4. Geniet van een schonere, beter georganiseerde Slack-zijbalk
+
+⚠️ Opmerking:
+Deze extensie is niet gelieerd aan Slack. Het verbetert simpelweg de visuele organisatie van kanalen in je Slack-zijbalk.
+
+🔒 Privacy:
+- Geen gegevensverzameling
+- Geen tracking
+- Geen authenticatie vereist
+- Vereist alleen toegang tot app.slack.com om kanalen te organiseren
+
+💻 De broncode is ook beschikbaar, zodat je het zelf kunt bouwen en installeren.
 Voor meer informatie, bezoek:
 https://github.com/yamadashy/slack-channels-grouping

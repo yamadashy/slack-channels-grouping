@@ -1,10 +1,27 @@
-Cette extension regroupe les canaux Slack par préfixe, ce qui facilite la recherche visuelle des canaux.
-Elle prend en charge les traits d'union (-) et les traits de soulignement (_), vous permettant de regrouper les canaux avec des noms comme:
-• préfixe-nom
-• préfixe_nom
+Esta extensión agrupa automáticamente los canales de Slack por sus prefijos, facilitando la organización visual y la navegación por tu espacio de trabajo.
 
-No se transmite ni divulga ninguna información de Slack ni otros datos a los desarrolladores ni a terceros.
+🔍 Características principales:
+- Agrupa automáticamente los canales con el mismo prefijo
+- Compatible con guiones (-) y guiones bajos (_)
+- Organiza visualmente los canales en la barra lateral de Slack
+- Funciona en todos los espacios de trabajo de Slack
+- No requiere configuración
 
-Le code source est également disponible, vous pouvez donc le construire et l'installer vous-même.
-Pour plus d'informations, veuillez visiter:
+🚀 Cómo usar:
+1. Instala la extensión
+2. Abre Slack en tu navegador
+3. Los canales con el mismo prefijo (como "equipo-general" y "equipo-random") se agruparán automáticamente
+4. Disfruta de una barra lateral de Slack más limpia y organizada
+
+⚠️ Nota:
+Esta extensión no está afiliada con Slack. Simplemente mejora la organización visual de los canales en tu barra lateral de Slack.
+
+🔒 Privacidad:
+- Sin recopilación de datos
+- Sin seguimiento
+- No requiere autenticación
+- Solo requiere acceso a app.slack.com para organizar canales
+
+💻 El código fuente también está disponible, y puedes compilarlo e instalarlo tú mismo.
+Para más detalles, visita:
 https://github.com/yamadashy/slack-channels-grouping

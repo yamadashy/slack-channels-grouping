@@ -1,10 +1,27 @@
-This extension groups Slack channels by prefix, making it easier to find channels visually.
-It supports both hyphens (-) and underscores (_), allowing you to group channels with names like:
-• prefix-name
-• prefix_name
+This extension automatically groups Slack channels by their prefixes, making it easier to visually organize and navigate your workspace.
 
-No information from Slack or other data is transmitted or disclosed to developers or third parties.
+🔍 Main Features:
+- Automatically groups channels with the same prefix
+- Supports both hyphen (-) and underscore (_) separators
+- Visually organizes channels in the Slack sidebar
+- Works across all Slack workspaces
+- No configuration required
 
-The source code is also available, so you can build and install it yourself.
-For more information, please visit:
+🚀 How to Use:
+1. Install the extension
+2. Open Slack in your browser
+3. Channels with the same prefix (like "team-general" and "team-random") will be automatically grouped
+4. Enjoy a cleaner, more organized Slack sidebar
+
+⚠️ Note:
+This extension is not affiliated with Slack. It simply enhances the visual organization of channels in your Slack sidebar.
+
+🔒 Privacy:
+- No data collection
+- No tracking
+- No authentication required
+- Only requires access to app.slack.com to organize channels
+
+💻 The source code is also available, and you can build and install it yourself.
+For more details, please visit:
 https://github.com/yamadashy/slack-channels-grouping

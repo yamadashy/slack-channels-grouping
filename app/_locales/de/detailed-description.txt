@@ -1,10 +1,27 @@
-Diese Erweiterung gruppiert Slack-Kanäle nach Präfixen, wodurch es einfacher wird, Kanäle visuell zu finden.
-Es unterstützt sowohl Bindestriche (-) als auch Unterstriche (_), sodass Sie Kanäle mit Namen wie folgt gruppieren können:
-• präfix-name
-• präfix_name
+Diese Erweiterung gruppiert Slack-Kanäle automatisch nach ihren Präfixen, wodurch es einfacher wird, Ihren Arbeitsbereich visuell zu organisieren und zu navigieren.
 
-Es werden keine Informationen von Slack oder anderen Daten an Entwickler oder Dritte übermittelt oder veröffentlicht.
+🔍 Hauptfunktionen:
+- Gruppiert Kanäle mit demselben Präfix automatisch
+- Unterstützt sowohl Bindestriche (-) als auch Unterstriche (_)
+- Organisiert Kanäle visuell in der Slack-Seitenleiste
+- Funktioniert in allen Slack-Arbeitsbereichen
+- Keine Konfiguration erforderlich
 
-Der Quellcode ist ebenfalls verfügbar, sodass Sie ihn selbst erstellen und installieren können.
+🚀 Verwendung:
+1. Installieren Sie die Erweiterung
+2. Öffnen Sie Slack in Ihrem Browser
+3. Kanäle mit demselben Präfix (wie "team-general" und "team-random") werden automatisch gruppiert
+4. Genießen Sie eine übersichtlichere, besser organisierte Slack-Seitenleiste
+
+⚠️ Hinweis:
+Diese Erweiterung ist nicht mit Slack verbunden. Sie verbessert lediglich die visuelle Organisation der Kanäle in Ihrer Slack-Seitenleiste.
+
+🔒 Datenschutz:
+- Keine Datenerfassung
+- Kein Tracking
+- Keine Authentifizierung erforderlich
+- Benötigt nur Zugriff auf app.slack.com, um Kanäle zu organisieren
+
+💻 Der Quellcode ist ebenfalls verfügbar, sodass Sie ihn selbst erstellen und installieren können.
 Weitere Informationen finden Sie unter:
 https://github.com/yamadashy/slack-channels-grouping
