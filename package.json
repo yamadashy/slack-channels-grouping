@@ -103,7 +103,7 @@
     "quoteProps": "consistent"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=23.6.0",
     "yarn": ">=4.9.1"
   },
   "packageManager": "yarn@4.9.1"
