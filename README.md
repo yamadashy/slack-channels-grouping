@@ -35,32 +35,32 @@ Grouping slack channels.
 
 ### Setup
 ```
-$ yarn
+$ npm install
 ```
 
 ### Watch and build
 ```
-yarn dev chrome
-yarn dev firefox
-yarn dev opera
-yarn dev edge
-yarn dev safari
+npm run dev chrome
+npm run dev firefox
+npm run dev opera
+npm run dev edge
+npm run dev safari
 ```
 
 ### Build extension
 ```
-yarn build chrome
-yarn build firefox
-yarn build opera
-yarn build edge
-yarn build safari
+npm run build chrome
+npm run build firefox
+npm run build opera
+npm run build edge
+npm run build safari
 ```
 
 ### Lint codes
 Lint
 ```
 # eslint, tsc --noEmit
-yarn lint
+npm run lint
 ```
 
 ### Generate font file for Box-drawing character
