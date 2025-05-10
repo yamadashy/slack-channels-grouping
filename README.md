@@ -31,7 +31,7 @@ Grouping slack channels.
 - `zh_TW` Chinese - Traditional
 
 ## Development
-- Node.js >= v23.6.0
+- Node.js >= v24.0.1
 
 ### Setup
 ```
