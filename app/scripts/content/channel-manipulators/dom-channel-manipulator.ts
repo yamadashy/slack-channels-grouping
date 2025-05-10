@@ -1,3 +1,4 @@
+import $ from 'jquery/dist/jquery.slim';
 import {
   DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE,
   DATA_KEY_CHANNEL_NAME,
@@ -7,13 +8,12 @@ import {
   SELECTOR_CHANNEL_ITEM_NAME_SELECTOR,
   SELECTOR_CHANNEL_LIST_ITEMS,
 } from '../dom-constants';
-import $ from 'jquery/dist/jquery.slim';
 import {
-  ChannelItemContext,
+  type ChannelItemContext,
   ChannelItemContextGroupType,
-  ChannelItemType,
-  ChannelManipulator,
-  GroupedChannelItemContext,
+  type ChannelItemType,
+  type ChannelManipulator,
+  type GroupedChannelItemContext,
 } from './channel-manipulator';
 
 export class DomChannelManipulator implements ChannelManipulator {
@@ -111,9 +111,7 @@ export class DomChannelManipulator implements ChannelManipulator {
             $('<span>')
               .addClass('scg scg-ch-prefix')
               .text(prefix ?? ''),
-            $('<span>')
-              .addClass('scg scg-ch-separator ' + separatorPseudoClass)
-              .text(separator),
+            $('<span>').addClass(`scg scg-ch-separator ${separatorPseudoClass}`).text(separator),
             $('<span>')
               .addClass('scg scg-ch-name')
               .text(context.name.replace(/(^.+?)[-_](.*)/, '$2')),

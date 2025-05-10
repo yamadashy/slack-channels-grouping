@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build",
-    "lint": "eslint ./app ./tests --max-warnings 0 --cache --fix && tsc --noEmit",
+    "build-all": "npm run build chrome && npm run build firefox && npm run build edge",
+    "lint": "npm run lint-biome && npm run lint-secretlint",
+    "lint-biome": "biome check --write",
+    "lint-secretlint": "secretlint \"**/*\" --secretlintignore .gitignore",
     "test": "vitest --dom",
     "supported-browsers": "npx browserslist",
     "archive": "git archive HEAD -o storage/source.zip",
@@ -44,31 +47,20 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/preset-env": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@eslint/js": "^9.26.0",
+    "@biomejs/biome": "^1.9.4",
+    "@secretlint/secretlint-rule-preset-recommend": "^9.3.2",
     "@types/babel__core": "^7.20.5",
     "@types/babel__preset-env": "^7.10.0",
     "@types/chrome": "^0.0.319",
     "@types/core-js": "2.5.8",
-    "@types/eslint": "^9.6.1",
-    "@types/eslint-config-prettier": "^6.11.3",
-    "@types/eslint-plugin-prettier": "^3.1.3",
-    "@types/eslint__js": "~8.42.3",
     "@types/jquery": "^3.5.32",
-    "@types/prettier": "^3.0.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
-    "@typescript-eslint/eslint-plugin": "^8.31.1",
-    "@typescript-eslint/parser": "^8.31.1",
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.0.0",
-    "eslint": "^9.26.0",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-formatter-friendly": "^7.0.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.3.1",
     "globals": "^16.0.0",
     "happy-dom": "^17.4.6",
-    "prettier": "^3.5.3",
     "renovate": "^40.3.4",
+    "secretlint": "^9.3.2",
     "typescript": "^5.8.3",
     "vitest": "^3.1.2",
     "webpack-bundle-analyzer": "^4.10.2"
@@ -91,15 +83,6 @@
   "browserslist": [
     "last 2 versions, not dead, > 0.2%"
   ],
-  "prettier": {
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true,
-    "printWidth": 120,
-    "bracketSpacing": true,
-    "trailingComma": "all",
-    "quoteProps": "consistent"
-  },
   "engines": {
     "node": ">=23.6.0"
   }

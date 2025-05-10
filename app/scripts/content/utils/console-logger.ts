@@ -13,6 +13,6 @@ export class ConsoleLogger {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   labeledLog(...values: any[]): void {
-    this.logger.debug('%c' + this.label, 'background: #67b083; color: #000; padding: 0.2em 0.5em', ...values);
+    this.logger.debug(`%c${this.label}`, 'background: #67b083; color: #000; padding: 0.2em 0.5em', ...values);
   }
 }
