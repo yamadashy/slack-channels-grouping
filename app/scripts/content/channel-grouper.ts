@@ -1,12 +1,12 @@
 // modules
 import 'requestidlecallback-polyfill';
-import { logger } from './logger';
 import {
-  ChannelItemContext,
+  type ChannelItemContext,
   ChannelItemContextGroupType,
-  ChannelManipulator,
-  GroupedChannelItemContext,
+  type ChannelManipulator,
+  type GroupedChannelItemContext,
 } from './channel-manipulators/channel-manipulator';
+import { logger } from './logger';
 
 // constants
 const GROUPING_IDLE_CALLBACK_TIMEOUT = 3 * 1000;
@@ -51,7 +51,7 @@ export default class ChannelGrouper {
   public grouping(): GroupedChannelItemContext[] | null {
     logger.labeledLog('Grouping all by prefix');
 
-    let channelItemContexts = this.adapter.getChannelItemContexts();
+    const channelItemContexts = this.adapter.getChannelItemContexts();
     if (!channelItemContexts) {
       return null;
     }
@@ -68,7 +68,7 @@ export default class ChannelGrouper {
   }
 
   private applyGroupingToContexts(channelItemContexts: ChannelItemContext[]): GroupedChannelItemContext[] {
-    let prefixeMap = new Map<number, string | null>();
+    const prefixeMap = new Map<number, string | null>();
 
     // Process for root
     // If next channel name is same as prefix, rename it like 'prefix-/'

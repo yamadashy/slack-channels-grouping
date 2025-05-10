@@ -1,10 +1,10 @@
-import ChannelObserver from './content/channel-observer';
 import ChannelGrouper from './content/channel-grouper';
-import { waitElementRender } from './content/utils/wait-element-render';
+import { DomChannelManipulator } from './content/channel-manipulators/dom-channel-manipulator';
+import ChannelObserver from './content/channel-observer';
 import * as domConstants from './content/dom-constants';
 import { logger } from './content/logger';
 import { isAlreadyRunningExtension } from './content/utils/extension-running-checker';
-import { DomChannelManipulator } from './content/channel-manipulators/dom-channel-manipulator';
+import { waitElementRender } from './content/utils/wait-element-render';
 
 const RUNNING_CHECK_IDENTIFIER = 'slack-channels-grouping';
 const WAIT_RENDER_CHANNEL_LIST_TIMEOUT = 1000 * 60;

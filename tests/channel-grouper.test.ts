@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import ChannelGrouper from '../app/scripts/content/channel-grouper';
 import {
-  ChannelItemContext,
+  type ChannelItemContext,
   ChannelItemContextGroupType,
-  ChannelManipulator,
-  GroupedChannelItemContext,
+  type ChannelManipulator,
+  type GroupedChannelItemContext,
 } from '../app/scripts/content/channel-manipulators/channel-manipulator';
 
 class MockChannelManipulator implements ChannelManipulator {
@@ -162,8 +162,8 @@ describe('ChannelGrouper test with multiple scenarios', () => {
     {
       name: 'should handle very long channel names',
       channels: [
-        { index: 0, name: 'very-long-prefix-'.repeat(10) + '1', channelItemType: 'channel' },
-        { index: 1, name: 'very-long-prefix-'.repeat(10) + '2', channelItemType: 'channel' },
+        { index: 0, name: `${'very-long-prefix-'.repeat(10)}1`, channelItemType: 'channel' },
+        { index: 1, name: `${'very-long-prefix-'.repeat(10)}2`, channelItemType: 'channel' },
       ],
       expected: [
         { prefix: 'very', groupType: ChannelItemContextGroupType.Parent },
