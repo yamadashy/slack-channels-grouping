@@ -12,8 +12,7 @@
     "lint-secretlint": "secretlint \"**/*\" --secretlintignore .gitignore",
     "test": "vitest --dom",
     "supported-browsers": "npx browserslist",
-    "archive": "git archive HEAD -o storage/source.zip",
-    "renovate-validate": "renovate-config-validator"
+    "archive": "git archive HEAD -o storage/source.zip"
   },
   "repository": {
     "type": "git",
@@ -59,7 +58,6 @@
     "babel-loader": "^10.0.0",
     "globals": "^16.1.0",
     "happy-dom": "^17.4.6",
-    "renovate": "^40.11.2",
     "secretlint": "^9.3.2",
     "typescript": "^5.8.3",
     "vitest": "^3.1.3",
