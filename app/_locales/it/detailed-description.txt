@@ -1,10 +1,22 @@
 Questa estensione raggruppa i canali Slack per prefisso, rendendo più facile trovare visivamente i canali.
-Supporta sia i trattini (-) che i trattini bassi (_), consentendo di raggruppare i canali con nomi come:
-• prefisso-nome
-• prefisso_nome
 
-Nessuna informazione da Slack o altri dati viene trasmessa o divulgata agli sviluppatori o a terzi.
+🛠️ Funzionalità:
+- Raggruppa automaticamente i canali con prefissi comuni
+- Supporta sia i trattini (-) che i trattini bassi (_)
+- Funziona con nomi di canali come:
+  • prefisso-nome
+  • prefisso_nome
 
-Il codice sorgente è disponibile, in modo da poterlo costruire e installare da soli.
+🚀 Come usare:
+- Basta installare l'estensione
+- Apri Slack nel tuo browser
+- I canali verranno automaticamente raggruppati per prefisso
+
+🔒 Privacy:
+- Nessuna raccolta di dati
+- Nessun tracciamento
+- Nessuna informazione da Slack viene trasmessa agli sviluppatori o a terzi
+
+💻 Il codice sorgente è disponibile, in modo da poterlo costruire e installare da soli.
 Per ulteriori informazioni, visitare:
 https://github.com/yamadashy/slack-channels-grouping
