@@ -8,10 +8,10 @@
     "build": "webextension-toolbox build",
     "lint": "eslint ./app ./tests --max-warnings 0 --cache --fix && tsc --noEmit",
     "test": "vitest --dom",
-    "supported-browsers": "yarn browserslist",
+    "supported-browsers": "npx browserslist",
     "archive": "git archive HEAD -o storage/source.zip",
     "renovate-validate": "renovate-config-validator",
-    "preinstall": "typesync || :"
+    "preinstall": "npx typesync || :"
   },
   "repository": {
     "type": "git",
@@ -103,8 +103,6 @@
     "quoteProps": "consistent"
   },
   "engines": {
-    "node": ">=18",
-    "yarn": ">=4.9.1"
-  },
-  "packageManager": "yarn@4.9.1"
+    "node": ">=18"
+  }
 }
