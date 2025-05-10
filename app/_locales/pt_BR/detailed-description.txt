@@ -1,10 +1,22 @@
 Esta extensão agrupa os canais do Slack por prefixo, tornando mais fácil encontrar os canais visualmente.
-Ela suporta tanto hifens (-) quanto sublinhados (_), permitindo que você agrupe canais com nomes como:
-• prefixo-nome
-• prefixo_nome
 
-Nenhuma informação do Slack ou outros dados são transmitidos ou divulgados a desenvolvedores ou terceiros.
+🛠️ Recursos:
+- Agrupa automaticamente canais com prefixos comuns
+- Suporta tanto hifens (-) quanto sublinhados (_)
+- Funciona com nomes de canais como:
+  • prefixo-nome
+  • prefixo_nome
 
-O código-fonte também está disponível, para que você possa compilar e instalar por conta própria.
+🚀 Como usar:
+- Simplesmente instale a extensão
+- Abra o Slack no seu navegador
+- Os canais serão automaticamente agrupados por prefixo
+
+🔒 Privacidade:
+- Sem coleta de dados
+- Sem rastreamento
+- Nenhuma informação do Slack é transmitida a desenvolvedores ou terceiros
+
+💻 O código-fonte também está disponível, para que você possa compilar e instalar por conta própria.
 Para mais informações, por favor, visite:
 https://github.com/yamadashy/slack-channels-grouping
