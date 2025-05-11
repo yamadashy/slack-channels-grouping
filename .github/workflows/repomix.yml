@@ -1,0 +1,28 @@
+name: Pack repository with Repomix
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  pack-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pack repository with Repomix
+        uses: yamadashy/repomix/.github/actions/repomix@main
+        with:
+          output: repomix-output.xml
+          compress: true
+
+      - name: Upload Repomix output
+        uses: actions/upload-artifact@v4
+        with:
+          name: repomix-output
+          path: repomix-output.xml
+          retention-days: 30
