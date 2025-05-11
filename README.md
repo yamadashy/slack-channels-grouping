@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/images/icon-128.png" alt="Slack Channels Grouping" width="200" height="auto">
+  <img src="app/images/icon.png" alt="Slack Channels Grouping" width="200" height="auto">
   <h2>Slack Channels Grouping</h2>
   <p>
     <b>A browser extension that organizes Slack channels into visual groups based on prefixes</b>
