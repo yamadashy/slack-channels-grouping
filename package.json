@@ -60,7 +60,7 @@
     "happy-dom": "^18.0.1",
     "secretlint": "^9.3.4",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.3",
+    "vitest": "^3.2.4",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "babel": {
