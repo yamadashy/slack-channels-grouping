@@ -3,6 +3,12 @@ import { EventEmitter } from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
+// constants
+const URL_CHANGE_REOBSERVE_DELAY_MS = 100;
+const NAVIGATION_CHANGE_REOBSERVE_DELAY_MS = 300;
+const DEBOUNCE_UPDATE_DELAY_MS = 100;
+const PERIODIC_CHECK_INTERVAL_MS = 3000;
+
 /**
  * Channel Observing Class
  * @extends EventEmitter
@@ -48,7 +54,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       logger.labeledLog('Emit update event');
       this.emit('update');
       this.debounceTimeout = null;
-    }, 100);
+    }, DEBOUNCE_UPDATE_DELAY_MS);
   }
 
   async startObserve(): Promise<void> {
@@ -151,7 +157,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
           this.emitUpdate();
           this.disableObserver();
           this.enableObserver();
-        }, 100);
+        }, URL_CHANGE_REOBSERVE_DELAY_MS);
       }
     });
 
@@ -165,7 +171,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     if (sidebarNav) {
       this.navObserver = new MutationObserver((mutations) => {
         let shouldUpdate = false;
-        mutations.forEach((mutation) => {
+        for (const mutation of mutations) {
           // Check for changes in navigation state
           if (mutation.type === 'attributes' && 
               (mutation.attributeName === 'class' || mutation.attributeName === 'aria-selected')) {
@@ -183,7 +189,10 @@ export default class ChannelObserver extends EventEmitter<'update'> {
               shouldUpdate = true;
             }
           }
-        });
+          if (shouldUpdate) {
+            break;
+          }
+        }
         
         if (shouldUpdate) {
           logger.labeledLog('Navigation state changed, re-applying grouping');
@@ -191,7 +200,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
             this.emitUpdate();
             this.disableObserver();
             this.enableObserver();
-          }, 300);
+          }, NAVIGATION_CHANGE_REOBSERVE_DELAY_MS);
         }
       });
 
@@ -218,7 +227,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
         logger.labeledLog('Periodic check: grouping missing, re-applying');
         this.emitUpdate();
       }
-    }, 3000);
+    }, PERIODIC_CHECK_INTERVAL_MS);
   }
 
   /**

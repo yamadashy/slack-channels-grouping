@@ -110,8 +110,10 @@ export class DomChannelManipulator implements ChannelManipulator {
     $channelItems.each((index: number, channelItem: HTMLElement) => {
       const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
       if ($channelName.hasClass('scg')) {
-        const originalName = $channelName.data(DATA_KEY_CHANNEL_NAME) || $channelName.text().trim();
-        this.resetChannelName($channelName, originalName);
+        const originalName = $channelName.data(DATA_KEY_CHANNEL_NAME);
+        if (originalName) {
+          this.resetChannelName($channelName, originalName as string);
+        }
       }
     });
   }
