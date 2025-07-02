@@ -10,6 +10,10 @@ import { logger } from './logger';
 export default class ChannelObserver extends EventEmitter<'update'> {
   private isObserving: boolean;
   private channelListObserver: MutationObserver;
+  private urlObserver: MutationObserver | null = null;
+  private navObserver: MutationObserver | null = null;
+  private periodicCheckInterval: NodeJS.Timeout | null = null;
+  private debounceTimeout: NodeJS.Timeout | null = null;
 
   constructor() {
     super();
@@ -35,8 +39,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected emitUpdate(): void {
-    logger.labeledLog('Emit update event');
-    this.emit('update');
+    // Debounce rapid updates
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+    
+    this.debounceTimeout = setTimeout(() => {
+      logger.labeledLog('Emit update event');
+      this.emit('update');
+      this.debounceTimeout = null;
+    }, 100);
   }
 
   async startObserve(): Promise<void> {
@@ -63,6 +75,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
 
     this.observeWorkspace();
     this.observeWorkspaceWrapperChildren();
+    this.observeNavigationChanges();
   }
 
   /**
@@ -119,6 +132,124 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
       subtree: false,
     });
+  }
+
+  /**
+   * Observe navigation changes to detect tab switches (Home/DMs/etc)
+   */
+  protected observeNavigationChanges(): void {
+    // Clean up existing observers
+    this.cleanupNavigationObservers();
+
+    // Observe URL changes for SPA navigation
+    let currentUrl = window.location.href;
+    this.urlObserver = new MutationObserver(() => {
+      if (window.location.href !== currentUrl) {
+        currentUrl = window.location.href;
+        logger.labeledLog('URL changed, re-applying grouping');
+        setTimeout(() => {
+          this.emitUpdate();
+          this.disableObserver();
+          this.enableObserver();
+        }, 100);
+      }
+    });
+
+    this.urlObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Observe sidebar navigation changes
+    const sidebarNav = document.querySelector(domConstants.SELECTOR_SIDEBAR);
+    if (sidebarNav) {
+      this.navObserver = new MutationObserver((mutations) => {
+        let shouldUpdate = false;
+        mutations.forEach((mutation) => {
+          // Check for changes in navigation state
+          if (mutation.type === 'attributes' && 
+              (mutation.attributeName === 'class' || mutation.attributeName === 'aria-selected')) {
+            shouldUpdate = true;
+          }
+          // Check for structural changes that might indicate tab switch
+          if (mutation.type === 'childList') {
+            // Check if channel list structure changed (workspace switch)
+            const hasChannelListChanges = Array.from(mutation.addedNodes).some(node => 
+              node instanceof HTMLElement && 
+              (node.matches('[role="listitem"]') || node.matches('[role="treeitem"]') || 
+               node.querySelector('[role="listitem"], [role="treeitem"]'))
+            );
+            if (hasChannelListChanges || mutation.removedNodes.length > 0) {
+              shouldUpdate = true;
+            }
+          }
+        });
+        
+        if (shouldUpdate) {
+          logger.labeledLog('Navigation state changed, re-applying grouping');
+          setTimeout(() => {
+            this.emitUpdate();
+            this.disableObserver();
+            this.enableObserver();
+          }, 300);
+        }
+      });
+
+      this.navObserver.observe(sidebarNav, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+        attributeFilter: ['class', 'aria-selected', 'data-qa', 'aria-label']
+      });
+    }
+
+    // Periodic check as fallback
+    this.periodicCheckInterval = setInterval(() => {
+      const channelListItems = document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
+      const hasGroupedItems = Array.from(channelListItems).some(item => 
+        item.querySelector('.scg-ch-separator')
+      );
+      const shouldHaveGrouping = Array.from(channelListItems).some(item => {
+        const nameElement = item.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+        return nameElement && nameElement.textContent && nameElement.textContent.includes('-');
+      });
+      
+      if (shouldHaveGrouping && !hasGroupedItems) {
+        logger.labeledLog('Periodic check: grouping missing, re-applying');
+        this.emitUpdate();
+      }
+    }, 3000);
+  }
+
+  /**
+   * Clean up navigation observers to prevent memory leaks
+   */
+  protected cleanupNavigationObservers(): void {
+    if (this.urlObserver) {
+      this.urlObserver.disconnect();
+      this.urlObserver = null;
+    }
+    if (this.navObserver) {
+      this.navObserver.disconnect();
+      this.navObserver = null;
+    }
+    if (this.periodicCheckInterval) {
+      clearInterval(this.periodicCheckInterval);
+      this.periodicCheckInterval = null;
+    }
+  }
+
+  /**
+   * Cleanup method to be called when observer is no longer needed
+   */
+  public cleanup(): void {
+    this.disableObserver();
+    this.cleanupNavigationObservers();
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+      this.debounceTimeout = null;
+    }
+    this.removeAllListeners();
   }
 
   protected enableObserver(): void {

@@ -58,6 +58,9 @@ export class DomChannelManipulator implements ChannelManipulator {
   public updateChannelItems(channelItemContexts: GroupedChannelItemContext[]): void {
     const $channelItems = $(SELECTOR_CHANNEL_LIST_ITEMS);
 
+    // First, clean up all existing grouping elements
+    this.cleanupAllGroupingElements($channelItems);
+
     $channelItems.each((index: number, channelItem: HTMLElement) => {
       const context = channelItemContexts[index];
       const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
@@ -83,7 +86,7 @@ export class DomChannelManipulator implements ChannelManipulator {
       }
 
       if (context.groupType === ChannelItemContextGroupType.Alone) {
-        $channelName.removeClass('scg-ch-parent scg-ch-child').text($channelName.data(DATA_KEY_RAW_CHANNEL_NAME));
+        this.resetChannelName($channelName, context.name);
       } else {
         let separatorPseudoClass: string;
 
@@ -98,25 +101,47 @@ export class DomChannelManipulator implements ChannelManipulator {
           separatorPseudoClass = 'scg-ch-separator-pseudo-both';
         }
 
-        // Skip no changed
-        if (separator === $channelName.find('.scg-ch-separator').text()) {
-          return;
-        }
-
-        $channelName
-          .removeClass('scg scg-ch-parent scg-ch-child')
-          .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')
-          .empty()
-          .append([
-            $('<span>')
-              .addClass('scg scg-ch-prefix')
-              .text(prefix ?? ''),
-            $('<span>').addClass(`scg scg-ch-separator ${separatorPseudoClass}`).text(separator),
-            $('<span>')
-              .addClass('scg scg-ch-name')
-              .text(context.name.replace(/(^.+?)[-_](.*)/, '$2')),
-          ]);
+        this.applyGroupingToChannelName($channelName, context, separator, separatorPseudoClass, isParent);
       }
     });
+  }
+
+  private cleanupAllGroupingElements($channelItems: JQuery<HTMLElement>): void {
+    $channelItems.each((index: number, channelItem: HTMLElement) => {
+      const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+      if ($channelName.hasClass('scg')) {
+        const originalName = $channelName.data(DATA_KEY_CHANNEL_NAME) || $channelName.text().trim();
+        this.resetChannelName($channelName, originalName);
+      }
+    });
+  }
+
+  private resetChannelName($channelName: JQuery<HTMLElement>, originalName: string): void {
+    $channelName
+      .removeClass('scg scg-ch-parent scg-ch-child')
+      .empty()
+      .text(originalName);
+  }
+
+  private applyGroupingToChannelName(
+    $channelName: JQuery<HTMLElement>,
+    context: GroupedChannelItemContext,
+    separator: string,
+    separatorPseudoClass: string,
+    isParent: boolean
+  ): void {
+    $channelName
+      .removeClass('scg scg-ch-parent scg-ch-child')
+      .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')
+      .empty()
+      .append([
+        $('<span>')
+          .addClass('scg scg-ch-prefix')
+          .text(context.prefix ?? ''),
+        $('<span>').addClass(`scg scg-ch-separator ${separatorPseudoClass}`).text(separator),
+        $('<span>')
+          .addClass('scg scg-ch-name')
+          .text(context.name.replace(/(^.+?)[-_](.*)/, '$2')),
+      ]);
   }
 }
