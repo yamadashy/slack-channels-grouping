@@ -3,6 +3,9 @@ import { EventEmitter } from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
+// constants
+const DEBOUNCE_UPDATE_DELAY_MS = 100;
+
 /**
  * Channel Observing Class
  * @extends EventEmitter
@@ -10,6 +13,7 @@ import { logger } from './logger';
 export default class ChannelObserver extends EventEmitter<'update'> {
   private isObserving: boolean;
   private channelListObserver: MutationObserver;
+  private debounceTimeout: NodeJS.Timeout | null = null;
 
   constructor() {
     super();
@@ -35,8 +39,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected emitUpdate(): void {
-    logger.labeledLog('Emit update event');
-    this.emit('update');
+    // Debounce rapid updates
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+    
+    this.debounceTimeout = setTimeout(() => {
+      logger.labeledLog('Emit update event');
+      this.emit('update');
+      this.debounceTimeout = null;
+    }, DEBOUNCE_UPDATE_DELAY_MS);
   }
 
   async startObserve(): Promise<void> {
@@ -63,6 +75,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
 
     this.observeWorkspace();
     this.observeWorkspaceWrapperChildren();
+    this.observeTabSwitching();
   }
 
   /**
@@ -119,6 +132,46 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
       subtree: false,
     });
+  }
+
+
+
+  /**
+   * Observe tab switching to re-apply grouping when returning to Home
+   */
+  protected observeTabSwitching(): void {
+    // Simple periodic check for missing grouping
+    setInterval(() => {
+      const channelListItems = document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
+      if (channelListItems.length > 0) {
+        // Check if any channels should be grouped but aren't
+        const hasGroupableChannels = Array.from(channelListItems).some(item => {
+          const nameElement = item.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+          return nameElement && nameElement.textContent && nameElement.textContent.includes('-');
+        });
+        
+        const hasGrouping = Array.from(channelListItems).some(item => 
+          item.querySelector('.scg-ch-separator')
+        );
+        
+        if (hasGroupableChannels && !hasGrouping) {
+          logger.labeledLog('Periodic check: grouping missing, re-applying');
+          this.emitUpdate();
+        }
+      }
+    }, 2000);
+  }
+
+  /**
+   * Cleanup method to be called when observer is no longer needed
+   */
+  public cleanup(): void {
+    this.disableObserver();
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+      this.debounceTimeout = null;
+    }
+    this.removeAllListeners();
   }
 
   protected enableObserver(): void {

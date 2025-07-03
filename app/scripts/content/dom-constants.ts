@@ -7,6 +7,7 @@ export const SELECTOR_WORKSPACE = '.p-client_workspace';
 export const SELECTOR_CHANNEL_LIST_ITEMS = `${SELECTOR_CHANNEL_LIST} [role=listitem], ${SELECTOR_CHANNEL_LIST} [role=treeitem]`;
 export const SELECTOR_CHANNEL_ITEM_CONTENTS_CONTAINER = '.p-channel_sidebar__channel';
 export const SELECTOR_CHANNEL_ITEM_NAME_SELECTOR = '.p-channel_sidebar__name';
+export const SELECTOR_SIDEBAR = '.p-channel_sidebar';
 
 // data attr key
 export const DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE = 'data-qa-channel-sidebar-channel-type';
