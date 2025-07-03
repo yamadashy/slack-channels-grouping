@@ -4,10 +4,7 @@ import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
 // constants
-const URL_CHANGE_REOBSERVE_DELAY_MS = 100;
-const NAVIGATION_CHANGE_REOBSERVE_DELAY_MS = 300;
 const DEBOUNCE_UPDATE_DELAY_MS = 100;
-const PERIODIC_CHECK_INTERVAL_MS = 3000;
 
 /**
  * Channel Observing Class
@@ -16,9 +13,6 @@ const PERIODIC_CHECK_INTERVAL_MS = 3000;
 export default class ChannelObserver extends EventEmitter<'update'> {
   private isObserving: boolean;
   private channelListObserver: MutationObserver;
-  private urlObserver: MutationObserver | null = null;
-  private navObserver: MutationObserver | null = null;
-  private periodicCheckInterval: NodeJS.Timeout | null = null;
   private debounceTimeout: NodeJS.Timeout | null = null;
 
   constructor() {
@@ -81,7 +75,7 @@ export default class ChannelObserver extends EventEmitter<'update'> {
 
     this.observeWorkspace();
     this.observeWorkspaceWrapperChildren();
-    this.observeNavigationChanges();
+    this.observeTabSwitching();
   }
 
   /**
@@ -140,112 +134,32 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     });
   }
 
+
+
   /**
-   * Observe navigation changes to detect tab switches (Home/DMs/etc)
+   * Observe tab switching to re-apply grouping when returning to Home
    */
-  protected observeNavigationChanges(): void {
-    // Clean up existing observers
-    this.cleanupNavigationObservers();
-
-    // Observe URL changes for SPA navigation
-    let currentUrl = window.location.href;
-    this.urlObserver = new MutationObserver(() => {
-      if (window.location.href !== currentUrl) {
-        currentUrl = window.location.href;
-        logger.labeledLog('URL changed, re-applying grouping');
-        setTimeout(() => {
-          this.emitUpdate();
-          this.disableObserver();
-          this.enableObserver();
-        }, URL_CHANGE_REOBSERVE_DELAY_MS);
-      }
-    });
-
-    this.urlObserver.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    // Observe sidebar navigation changes
-    const sidebarNav = document.querySelector(domConstants.SELECTOR_SIDEBAR);
-    if (sidebarNav) {
-      this.navObserver = new MutationObserver((mutations) => {
-        let shouldUpdate = false;
-        for (const mutation of mutations) {
-          // Check for changes in navigation state
-          if (mutation.type === 'attributes' && 
-              (mutation.attributeName === 'class' || mutation.attributeName === 'aria-selected')) {
-            shouldUpdate = true;
-          }
-          // Check for structural changes that might indicate tab switch
-          if (mutation.type === 'childList') {
-            // Check if channel list structure changed (workspace switch)
-            const hasChannelListChanges = Array.from(mutation.addedNodes).some(node => 
-              node instanceof HTMLElement && 
-              (node.matches('[role="listitem"]') || node.matches('[role="treeitem"]') || 
-               node.querySelector('[role="listitem"], [role="treeitem"]'))
-            );
-            if (hasChannelListChanges || mutation.removedNodes.length > 0) {
-              shouldUpdate = true;
-            }
-          }
-          if (shouldUpdate) {
-            break;
-          }
-        }
-        
-        if (shouldUpdate) {
-          logger.labeledLog('Navigation state changed, re-applying grouping');
-          setTimeout(() => {
-            this.emitUpdate();
-            this.disableObserver();
-            this.enableObserver();
-          }, NAVIGATION_CHANGE_REOBSERVE_DELAY_MS);
-        }
-      });
-
-      this.navObserver.observe(sidebarNav, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-        attributeFilter: ['class', 'aria-selected', 'data-qa', 'aria-label']
-      });
-    }
-
-    // Periodic check as fallback
-    this.periodicCheckInterval = setInterval(() => {
+  protected observeTabSwitching(): void {
+    // Simple periodic check for missing grouping
+    setInterval(() => {
       const channelListItems = document.querySelectorAll(domConstants.SELECTOR_CHANNEL_LIST_ITEMS);
-      const hasGroupedItems = Array.from(channelListItems).some(item => 
-        item.querySelector('.scg-ch-separator')
-      );
-      const shouldHaveGrouping = Array.from(channelListItems).some(item => {
-        const nameElement = item.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-        return nameElement && nameElement.textContent && nameElement.textContent.includes('-');
-      });
-      
-      if (shouldHaveGrouping && !hasGroupedItems) {
-        logger.labeledLog('Periodic check: grouping missing, re-applying');
-        this.emitUpdate();
+      if (channelListItems.length > 0) {
+        // Check if any channels should be grouped but aren't
+        const hasGroupableChannels = Array.from(channelListItems).some(item => {
+          const nameElement = item.querySelector(domConstants.SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+          return nameElement && nameElement.textContent && nameElement.textContent.includes('-');
+        });
+        
+        const hasGrouping = Array.from(channelListItems).some(item => 
+          item.querySelector('.scg-ch-separator')
+        );
+        
+        if (hasGroupableChannels && !hasGrouping) {
+          logger.labeledLog('Periodic check: grouping missing, re-applying');
+          this.emitUpdate();
+        }
       }
-    }, PERIODIC_CHECK_INTERVAL_MS);
-  }
-
-  /**
-   * Clean up navigation observers to prevent memory leaks
-   */
-  protected cleanupNavigationObservers(): void {
-    if (this.urlObserver) {
-      this.urlObserver.disconnect();
-      this.urlObserver = null;
-    }
-    if (this.navObserver) {
-      this.navObserver.disconnect();
-      this.navObserver = null;
-    }
-    if (this.periodicCheckInterval) {
-      clearInterval(this.periodicCheckInterval);
-      this.periodicCheckInterval = null;
-    }
+    }, 2000);
   }
 
   /**
@@ -253,7 +167,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
    */
   public cleanup(): void {
     this.disableObserver();
-    this.cleanupNavigationObservers();
     if (this.debounceTimeout) {
       clearTimeout(this.debounceTimeout);
       this.debounceTimeout = null;

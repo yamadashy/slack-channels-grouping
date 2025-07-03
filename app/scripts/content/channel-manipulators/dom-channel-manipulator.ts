@@ -58,51 +58,54 @@ export class DomChannelManipulator implements ChannelManipulator {
   public updateChannelItems(channelItemContexts: GroupedChannelItemContext[]): void {
     const $channelItems = $(SELECTOR_CHANNEL_LIST_ITEMS);
 
-    // First, clean up all existing grouping elements
-    this.cleanupAllGroupingElements($channelItems);
+    // Use requestAnimationFrame to avoid blocking click events
+    requestAnimationFrame(() => {
+      // First, clean up all existing grouping elements
+      this.cleanupAllGroupingElements($channelItems);
 
-    $channelItems.each((index: number, channelItem: HTMLElement) => {
-      const context = channelItemContexts[index];
-      const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-      const channelItemType = context.channelItemType;
-      const prefix: string | null = context.prefix;
-      const isParent = context.groupType === ChannelItemContextGroupType.Parent;
-      const isLastChild = context.groupType === ChannelItemContextGroupType.LastChild;
-      let separator = '';
+      $channelItems.each((index: number, channelItem: HTMLElement) => {
+        const context = channelItemContexts[index];
+        const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
+        const channelItemType = context.channelItemType;
+        const prefix: string | null = context.prefix;
+        const isParent = context.groupType === ChannelItemContextGroupType.Parent;
+        const isLastChild = context.groupType === ChannelItemContextGroupType.LastChild;
+        let separator = '';
 
-      // Skip direct message
-      if (channelItemType === 'im') {
-        return;
-      }
-
-      // Skip blank item
-      if ($channelName.length === 0) {
-        return;
-      }
-
-      // Skip no prefix
-      if (prefix === null) {
-        return;
-      }
-
-      if (context.groupType === ChannelItemContextGroupType.Alone) {
-        this.resetChannelName($channelName, context.name);
-      } else {
-        let separatorPseudoClass: string;
-
-        if (isParent) {
-          separator = '┬';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-bottom';
-        } else if (isLastChild) {
-          separator = '└';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-top';
-        } else {
-          separator = '├';
-          separatorPseudoClass = 'scg-ch-separator-pseudo-both';
+        // Skip direct message
+        if (channelItemType === 'im') {
+          return;
         }
 
-        this.applyGroupingToChannelName($channelName, context, separator, separatorPseudoClass, isParent);
-      }
+        // Skip blank item
+        if ($channelName.length === 0) {
+          return;
+        }
+
+        // Skip no prefix
+        if (prefix === null) {
+          return;
+        }
+
+        if (context.groupType === ChannelItemContextGroupType.Alone) {
+          this.resetChannelName($channelName, context.name);
+        } else {
+          let separatorPseudoClass: string;
+
+          if (isParent) {
+            separator = '┬';
+            separatorPseudoClass = 'scg-ch-separator-pseudo-bottom';
+          } else if (isLastChild) {
+            separator = '└';
+            separatorPseudoClass = 'scg-ch-separator-pseudo-top';
+          } else {
+            separator = '├';
+            separatorPseudoClass = 'scg-ch-separator-pseudo-both';
+          }
+
+          this.applyGroupingToChannelName($channelName, context, separator, separatorPseudoClass, isParent);
+        }
+      });
     });
   }
 
