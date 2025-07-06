@@ -60,9 +60,6 @@ export class DomChannelManipulator implements ChannelManipulator {
 
     // Use requestAnimationFrame to avoid blocking click events
     requestAnimationFrame(() => {
-      // First, clean up all existing grouping elements
-      this.cleanupAllGroupingElements($channelItems);
-
       $channelItems.each((index: number, channelItem: HTMLElement) => {
         const context = channelItemContexts[index];
         const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
@@ -109,18 +106,6 @@ export class DomChannelManipulator implements ChannelManipulator {
     });
   }
 
-  private cleanupAllGroupingElements($channelItems: JQuery<HTMLElement>): void {
-    $channelItems.each((index: number, channelItem: HTMLElement) => {
-      const $channelName = $(channelItem).find(SELECTOR_CHANNEL_ITEM_NAME_SELECTOR);
-      if ($channelName.hasClass('scg')) {
-        const originalName = $channelName.data(DATA_KEY_CHANNEL_NAME);
-        if (originalName) {
-          this.resetChannelName($channelName, originalName as string);
-        }
-      }
-    });
-  }
-
   private resetChannelName($channelName: JQuery<HTMLElement>, originalName: string): void {
     $channelName.removeClass('scg scg-ch-parent scg-ch-child').empty().text(originalName);
   }
@@ -132,6 +117,11 @@ export class DomChannelManipulator implements ChannelManipulator {
     separatorPseudoClass: string,
     isParent: boolean,
   ): void {
+    // Skip no changed
+    if (separator === $channelName.find('.scg-ch-separator').text()) {
+      return;
+    }
+
     $channelName
       .removeClass('scg scg-ch-parent scg-ch-child')
       .addClass(isParent ? 'scg scg-ch-parent' : 'scg scg-ch-child')

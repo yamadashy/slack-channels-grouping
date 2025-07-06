@@ -138,18 +138,6 @@ export default class ChannelObserver extends EventEmitter<'update'> {
     });
   }
 
-  /**
-   * Cleanup method to be called when observer is no longer needed
-   */
-  public cleanup(): void {
-    this.disableObserver();
-    if (this.debounceTimeout) {
-      clearTimeout(this.debounceTimeout);
-      this.debounceTimeout = null;
-    }
-    this.removeAllListeners();
-  }
-
   protected enableObserver(): void {
     const channelListContainer = document.querySelector(domConstants.SELECTOR_CHANNEL_LIST_CONTAINER);
 
