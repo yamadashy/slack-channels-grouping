@@ -122,10 +122,7 @@ export class DomChannelManipulator implements ChannelManipulator {
   }
 
   private resetChannelName($channelName: JQuery<HTMLElement>, originalName: string): void {
-    $channelName
-      .removeClass('scg scg-ch-parent scg-ch-child')
-      .empty()
-      .text(originalName);
+    $channelName.removeClass('scg scg-ch-parent scg-ch-child').empty().text(originalName);
   }
 
   private applyGroupingToChannelName(
@@ -133,7 +130,7 @@ export class DomChannelManipulator implements ChannelManipulator {
     context: GroupedChannelItemContext,
     separator: string,
     separatorPseudoClass: string,
-    isParent: boolean
+    isParent: boolean,
   ): void {
     $channelName
       .removeClass('scg scg-ch-parent scg-ch-child')
