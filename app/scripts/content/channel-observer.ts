@@ -3,6 +3,9 @@ import { EventEmitter } from 'eventemitter3';
 import * as domConstants from './dom-constants';
 import { logger } from './logger';
 
+// constants
+const DEBOUNCE_UPDATE_DELAY_MS = 100;
+
 /**
  * Channel Observing Class
  * @extends EventEmitter
@@ -10,6 +13,7 @@ import { logger } from './logger';
 export default class ChannelObserver extends EventEmitter<'update'> {
   private isObserving: boolean;
   private channelListObserver: MutationObserver;
+  private debounceTimeout: NodeJS.Timeout | null = null;
 
   constructor() {
     super();
@@ -35,8 +39,16 @@ export default class ChannelObserver extends EventEmitter<'update'> {
   }
 
   protected emitUpdate(): void {
-    logger.labeledLog('Emit update event');
-    this.emit('update');
+    // Debounce rapid updates
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+
+    this.debounceTimeout = setTimeout(() => {
+      logger.labeledLog('Emit update event');
+      this.emit('update');
+      this.debounceTimeout = null;
+    }, DEBOUNCE_UPDATE_DELAY_MS);
   }
 
   async startObserve(): Promise<void> {
@@ -61,63 +73,68 @@ export default class ChannelObserver extends EventEmitter<'update'> {
       }
     });
 
-    this.observeWorkspace();
-    this.observeWorkspaceWrapperChildren();
+    this.setupWorkspaceObservers();
   }
 
   /**
-   * Force re-observe on workspace tab changed
-   * This is backward compatibility
+   * Setup all workspace-related observers
    */
-  protected observeWorkspace(): void {
-    const workspace = document.querySelector(domConstants.SELECTOR_WORKSPACE);
-    const workspaceObserver = new MutationObserver((): void => {
-      logger.labeledLog('Workspace tab changed');
+  protected setupWorkspaceObservers(): void {
+    // Configuration for each observer
+    const observerConfigs = [
+      {
+        selector: domConstants.SELECTOR_WORKSPACE,
+        logMessage: 'Workspace tab changed',
+        elementNotFoundMessage: 'Workspace element not found',
+        observeMessage: 'Observe workspace',
+        options: {
+          attributes: true,
+          attributeFilter: ['aria-label'],
+        },
+      },
+      {
+        selector: domConstants.SELECTOR_WORKSPACE_WRAPPER,
+        logMessage: 'Workspace wrapper children changed',
+        elementNotFoundMessage: 'Workspace wrapper element not found',
+        observeMessage: 'Observe workspace wrapper children',
+        options: {
+          childList: true,
+          subtree: false,
+        },
+      },
+      {
+        selector: domConstants.SELECTOR_WORKSPACE_LAYOUT,
+        logMessage: 'Workspace layout children changed',
+        elementNotFoundMessage: 'Workspace layout element not found',
+        observeMessage: 'Observe workspace layout children',
+        options: {
+          childList: true,
+          subtree: false,
+        },
+      },
+    ];
 
-      this.emitUpdate();
+    // Create observers for each configuration
+    observerConfigs.forEach((config) => {
+      const element = document.querySelector(config.selector);
 
-      // re-observe
-      this.disableObserver();
-      this.enableObserver();
-    });
+      if (!element) {
+        logger.labeledLog(config.elementNotFoundMessage);
+        return;
+      }
 
-    if (!workspace) {
-      logger.labeledLog('Workspace element not found');
-      return;
-    }
+      const observer = new MutationObserver((): void => {
+        logger.labeledLog(config.logMessage);
 
-    logger.labeledLog('Observe workspace');
-    workspaceObserver.observe(workspace, {
-      attributes: true,
-      attributeFilter: ['aria-label'],
-    });
-  }
+        this.emitUpdate();
 
-  /**
-   * Force re-observe on workspace wrapper children changed
-   */
-  protected observeWorkspaceWrapperChildren(): void {
-    const workspaceWrapper = document.querySelector(domConstants.SELECTOR_WORKSPACE_WRAPPER);
-    const workspaceWrapperObserver = new MutationObserver((): void => {
-      logger.labeledLog('Workspace wrapper children changed');
+        // re-observe
+        this.disableObserver();
+        this.enableObserver();
+      });
 
-      this.emitUpdate();
-
-      // re-observe
-      this.disableObserver();
-      this.enableObserver();
-    });
-
-    if (!workspaceWrapper) {
-      logger.labeledLog('Workspace wrapper element not found');
-      return;
-    }
-
-    logger.labeledLog('Observe workspace wrapper children');
-    workspaceWrapperObserver.observe(workspaceWrapper, {
-      childList: true,
-      // NOTE: If set true, cause infinity loop. b/c observe channel name dom change.
-      subtree: false,
+      logger.labeledLog(config.observeMessage);
+      observer.observe(element, config.options);
     });
   }
 
