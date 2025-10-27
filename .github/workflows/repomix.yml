@@ -21,7 +21,7 @@ jobs:
           compress: true
 
       - name: Upload Repomix output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: repomix-output
           path: repomix-output.xml
