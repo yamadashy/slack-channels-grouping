@@ -18,7 +18,9 @@ export default defineConfig({
 
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'How it Works', link: '/how-it-works' },
       { text: 'Install', link: '/#install' },
+      { text: 'Privacy Policy', link: '/privacy-policy' },
     ],
 
     socialLinks: [
