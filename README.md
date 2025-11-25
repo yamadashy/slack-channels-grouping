@@ -4,6 +4,9 @@
   <p>
     <b>A browser extension that organizes Slack channels into visual groups based on prefixes</b>
   </p>
+  <p>
+    <a href="https://slack-channels-grouping.com/">🌐 Website</a>
+  </p>
 </div>
 
 ![](./promo/Screenshot_1280x800.png)
