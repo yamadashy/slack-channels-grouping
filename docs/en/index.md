@@ -20,9 +20,9 @@ features:
   - icon: "📁"
     title: Auto Grouping
     details: Automatically groups channels by their prefix (e.g., dev-, chat-, feed-)
-  - icon: "🌍"
-    title: 14 Languages
-    details: Supports German, Greek, English, Spanish, French, Italian, Japanese, Korean, Dutch, Portuguese, Russian, Chinese and more
+  - icon: "🔄"
+    title: Real-time Updates
+    details: Detects channel creation, renaming, and deletion instantly—no refresh needed
   - icon: "🌐"
     title: Multi-Browser
     details: Available for Chrome, Firefox, Opera, and Edge
@@ -30,128 +30,6 @@ features:
     title: Lightweight
     details: Fast and efficient with minimal impact on Slack performance
 ---
-
-<style>
-.screenshot-section {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-.screenshot-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.screenshot-section img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-.install-section {
-  max-width: 800px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-.install-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.browser-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.browser-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-.browser-link:hover {
-  background: var(--vp-c-brand-soft);
-  transform: translateY(-2px);
-}
-.why-section {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-.why-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.why-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.problem-box, .solution-box {
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: var(--vp-c-bg-soft);
-}
-.problem-box h3, .solution-box h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.2rem;
-}
-.problem-box p, .solution-box p {
-  margin: 0;
-  line-height: 1.7;
-  color: var(--vp-c-text-2);
-}
-.problem-box code, .solution-box code {
-  background: var(--vp-c-bg-mute);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-.highlights-section {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-.highlights-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-}
-.highlight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-}
-.highlight-icon {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-.highlight-text h4 {
-  margin: 0 0 0.25rem 0;
-  font-size: 1rem;
-}
-.highlight-text p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-}
-</style>
 
 <div class="why-section">
   <h2>Why Slack Channels Grouping?</h2>
@@ -191,13 +69,13 @@ features:
 </div>
 
 <div class="highlights-section">
-  <h2>Smart & Efficient</h2>
+  <h2>More Features</h2>
   <div class="highlights-grid">
     <div class="highlight-item">
-      <span class="highlight-icon">🔄</span>
+      <span class="highlight-icon">🌍</span>
       <div class="highlight-text">
-        <h4>Real-time Updates</h4>
-        <p>Automatically detects channel creation, renaming, and deletion—no refresh needed.</p>
+        <h4>14 Languages</h4>
+        <p>Supports English, Japanese, Chinese, Korean, Spanish, French, German, and more.</p>
       </div>
     </div>
     <div class="highlight-item">

@@ -20,9 +20,9 @@ features:
   - icon: "📁"
     title: 自動グループ化
     details: チャンネル名のプレフィックス（例：dev-、chat-、feed-）で自動的にグループ化
-  - icon: "🌍"
-    title: 14言語対応
-    details: 日本語、英語、中国語、韓国語、スペイン語、フランス語、ドイツ語など14言語に対応
+  - icon: "🔄"
+    title: リアルタイム更新
+    details: チャンネルの作成・名前変更・削除を即座に検出。リロード不要
   - icon: "🌐"
     title: マルチブラウザ
     details: Chrome、Firefox、Opera、Edgeで利用可能
@@ -30,128 +30,6 @@ features:
     title: 軽量
     details: 高速で効率的。Slackのパフォーマンスへの影響を最小限に
 ---
-
-<style>
-.screenshot-section {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-.screenshot-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.screenshot-section img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-.install-section {
-  max-width: 800px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-.install-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.browser-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.browser-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-.browser-link:hover {
-  background: var(--vp-c-brand-soft);
-  transform: translateY(-2px);
-}
-.why-section {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-.why-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.why-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.problem-box, .solution-box {
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: var(--vp-c-bg-soft);
-}
-.problem-box h3, .solution-box h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.2rem;
-}
-.problem-box p, .solution-box p {
-  margin: 0;
-  line-height: 1.7;
-  color: var(--vp-c-text-2);
-}
-.problem-box code, .solution-box code {
-  background: var(--vp-c-bg-mute);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-.highlights-section {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-.highlights-section h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-.highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-}
-.highlight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-}
-.highlight-icon {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-.highlight-text h4 {
-  margin: 0 0 0.25rem 0;
-  font-size: 1rem;
-}
-.highlight-text p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-}
-</style>
 
 <div class="why-section">
   <h2>なぜ Slack Channels Grouping？</h2>
@@ -191,13 +69,13 @@ features:
 </div>
 
 <div class="highlights-section">
-  <h2>スマート & 効率的</h2>
+  <h2>その他の特徴</h2>
   <div class="highlights-grid">
     <div class="highlight-item">
-      <span class="highlight-icon">🔄</span>
+      <span class="highlight-icon">🌍</span>
       <div class="highlight-text">
-        <h4>リアルタイム更新</h4>
-        <p>チャンネルの作成・名前変更・削除を自動検出。リロード不要です。</p>
+        <h4>14言語対応</h4>
+        <p>日本語、英語、中国語、韓国語、スペイン語、フランス語、ドイツ語などに対応。</p>
       </div>
     </div>
     <div class="highlight-item">
