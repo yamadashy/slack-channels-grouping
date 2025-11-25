@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 
+const googleAnalyticsTag = 'G-XX03LFC5SQ'
+
 export default defineConfig({
   title: 'Slack Channels Grouping',
   description: 'A browser extension that organizes Slack channels into visual groups based on prefixes',
@@ -11,6 +13,22 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: 'A browser extension that organizes Slack channels into visual groups based on prefixes' }],
     ['meta', { property: 'og:image', content: 'https://slack-channels-grouping.com/screenshot.png' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    // Google Analytics
+    [
+      'script',
+      {
+        async: 'true',
+        src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsTag}`,
+      },
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${googleAnalyticsTag}');`,
+    ],
   ],
 
   themeConfig: {
