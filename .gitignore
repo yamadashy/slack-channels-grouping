@@ -296,3 +296,7 @@ dist/
 packages/
 storage/
 repomix-output.txt
+
+# VitePress
+docs/.vitepress/dist
+docs/.vitepress/cache
