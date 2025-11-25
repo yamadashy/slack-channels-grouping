@@ -9,7 +9,7 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Slack Channels Grouping' }],
     ['meta', { property: 'og:description', content: 'A browser extension that organizes Slack channels into visual groups based on prefixes' }],
-    ['meta', { property: 'og:image', content: 'https://yamadashy.github.io/slack-channels-grouping/screenshot.png' }],
+    ['meta', { property: 'og:image', content: 'https://slack-channels-grouping.com/screenshot.png' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],
 
