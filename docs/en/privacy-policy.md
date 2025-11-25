@@ -10,4 +10,4 @@ If you have any questions or inquiries regarding the privacy policy, please cont
 
 ---
 
-Revised: December 29, 2019
+Revised: November 25, 2025
