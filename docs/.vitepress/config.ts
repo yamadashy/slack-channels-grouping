@@ -42,7 +42,8 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yamadashy/slack-channels-grouping' }
+      { icon: 'github', link: 'https://github.com/yamadashy/slack-channels-grouping' },
+      { icon: 'x', link: 'https://x.com/yamadashy' },
     ],
 
     footer: {
