@@ -6,8 +6,8 @@ hero:
   text: "Organize your Slack channels"
   tagline: A browser extension that groups Slack channels by prefix for a cleaner sidebar
   image:
-    src: /icon.png
-    alt: Slack Channels Grouping
+    src: /screenshot.png
+    alt: Slack Channels Grouping - Before and After
   actions:
     - theme: brand
       text: Install for Chrome
