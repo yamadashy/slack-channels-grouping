@@ -6,8 +6,8 @@ hero:
   text: "Slackチャンネルを整理"
   tagline: チャンネルをプレフィックスでグループ化して、サイドバーをすっきり見やすく
   image:
-    src: /screenshot.png
-    alt: Slack Channels Grouping - Before and After
+    src: /icon.png
+    alt: Slack Channels Grouping
   actions:
     - theme: brand
       text: Chromeでインストール
