@@ -6,7 +6,6 @@ export default defineConfig({
   title: 'Slack Channels Grouping',
   description: 'A browser extension that organizes Slack channels into visual groups based on prefixes',
 
-  lastUpdated: true,
   cleanUrls: true,
   metaChunk: true,
 
