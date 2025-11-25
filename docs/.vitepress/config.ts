@@ -6,6 +6,14 @@ export default defineConfig({
   title: 'Slack Channels Grouping',
   description: 'A browser extension that organizes Slack channels into visual groups based on prefixes',
 
+  lastUpdated: true,
+  cleanUrls: true,
+  metaChunk: true,
+
+  sitemap: {
+    hostname: 'https://slack-channels-grouping.com/',
+  },
+
   head: [
     ['link', { rel: 'icon', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -48,7 +56,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © yamadashy'
+      copyright: 'Copyright © 2024 Kazuki Yamada',
     }
   }
 })
