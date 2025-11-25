@@ -87,6 +87,6 @@
     "last 2 versions, not dead, > 0.2%"
   ],
   "engines": {
-    "node": ">=24.0.1"
+    "node": ">=18"
   }
 }
