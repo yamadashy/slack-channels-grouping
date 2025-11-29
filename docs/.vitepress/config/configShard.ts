@@ -30,7 +30,7 @@ export const configShard = defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/icon.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'Slack Channels Grouping' }],
     ['meta', { property: 'og:description', content: 'A browser extension that organizes Slack channels into visual groups based on prefixes' }],
