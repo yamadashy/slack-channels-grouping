@@ -61,12 +61,12 @@
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.0.0",
     "globals": "^16.5.0",
-    "repomix": "^1.9.2",
+    "repomix": "^1.10.1",
     "happy-dom": "^20.0.11",
     "secretlint": "^11.2.5",
     "typescript": "^5.9.3",
     "vitest": "^4.0.15",
-    "webpack-bundle-analyzer": "^5.0.1"
+    "webpack-bundle-analyzer": "^5.1.0"
   },
   "babel": {
     "presets": [
