@@ -56,7 +56,7 @@
     "@types/babel__preset-env": "^7.10.0",
     "@types/chrome": "^0.1.37",
     "@types/core-js": "2.5.8",
-    "@types/jquery": "^3.5.34",
+    "@types/jquery": "^4.0.0",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.1.0",
