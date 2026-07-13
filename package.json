@@ -61,7 +61,7 @@
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.1.1",
     "globals": "^17.7.0",
-    "repomix": "^1.16.0",
+    "repomix": "^1.16.1",
     "happy-dom": "^20.10.6",
     "secretlint": "^13.0.2",
     "typescript": "^6.0.3",
