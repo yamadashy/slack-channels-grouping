@@ -1,4 +1,4 @@
-import $ from 'jquery/dist/jquery.slim';
+import $ from 'jquery/slim';
 import {
   DATA_KEY_CHANNEL_ITEM_CONTENTS_CONTAINER_CHANNEL_TYPE,
   DATA_KEY_CHANNEL_NAME,

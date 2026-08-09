@@ -2,7 +2,7 @@
   "name": "Slack Channels Grouping",
   "short_name": "slack-ch-grp",
   "description": "__MSG_appDescription__",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "manifest_version": 3,
   "default_locale": "en",
   "icons": {
@@ -53,12 +53,10 @@
       ]
     }
   ],
-
   "__chrome|opera|edge|safari__host_permissions": [
     "http://app.slack.com/*",
     "https://app.slack.com/*"
   ],
-
   "__firefox__manifest_version": 2,
   "__firefox__background": {
     "scripts": [
@@ -76,7 +74,12 @@
   "__firefox__browser_specific_settings": {
     "gecko": {
       "id": "{24d54390-97ea-4c57-b4be-7e32232ca609}",
-      "strict_min_version": "102.0"
+      "strict_min_version": "102.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   }
 }

@@ -2,8 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "target": "esnext",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "lib": [
       "dom",
@@ -13,6 +13,12 @@
     "noImplicitAny": true,
     "removeComments": true,
     "skipLibCheck": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": [
+      "chrome",
+      "jquery",
+      "node",
+      "vitest/globals"
+    ]
   }
 }
