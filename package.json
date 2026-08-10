@@ -36,7 +36,7 @@
     "url": "https://github.com/yamadashy/slack-channels-grouping/issues"
   },
   "dependencies": {
-    "core-js": "3.49.0",
+    "core-js": "3.50.0",
     "eventemitter3": "5.0.4",
     "jquery": "4.0.0",
     "loglevel": "^1.9.2",
@@ -61,8 +61,8 @@
     "@webextension-toolbox/webextension-toolbox": "^7.1.1",
     "babel-loader": "^10.1.1",
     "globals": "^17.9.0",
-    "repomix": "^1.17.0",
-    "happy-dom": "^20.11.1",
+    "repomix": "^1.18.0",
+    "happy-dom": "^20.11.2",
     "secretlint": "^13.0.4",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
