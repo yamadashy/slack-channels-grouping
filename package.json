@@ -64,7 +64,7 @@
     "repomix": "^1.18.0",
     "happy-dom": "^20.11.2",
     "secretlint": "^13.0.4",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.10",
     "webpack-bundle-analyzer": "^5.3.1"
   },
