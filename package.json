@@ -62,10 +62,10 @@
     "babel-loader": "^10.1.1",
     "globals": "^17.13.0",
     "repomix": "^1.18.1",
-    "happy-dom": "^21.0.1",
+    "happy-dom": "^21.0.3",
     "secretlint": "^13.0.7",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.3",
+    "vitest": "^5.0.5",
     "webpack-bundle-analyzer": "^5.4.0"
   },
   "babel": {
