@@ -8,6 +8,9 @@
   "rangeStrategy": "bump",
   "dependencyDashboard": false,
   "labels": ["dependencies", "renovate"],
+  // Wait a week before picking up a release, so a compromised or broken
+  // version has time to be yanked first.
+  "minimumReleaseAge": "7 days",
   "automerge": true,
   "packageRules": [
     {
